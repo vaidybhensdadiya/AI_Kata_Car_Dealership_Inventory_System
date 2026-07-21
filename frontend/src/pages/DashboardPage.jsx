@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { useAuth } from '../context/AuthContext'
 import Navbar from '../components/Navbar'
 import AdminStats from '../components/AdminStats'
 import SearchToolbar from '../components/SearchToolbar'
-import VehicleGrid from '../components/VehicleGrid'
+import VehicleCard from '../components/VehicleCard'
+import PurchaseModal from '../components/PurchaseModal'
 import AddVehicleModal from '../components/AddVehicleModal'
 import EditVehicleModal from '../components/EditVehicleModal'
-import PurchaseModal from '../components/PurchaseModal'
-import RestockModal from '../components/RestockModal'
+import RestockVehicleModal from '../components/RestockVehicleModal'
 import DeleteConfirmModal from '../components/DeleteConfirmModal'
-import { useAuth } from '../context/AuthContext'
 import axiosClient from '../api/axiosClient'
+import { PlusCircle, Sparkles, SearchX } from 'lucide-react'
 
 export default function DashboardPage() {
-  const { user } = useAuth()
-  const isStaff = user?.is_staff || false
-
+  const { user, isStaff } = useAuth()
   const [vehicles, setVehicles] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchParams, setSearchParams] = useState({
@@ -24,32 +23,31 @@ export default function DashboardPage() {
     max_price: ''
   })
 
-  // Active Modals
+  // Modal States
+  const [purchaseVehicle, setPurchaseVehicle] = useState(null)
   const [showAddModal, setShowAddModal] = useState(false)
-  const [selectedPurchaseVehicle, setSelectedPurchaseVehicle] = useState(null)
-  const [selectedEditVehicle, setSelectedEditVehicle] = useState(null)
-  const [selectedRestockVehicle, setSelectedRestockVehicle] = useState(null)
-  const [selectedDeleteVehicle, setSelectedDeleteVehicle] = useState(null)
+  const [editVehicle, setEditVehicle] = useState(null)
+  const [restockVehicle, setRestockVehicle] = useState(null)
+  const [deleteVehicle, setDeleteVehicle] = useState(null)
 
   const fetchVehicles = useCallback(async () => {
-    setLoading(true)
     try {
+      setLoading(true)
       const hasFilter = searchParams.make || searchParams.category || searchParams.min_price || searchParams.max_price
-      let url = '/vehicles/'
-      let params = {}
-
+      let res
       if (hasFilter) {
-        url = '/vehicles/search/'
-        if (searchParams.make) params.make = searchParams.make
-        if (searchParams.category) params.category = searchParams.category
-        if (searchParams.min_price) params.min_price = searchParams.min_price
-        if (searchParams.max_price) params.max_price = searchParams.max_price
+        const params = new URLSearchParams()
+        if (searchParams.make) params.append('make', searchParams.make)
+        if (searchParams.category) params.append('category', searchParams.category)
+        if (searchParams.min_price) params.append('min_price', searchParams.min_price)
+        if (searchParams.max_price) params.append('max_price', searchParams.max_price)
+        res = await axiosClient.get(`/vehicles/search/?${params.toString()}`)
+      } else {
+        res = await axiosClient.get('/vehicles/')
       }
-
-      const response = await axiosClient.get(url, { params })
-      setVehicles(response.data)
+      setVehicles(res.data)
     } catch (err) {
-      console.error('Failed to load vehicles:', err)
+      console.error('Failed to fetch vehicles:', err)
     } finally {
       setLoading(false)
     }
@@ -59,63 +57,92 @@ export default function DashboardPage() {
     fetchVehicles()
   }, [fetchVehicles])
 
-  const handleParamChange = (key, value) => {
-    setSearchParams(prev => ({ ...prev, [key]: value }))
+  const handleParamChange = (field, value) => {
+    setSearchParams((prev) => ({ ...prev, [field]: value }))
   }
 
   const handleResetFilters = () => {
-    setSearchParams({
-      make: '',
-      category: '',
-      min_price: '',
-      max_price: ''
-    })
+    setSearchParams({ make: '', category: '', min_price: '', max_price: '' })
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-sky-500 selection:text-slate-950">
-      {/* Navigation Header */}
-      <Navbar onOpenAddModal={() => setShowAddModal(true)} />
+    <div className="min-h-screen bg-[#0F1115] text-[#F8FAFC]">
+      <Navbar />
 
-      {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome Hero Banner */}
-        <div className="mb-8 p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative z-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-sky-400">Dealership Live Inventory</span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">
-              Welcome back, <span className="bg-gradient-to-r from-sky-400 via-indigo-300 to-white bg-clip-text text-transparent">{user?.first_name || user?.username}</span>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        {/* Showroom Hero Header */}
+        <div className="steel-card p-8 sm:p-10 rounded-2xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-8 bg-gradient-to-r from-[#1E232B] via-[#171A21] to-[#1E232B]">
+          <div className="space-y-3 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#E63946]/10 border border-[#E63946]/20 text-[#E63946] text-xs font-semibold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5" /> Midnight Steel Experience
+            </div>
+            <h1 className="font-heading text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
+              Welcome, <span className="text-[#E63946]">{user?.first_name || user?.username || 'Collector'}</span>
             </h1>
-            <p className="text-slate-400 text-sm mt-2 max-w-xl">
-              Explore our current fleet of luxury, performance, and everyday vehicles. {isStaff && 'You have administrative permissions to modify inventory.'}
+            <p className="text-[#CBD5E1] text-sm leading-relaxed">
+              Explore 30 luxury sedans, exotics, SUVs, and performance cars with real-time Indian Rupee (₹) pricing, specification sheets, and instant checkout.
             </p>
           </div>
+
+          {isStaff && (
+            <button
+              onClick={() => setShowAddModal(true)}
+              className="px-6 py-3.5 btn-racing font-semibold text-sm rounded-xl shadow-lg flex items-center gap-2 shrink-0"
+            >
+              <PlusCircle className="w-4 h-4" /> Add New Vehicle
+            </button>
+          )}
         </div>
 
-        {/* Admin KPI Stats Banner */}
+        {/* Admin KPI Stats Cards */}
         {isStaff && <AdminStats vehicles={vehicles} />}
 
-        {/* Search & Multi-Filter Controls */}
+        {/* Filter & Search Toolbar */}
         <SearchToolbar
           searchParams={searchParams}
           onParamChange={handleParamChange}
           onReset={handleResetFilters}
         />
 
-        {/* Vehicle Cards Grid */}
-        <VehicleGrid
-          vehicles={vehicles}
-          loading={loading}
-          isStaff={isStaff}
-          onPurchase={(v) => setSelectedPurchaseVehicle(v)}
-          onEdit={(v) => setSelectedEditVehicle(v)}
-          onDelete={(v) => setSelectedDeleteVehicle(v)}
-          onRestock={(v) => setSelectedRestockVehicle(v)}
-        />
+        {/* Vehicles Grid */}
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+              <div key={n} className="steel-card h-80 animate-pulse rounded-2xl p-6 bg-[#171A21]" />
+            ))}
+          </div>
+        ) : vehicles.length === 0 ? (
+          <div className="steel-card rounded-2xl p-12 text-center text-[#94A3B8]">
+            <SearchX className="w-12 h-12 mx-auto mb-3 text-[#94A3B8]" />
+            <h3 className="font-heading text-lg font-bold text-white mb-1">No Vehicles Found</h3>
+            <p className="text-xs text-[#94A3B8]">No vehicles matched your search filter criteria.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {vehicles.map((v) => (
+              <VehicleCard
+                key={v.id}
+                vehicle={v}
+                isStaff={isStaff}
+                onPurchase={(v) => setPurchaseVehicle(v)}
+                onEdit={(v) => setEditVehicle(v)}
+                onDelete={(v) => setDeleteVehicle(v)}
+                onRestock={(v) => setRestockVehicle(v)}
+              />
+            ))}
+          </div>
+        )}
       </main>
 
       {/* Modals */}
+      {purchaseVehicle && (
+        <PurchaseModal
+          vehicle={purchaseVehicle}
+          onClose={() => setPurchaseVehicle(null)}
+          onSuccess={fetchVehicles}
+        />
+      )}
+
       {showAddModal && (
         <AddVehicleModal
           onClose={() => setShowAddModal(false)}
@@ -123,34 +150,26 @@ export default function DashboardPage() {
         />
       )}
 
-      {selectedPurchaseVehicle && (
-        <PurchaseModal
-          vehicle={selectedPurchaseVehicle}
-          onClose={() => setSelectedPurchaseVehicle(null)}
-          onSuccess={fetchVehicles}
-        />
-      )}
-
-      {selectedEditVehicle && (
+      {editVehicle && (
         <EditVehicleModal
-          vehicle={selectedEditVehicle}
-          onClose={() => setSelectedEditVehicle(null)}
+          vehicle={editVehicle}
+          onClose={() => setEditVehicle(null)}
           onSuccess={fetchVehicles}
         />
       )}
 
-      {selectedRestockVehicle && (
-        <RestockModal
-          vehicle={selectedRestockVehicle}
-          onClose={() => setSelectedRestockVehicle(null)}
+      {restockVehicle && (
+        <RestockVehicleModal
+          vehicle={restockVehicle}
+          onClose={() => setRestockVehicle(null)}
           onSuccess={fetchVehicles}
         />
       )}
 
-      {selectedDeleteVehicle && (
+      {deleteVehicle && (
         <DeleteConfirmModal
-          vehicle={selectedDeleteVehicle}
-          onClose={() => setSelectedDeleteVehicle(null)}
+          vehicle={deleteVehicle}
+          onClose={() => setDeleteVehicle(null)}
           onSuccess={fetchVehicles}
         />
       )}
