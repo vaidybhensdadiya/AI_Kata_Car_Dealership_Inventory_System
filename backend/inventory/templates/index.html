@@ -101,7 +101,7 @@
     <header class="sticky top-0 z-40 w-full vault-glass">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
-        <!-- Sleek Monoline Shield Emblem Logo -->
+        <!-- Monoline Shield Emblem Logo -->
         <a href="#" onclick="showDashboard()" class="flex items-center gap-3.5 group">
           <div class="w-10 h-10 rounded-xl bg-vault-blue/10 border border-vault-blue/30 flex items-center justify-center text-vault-blue group-hover:bg-vault-blue group-hover:text-white transition-all duration-300 shadow-md">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -126,79 +126,102 @@
       </div>
     </header>
 
-    <!-- Main Content Workspace -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+    <!-- Main Workspace -->
+    <main class="w-full min-h-[calc(100vh-80px)]">
 
-      <!-- Authentication Portal Container -->
-      <div id="auth-section" class="max-w-md mx-auto my-12 vault-card p-8 relative overflow-hidden shadow-2xl">
-        <div id="login-form">
-          <div class="text-center mb-8">
-            <div class="w-12 h-12 rounded-xl bg-vault-sec border border-vault-border text-vault-blue flex items-center justify-center mx-auto mb-4">
-              <i data-lucide="key-round" class="w-6 h-6"></i>
+      <!-- Side-by-Side Authentication Section -->
+      <div id="auth-section" class="min-h-[calc(100vh-80px)] flex flex-col lg:flex-row">
+        
+        <!-- Left: Form Container -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gradient-to-b from-[#0B0F14] to-[#141A22]">
+          <div class="max-w-md w-full vault-card p-8 shadow-2xl relative border border-vault-border bg-[#1A212C]">
+            <div id="login-form">
+              <div class="text-center mb-8">
+                <div class="w-12 h-12 rounded-xl bg-vault-sec border border-vault-border text-vault-blue flex items-center justify-center mx-auto mb-4">
+                  <i data-lucide="key-round" class="w-6 h-6"></i>
+                </div>
+                <h2 class="font-heading text-2xl font-bold text-white tracking-tight">Portal Sign In</h2>
+                <p class="text-xs text-text-muted mt-1.5">Access your AutoVault reserve account</p>
+              </div>
+
+              <div id="auth-error" class="hidden mb-5 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs flex items-center gap-2.5">
+                <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
+                <span id="auth-error-msg"></span>
+              </div>
+
+              <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-2">Username</label>
+                  <input type="text" id="login-username" required placeholder="Enter username" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-3 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-vault-blue transition-all">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-2">Password</label>
+                  <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-3 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-vault-blue transition-all">
+                </div>
+                <button type="submit" class="w-full py-3.5 btn-blue font-semibold text-sm rounded-xl shadow-lg">
+                  Sign In to AutoVault
+                </button>
+              </form>
+
+              <div class="mt-8 pt-6 border-t border-vault-border text-center text-xs text-text-muted">
+                New user? <a href="#" onclick="toggleAuthMode('register')" class="text-vault-blue font-semibold hover:underline">Register account</a>
+              </div>
             </div>
-            <h2 class="font-heading text-2xl font-bold text-white tracking-tight">Portal Sign In</h2>
-            <p class="text-xs text-text-muted mt-1.5">Access your AutoVault reserve account</p>
-          </div>
 
-          <div id="auth-error" class="hidden mb-5 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs flex items-center gap-2.5">
-            <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
-            <span id="auth-error-msg"></span>
-          </div>
+            <div id="register-form" class="hidden">
+              <div class="text-center mb-8">
+                <div class="w-12 h-12 rounded-xl bg-vault-sec border border-vault-border text-vault-blue flex items-center justify-center mx-auto mb-4">
+                  <i data-lucide="user-plus" class="w-6 h-6"></i>
+                </div>
+                <h2 class="font-heading text-2xl font-bold text-white tracking-tight">Create Account</h2>
+                <p class="text-xs text-text-muted mt-1.5">Join AutoVault for immediate inventory access</p>
+              </div>
 
-          <form onsubmit="handleLogin(event)" class="space-y-4">
-            <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-2">Username</label>
-              <input type="text" id="login-username" required placeholder="Enter username" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-3 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-vault-blue transition-all">
+              <form onsubmit="handleRegister(event)" class="space-y-4">
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-1.5">Username *</label>
+                  <input type="text" id="reg-username" required placeholder="Choose username" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-vault-blue">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-1.5">Email *</label>
+                  <input type="email" id="reg-email" required placeholder="name@example.com" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-vault-blue">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-1.5">Password *</label>
+                  <input type="password" id="reg-password" required placeholder="Minimum 6 characters" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-vault-blue">
+                </div>
+                <button type="submit" class="w-full py-3.5 btn-blue font-semibold text-sm rounded-xl shadow-lg">
+                  Register & Access
+                </button>
+              </form>
+
+              <div class="mt-8 pt-6 border-t border-vault-border text-center text-xs text-text-muted">
+                Already registered? <a href="#" onclick="toggleAuthMode('login')" class="text-vault-blue font-semibold hover:underline">Sign in to account</a>
+              </div>
             </div>
-            <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-2">Password</label>
-              <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-3 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-vault-blue transition-all">
-            </div>
-            <button type="submit" class="w-full py-3.5 btn-blue font-semibold text-sm rounded-xl shadow-lg">
-              Sign In to AutoVault
-            </button>
-          </form>
-
-          <div class="mt-8 pt-6 border-t border-vault-border text-center text-xs text-text-muted">
-            New user? <a href="#" onclick="toggleAuthMode('register')" class="text-vault-blue font-semibold hover:underline">Register account</a>
           </div>
         </div>
 
-        <div id="register-form" class="hidden">
-          <div class="text-center mb-8">
-            <div class="w-12 h-12 rounded-xl bg-vault-sec border border-vault-border text-vault-blue flex items-center justify-center mx-auto mb-4">
-              <i data-lucide="user-plus" class="w-6 h-6"></i>
+        <!-- Right: Unique Custom Tuned Automotive Showcase Image -->
+        <div class="hidden lg:block lg:w-1/2 relative overflow-hidden border-l border-vault-border">
+          <img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=1200&q=80" alt="Luxury Auto Reserve" class="absolute inset-0 w-full h-full object-cover brightness-[0.7] transform hover:scale-[1.02] transition-transform duration-[4000ms]" />
+          <div class="absolute inset-0 bg-gradient-to-r from-vault-bg via-transparent to-transparent"></div>
+          <div class="absolute bottom-12 left-12 right-12 space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vault-blue/10 border border-vault-blue/30 text-vault-blue text-xs font-semibold uppercase tracking-wider">
+              AutoVault Reserve
             </div>
-            <h2 class="font-heading text-2xl font-bold text-white tracking-tight">Create Account</h2>
-            <p class="text-xs text-text-muted mt-1.5">Join AutoVault for immediate inventory access</p>
-          </div>
-
-          <form onsubmit="handleRegister(event)" class="space-y-4">
-            <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-1.5">Username *</label>
-              <input type="text" id="reg-username" required placeholder="Choose username" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-vault-blue">
-            </div>
-            <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-1.5">Email *</label>
-              <input type="email" id="reg-email" required placeholder="name@example.com" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-vault-blue">
-            </div>
-            <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-1.5">Password *</label>
-              <input type="password" id="reg-password" required placeholder="Minimum 6 characters" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-vault-blue">
-            </div>
-            <button type="submit" class="w-full py-3.5 btn-blue font-semibold text-sm rounded-xl shadow-lg">
-              Register & Access
-            </button>
-          </form>
-
-          <div class="mt-8 pt-6 border-t border-vault-border text-center text-xs text-text-muted">
-            Already registered? <a href="#" onclick="toggleAuthMode('login')" class="text-vault-blue font-semibold hover:underline">Sign in to account</a>
+            <h2 class="font-heading text-3xl font-bold text-white tracking-tight leading-tight">
+              Curated Custom Tuned Reserve
+            </h2>
+            <p class="text-text-secondary text-xs leading-relaxed max-w-md">
+              Unlock access to customized high-performance exotics, customized trucks, and hypercars with atomic real-time tracking.
+            </p>
           </div>
         </div>
       </div>
 
       <!-- Main Showroom Showcase Section -->
-      <div id="dashboard-section" class="hidden space-y-12">
+      <div id="dashboard-section" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
         
         <!-- Full-Width Luxury Showroom Hero Section -->
         <section id="hero-showcase" class="vault-card rounded-2xl p-8 sm:p-12 relative overflow-hidden bg-gradient-to-r from-vault-card via-vault-sec to-vault-card border border-white/[0.08]">
