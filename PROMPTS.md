@@ -260,6 +260,18 @@ Implemented `RestockVehicleView` with admin permission check and atomic stock in
 **Result:**
 Refactored `RestockVehicleView`. Ran test suite: **40 Passed (REFACTOR)**.
 
+---
+
+## Feature 12: Auth Context & Router Setup
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing Vitest test for AuthContext verifying initial unauthenticated state and presence of login/logout actions.
+
+**Result:**
+Failing test written in `frontend/src/__tests__/AuthContext.test.jsx`. Ran Vitest suite (RED).
+
+
 
 
 
