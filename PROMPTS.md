@@ -103,5 +103,12 @@ Created `UserSerializer` and simplified `LoginView` and `UserProfileView`. Ran t
 **Result:**
 Implemented Vehicle model, serializers, permissions, views, and initial migrations. Ran test suite: **18 Passed (GREEN)**.
 
+### REFACTOR
+**Prompt:**
+> Refactor Vehicle model to use Decimal instances for MinValueValidator and add default ordering. Ensure all existing tests pass without warnings.
+
+**Result:**
+Refactored `Vehicle` model with `Decimal('0.00')` validator and meta ordering. Ran test suite: **18 Passed (REFACTOR)**.
+
 
 
