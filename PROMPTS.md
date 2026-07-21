@@ -85,4 +85,16 @@ Implemented `UserProfileView` with `IsAuthenticated` permission and URL routing.
 **Result:**
 Created `UserSerializer` and simplified `LoginView` and `UserProfileView`. Ran test suite: **12 Passed (REFACTOR)**.
 
+---
+
+## Feature 5: Add Vehicle (POST /api/vehicles)
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing pytest cases for Add Vehicle endpoint in Django REST Framework testing admin creation permission (201), non-admin forbidden (403), unauthenticated rejection (401), negative price validation (400), negative quantity validation (400), and missing required fields (400).
+
+**Result:**
+6 new pytest cases added to `backend/inventory/tests/test_vehicles.py`. Ran test suite: **6 Failed, 12 Passed (RED)**.
+
+
 
