@@ -146,6 +146,13 @@ Refactored `VehicleListCreateView` with explicit query ordering. Ran test suite:
 **Result:**
 4 new pytest cases added to `backend/inventory/tests/test_vehicles.py`. Ran test suite: **4 Failed, 21 Passed (RED)**.
 
+### GREEN
+**Prompt:**
+> Implement the minimum Django REST Framework code (VehicleSearchView) required to make all Vehicle Search tests pass. Do not refactor.
+
+**Result:**
+Implemented `VehicleSearchView` filtering queryset by query params and added URL route. Ran test suite: **25 Passed (GREEN)**.
+
 
 
 

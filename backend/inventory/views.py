@@ -84,3 +84,36 @@ class VehicleListCreateView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class VehicleSearchView(APIView):
+    """
+    API View to search vehicles by make, model, category, min_price, max_price.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        queryset = Vehicle.objects.all()
+
+        make = request.query_params.get('make')
+        if make:
+            queryset = queryset.filter(make__icontains=make)
+
+        model = request.query_params.get('model')
+        if model:
+            queryset = queryset.filter(model__icontains=model)
+
+        category = request.query_params.get('category')
+        if category:
+            queryset = queryset.filter(category__icontains=category)
+
+        min_price = request.query_params.get('min_price')
+        if min_price:
+            queryset = queryset.filter(price__gte=min_price)
+
+        max_price = request.query_params.get('max_price')
+        if max_price:
+            queryset = queryset.filter(price__lte=max_price)
+
+        serializer = VehicleSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
