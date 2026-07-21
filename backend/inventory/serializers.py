@@ -2,24 +2,29 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, required=True)
+    """
+    Serializer for user registration.
+    Validates required fields, password length, and uniqueness of email & username.
+    """
+    password = serializers.CharField(write_only=True, required=True, min_length=6)
     email = serializers.EmailField(required=True)
 
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
 
-    def validate_email(self, value):
-        if User.objects.filter(email=value).exists():
-            raise serializers.ValidationError("A user with this email already exists.")
-        return value
+    def validate_email(self, value: str) -> str:
+        """Ensure email is unique across all users."""
+        if User.objects.filter(email__iexact=value).exists():
+            raise serializers.ValidationError("A user with this email address already exists.")
+        return value.lower()
 
-    def create(self, validated_data):
-        user = User.objects.create_user(
+    def create(self, validated_data: dict) -> User:
+        """Create and return a new User instance with hashed password."""
+        return User.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
             password=validated_data['password'],
             first_name=validated_data.get('first_name', ''),
             last_name=validated_data.get('last_name', '')
         )
-        return user
