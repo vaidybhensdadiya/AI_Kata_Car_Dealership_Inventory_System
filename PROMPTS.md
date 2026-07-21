@@ -60,3 +60,15 @@ Implemented `LoginView` using `RefreshToken.for_user` and URL routing. Ran test 
 **Result:**
 Refactored `LoginView` with clean docstrings and formatted response structures. Ran test suite: **9 Passed (REFACTOR)**.
 
+---
+
+## Feature 4: Protected Routes & JWT Authentication Middleware
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing pytest cases for Protected Endpoints (/api/auth/me/) in Django REST Framework verifying that requests without tokens return 401, invalid tokens return 401, and valid JWT Bearer tokens grant 200 OK access with user details.
+
+**Result:**
+3 new pytest cases added to `backend/inventory/tests/test_auth.py`. Ran test suite: **3 Failed, 9 Passed (RED)**.
+
+

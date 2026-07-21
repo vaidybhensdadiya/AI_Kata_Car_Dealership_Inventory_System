@@ -83,3 +83,35 @@ class TestUserLogin:
     def test_user_login_missing_credentials(self):
         response = self.client.post(self.login_url, {}, format='json')
         assert response.status_code == 400
+
+
+@pytest.mark.django_db
+class TestProtectedRoute:
+    def setup_method(self):
+        self.client = APIClient()
+        self.me_url = '/api/auth/me/'
+        self.user = User.objects.create_user(
+            username='protected_user',
+            email='protected@example.com',
+            password='SecretPassword123!'
+        )
+
+    def test_protected_route_without_token(self):
+        response = self.client.get(self.me_url)
+        assert response.status_code == 401
+
+    def test_protected_route_invalid_token(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Bearer invalid_jwt_token_string')
+        response = self.client.get(self.me_url)
+        assert response.status_code == 401
+
+    def test_protected_route_valid_token(self):
+        login_res = self.client.post('/api/auth/login/', {
+            'username': 'protected_user',
+            'password': 'SecretPassword123!'
+        }, format='json')
+        token = login_res.data['access']
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+        response = self.client.get(self.me_url)
+        assert response.status_code == 200
+        assert response.data['username'] == 'protected_user'
