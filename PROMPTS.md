@@ -78,4 +78,11 @@ Refactored `LoginView` with clean docstrings and formatted response structures. 
 **Result:**
 Implemented `UserProfileView` with `IsAuthenticated` permission and URL routing. Ran test suite: **12 Passed (GREEN)**.
 
+### REFACTOR
+**Prompt:**
+> Refactor User Profile view and Login view to utilize a centralized UserSerializer for formatting user data representations across endpoints. Ensure all existing tests pass.
+
+**Result:**
+Created `UserSerializer` and simplified `LoginView` and `UserProfileView`. Ran test suite: **12 Passed (REFACTOR)**.
+
 

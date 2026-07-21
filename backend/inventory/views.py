@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status, permissions
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import RegisterSerializer
+from .serializers import RegisterSerializer, UserSerializer
 
 class RegisterView(APIView):
     """
@@ -46,14 +46,7 @@ class LoginView(APIView):
         return Response({
             'access': str(refresh.access_token),
             'refresh': str(refresh),
-            'user': {
-                'id': user.id,
-                'username': user.username,
-                'email': user.email,
-                'first_name': user.first_name,
-                'last_name': user.last_name,
-                'is_staff': user.is_staff,
-            }
+            'user': UserSerializer(user).data
         }, status=status.HTTP_200_OK)
 
 
@@ -64,12 +57,4 @@ class UserProfileView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        user = request.user
-        return Response({
-            'id': user.id,
-            'username': user.username,
-            'email': user.email,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
-            'is_staff': user.is_staff,
-        }, status=status.HTTP_200_OK)
+        return Response(UserSerializer(request.user).data, status=status.HTTP_200_OK)
