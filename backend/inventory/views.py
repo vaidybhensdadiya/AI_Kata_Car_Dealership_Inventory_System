@@ -127,27 +127,26 @@ class VehicleSearchView(APIView):
 
 class VehicleDetailView(APIView):
     """
-    API View to retrieve, update, or delete a single vehicle instance.
+    API View to retrieve, update, or delete a single vehicle instance by ID.
     """
     def get_permissions(self):
         if self.request.method in ['PUT', 'PATCH', 'DELETE']:
             return [permissions.IsAuthenticated(), IsAdminUserOnly()]
         return [permissions.IsAuthenticated()]
 
-    def get_object(self, pk):
-        try:
-            return Vehicle.objects.get(pk=pk)
-        except Vehicle.DoesNotExist:
-            return None
+    def get_object(self, pk: int) -> Vehicle | None:
+        """Safely fetch a vehicle instance by primary key."""
+        return Vehicle.objects.filter(pk=pk).first()
 
-    def get(self, request, pk):
+    def get(self, request, pk: int):
+        """Retrieve details of a single vehicle."""
         vehicle = self.get_object(pk)
         if not vehicle:
             return Response({'detail': 'Vehicle not found.'}, status=status.HTTP_404_NOT_FOUND)
-        serializer = VehicleSerializer(vehicle)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(VehicleSerializer(vehicle).data, status=status.HTTP_200_OK)
 
-    def put(self, request, pk):
+    def put(self, request, pk: int):
+        """Update vehicle details (Admin only)."""
         vehicle = self.get_object(pk)
         if not vehicle:
             return Response({'detail': 'Vehicle not found.'}, status=status.HTTP_404_NOT_FOUND)
