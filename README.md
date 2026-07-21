@@ -1,84 +1,78 @@
-# Car Dealership Inventory System
+# Car Dealership Inventory System (TDD Kata)
 
-A full-stack, production-grade Car Dealership Inventory System built following strict **Test-Driven Development (TDD)**, clean coding standards, and AI transparent co-authorship guidelines.
-
-## Features
-
-- **JWT Authentication & Authorization**: Registration, Login, Protected Endpoints, Role-Based Access Control (Admin vs Customer).
-- **Vehicle Catalog**: Browse, live multi-filter search (make, model, category, price range), stock tracking.
-- **Inventory Actions**: Purchase vehicles (decreases quantity with 0-quantity safeguards), Admin restocking (increases quantity).
-- **Admin Dashboard**: Comprehensive CRUD operations (Add, Edit, Delete, Restock) for dealership managers.
-- **Responsive UI**: SPA powered by React, Tailwind CSS, and Lucide Icons.
-
-## Tech Stack
-
-- **Backend**: Python 3.x, Django 5, Django REST Framework (DRF), SimpleJWT, Pytest
-- **Database**: SQLite (Persistent DB stored at `backend/db.sqlite3`)
-- **Frontend**: React 18, Vite, Tailwind CSS v3, Axios, React Router v6
+A full-stack Car Dealership Inventory System built following strict **Test-Driven Development (TDD)** (RED $\rightarrow$ GREEN $\rightarrow$ REFACTOR) principles with Django REST Framework, JWT Token Authentication, SQLite database, and a React + Tailwind CSS interactive single-page application (SPA).
 
 ---
 
-## Setup & Local Execution Instructions
+## Technical Stack & Architecture
 
-### Prerequisites
-- Python 3.10+
-- Node.js 18+ and npm
+### Backend
+- **Framework**: Django 5.2 & Django REST Framework (DRF)
+- **Authentication**: SimpleJWT Token-Based Authentication (`/api/auth/register/`, `/api/auth/login/`, `/api/auth/me/`)
+- **Database**: SQLite
+- **Testing Framework**: Pytest (`pytest-django`) with 40 unit and API integration tests (100% pass rate)
 
-### Backend Setup
-1. Navigate to `backend/`:
-   ```bash
-   cd backend
-   ```
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv venv
-   # On Windows:
-   .\venv\Scripts\activate
-   ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Run database migrations:
-   ```bash
-   python manage.py migrate
-   ```
-5. Run unit tests using pytest:
-   ```bash
-   pytest
-   ```
-6. Start Django development server:
-   ```bash
-   python manage.py runserver
-   ```
-
-### Frontend Setup
-1. Navigate to `frontend/`:
-   ```bash
-   cd frontend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start frontend dev server:
-   ```bash
-   npm run dev
-   ```
+### Frontend
+- **Framework**: React (Vite)
+- **Styling**: Vanilla CSS & Tailwind CSS (Dark Glassmorphism Luxury UI)
+- **Icons**: Lucide React
+- **HTTP Client**: Axios with JWT Authorization Header Interceptors
+- **State & Router**: React Context (`AuthContext`) & React Router v6
 
 ---
 
-## My AI Usage
+## Completed TDD Features
 
-### AI Tools Used
-- **Antigravity AI (Google DeepMind)**: Served as pair programmer, test architect, and co-author following TDD workflows.
-
-### Workflow & Impact
-- AI assistance was leveraged to construct robust test cases first (RED), generate minimal passing implementations (GREEN), and refactor for clean architectural design (REFACTOR).
-- Every commit generated in this repository explicitly attributes co-authorship via git commit trailers.
-- All prompts written and responses generated are recorded in [PROMPTS.md](PROMPTS.md).
+| # | Feature | Endpoint / Component | Status |
+|---|---|---|---|
+| 1 | Project Setup | Skeleton & Repository Configuration | Completed |
+| 2 | User Registration | `POST /api/auth/register/` | Completed |
+| 3 | User Login | `POST /api/auth/login/` | Completed |
+| 4 | Protected User Profile | `GET /api/auth/me/` | Completed |
+| 5 | Add Vehicle (Admin) | `POST /api/vehicles/` | Completed |
+| 6 | List All Vehicles | `GET /api/vehicles/` | Completed |
+| 7 | Search & Multi-Filter | `GET /api/vehicles/search/` | Completed |
+| 8 | Update Vehicle (Admin) | `PUT /api/vehicles/:id/` | Completed |
+| 9 | Delete Vehicle (Admin) | `DELETE /api/vehicles/:id/` | Completed |
+| 10 | Purchase Vehicle | `POST /api/vehicles/:id/purchase/` | Completed |
+| 11 | Restock Vehicle (Admin) | `POST /api/vehicles/:id/restock/` | Completed |
+| 12 | Auth Context & Axios Interceptor | `AuthContext.jsx` & `axiosClient.js` | Completed |
+| 13 | Auth Pages | `LoginPage.jsx` & `RegisterPage.jsx` | Completed |
+| 14 | Navigation & Header Layout | `Navbar.jsx` | Completed |
+| 15 | Vehicle Cards & Grid | `VehicleCard.jsx` & `VehicleGrid.jsx` | Completed |
+| 16 | Multi-Filter Toolbar | `SearchToolbar.jsx` | Completed |
+| 17 | Purchase Workflow | `PurchaseModal.jsx` | Completed |
+| 18 | Admin KPI Dashboard Banner | `AdminStats.jsx` | Completed |
+| 19 | Add Vehicle Modal | `AddVehicleModal.jsx` | Completed |
+| 20 | Edit Vehicle Modal | `EditVehicleModal.jsx` | Completed |
+| 21 | Restock & Delete Modals | `RestockModal.jsx` & `DeleteConfirmModal.jsx` | Completed |
 
 ---
 
-## License
-MIT License
+## Running the Project Locally
+
+### 1. Backend Setup & Server
+
+```bash
+cd backend
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+The backend REST API server will run at `http://127.0.0.1:8000/api/`.
+
+### 2. Running Backend Tests
+
+```bash
+cd backend
+.\venv\Scripts\pytest
+```
+
+---
+
+## Development Prompts Log
+
+All RED $\rightarrow$ GREEN $\rightarrow$ REFACTOR prompts and results are documented in [PROMPTS.md](file:///c:/Users/User/OneDrive/Desktop/AI_Kata_Car_Dealership_Inventory_System/PROMPTS.md).
