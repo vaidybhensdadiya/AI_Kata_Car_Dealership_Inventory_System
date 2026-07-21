@@ -46,3 +46,10 @@ Refactored `RegisterSerializer` with docstrings and type annotations. Ran test s
 **Result:**
 4 new pytest cases added to `backend/inventory/tests/test_auth.py`. Ran test suite: **4 Failed, 5 Passed (RED)**.
 
+### GREEN
+**Prompt:**
+> Implement the minimum Django REST Framework code required to make all User Login tests pass. Do not refactor.
+
+**Result:**
+Implemented `LoginView` using `RefreshToken.for_user` and URL routing. Ran test suite: **9 Passed (GREEN)**.
+
