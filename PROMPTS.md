@@ -371,6 +371,13 @@ Refactored `VehicleCard.jsx` styling map. (REFACTOR).
 **Result:**
 Test file created in `frontend/src/__tests__/SearchToolbar.test.jsx`. Ran Vitest suite (RED).
 
+### GREEN
+**Prompt:**
+> Build SearchToolbar component supporting real-time text query, category dropdown, price boundary inputs, reset button, and quick-filter category chips.
+
+**Result:**
+Implemented `SearchToolbar.jsx` (GREEN).
+
 
 
 
