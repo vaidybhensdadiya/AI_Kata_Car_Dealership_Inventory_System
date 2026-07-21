@@ -310,6 +310,18 @@ Implemented `LoginPage.jsx` and `RegisterPage.jsx` (GREEN).
 **Result:**
 Refactored form accessibility and input animations. (REFACTOR).
 
+---
+
+## Feature 14: Homepage & Dashboard Layout
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing test for Navbar and Dashboard layout structure including brand logo, inventory metrics stats, user greeting, and admin toggle actions.
+
+**Result:**
+Test file created in `frontend/src/__tests__/DashboardLayout.test.jsx`. Ran Vitest suite (RED).
+
+
 
 
 
