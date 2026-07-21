@@ -496,6 +496,13 @@ Refactored `EditVehicleModal.jsx`. (REFACTOR).
 **Result:**
 Test file created in `frontend/src/__tests__/AdminActionsModal.test.jsx`. Ran Vitest suite (RED).
 
+### GREEN
+**Prompt:**
+> Build RestockModal and DeleteConfirmModal components connecting POST /restock/ and DELETE /vehicles/:id/ endpoints with active loading spin states.
+
+**Result:**
+Implemented `RestockModal.jsx` and `DeleteConfirmModal.jsx` (GREEN).
+
 
 
 
