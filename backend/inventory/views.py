@@ -88,32 +88,38 @@ class VehicleListCreateView(APIView):
 
 class VehicleSearchView(APIView):
     """
-    API View to search vehicles by make, model, category, min_price, max_price.
+    API View to search vehicles with multi-filtering parameters.
     """
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        queryset = Vehicle.objects.all()
+        queryset = Vehicle.objects.all().order_by('-created_at')
 
-        make = request.query_params.get('make')
+        make = request.query_params.get('make', '').strip()
         if make:
             queryset = queryset.filter(make__icontains=make)
 
-        model = request.query_params.get('model')
+        model = request.query_params.get('model', '').strip()
         if model:
             queryset = queryset.filter(model__icontains=model)
 
-        category = request.query_params.get('category')
+        category = request.query_params.get('category', '').strip()
         if category:
             queryset = queryset.filter(category__icontains=category)
 
         min_price = request.query_params.get('min_price')
-        if min_price:
-            queryset = queryset.filter(price__gte=min_price)
+        if min_price is not None and min_price != '':
+            try:
+                queryset = queryset.filter(price__gte=float(min_price))
+            except ValueError:
+                pass
 
         max_price = request.query_params.get('max_price')
-        if max_price:
-            queryset = queryset.filter(price__lte=max_price)
+        if max_price is not None and max_price != '':
+            try:
+                queryset = queryset.filter(price__lte=float(max_price))
+            except ValueError:
+                pass
 
         serializer = VehicleSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

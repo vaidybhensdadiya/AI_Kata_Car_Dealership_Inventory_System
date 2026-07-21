@@ -153,6 +153,13 @@ Refactored `VehicleListCreateView` with explicit query ordering. Ran test suite:
 **Result:**
 Implemented `VehicleSearchView` filtering queryset by query params and added URL route. Ran test suite: **25 Passed (GREEN)**.
 
+### REFACTOR
+**Prompt:**
+> Refactor VehicleSearchView to sanitize query parameter strings (strip whitespace) and safely handle numeric conversions for price filters. Keep behavior unchanged and ensure all existing tests pass.
+
+**Result:**
+Refactored `VehicleSearchView` with parameter sanitization and ordering. Ran test suite: **25 Passed (REFACTOR)**.
+
 
 
 
