@@ -228,6 +228,13 @@ Refactored `delete` method in `VehicleDetailView`. Ran test suite: **32 Passed (
 **Result:**
 Implemented `PurchaseVehicleView` decrementing stock quantity and validating 0-stock limit. Ran test suite: **36 Passed (GREEN)**.
 
+### REFACTOR
+**Prompt:**
+> Refactor PurchaseVehicleView to wrap inventory reduction inside an atomic transaction with row-level locking (select_for_update) to prevent race conditions during concurrent purchases. Ensure all existing tests pass.
+
+**Result:**
+Refactored `PurchaseVehicleView` with `@transaction.atomic` and row locking. Ran test suite: **36 Passed (REFACTOR)**.
+
 
 
 

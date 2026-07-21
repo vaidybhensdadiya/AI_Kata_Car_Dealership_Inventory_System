@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from django.contrib.auth import authenticate
+from django.db import transaction
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Vehicle
 from .serializers import RegisterSerializer, UserSerializer, VehicleSerializer
@@ -167,12 +168,13 @@ class VehicleDetailView(APIView):
 
 class PurchaseVehicleView(APIView):
     """
-    API View to purchase a vehicle, decreasing its inventory quantity by 1.
+    API View to purchase a vehicle, decreasing its inventory quantity by 1 atomically.
     """
     permission_classes = [permissions.IsAuthenticated]
 
+    @transaction.atomic
     def post(self, request, pk: int):
-        vehicle = Vehicle.objects.filter(pk=pk).first()
+        vehicle = Vehicle.objects.select_for_update().filter(pk=pk).first()
         if not vehicle:
             return Response({'detail': 'Vehicle not found.'}, status=status.HTTP_404_NOT_FOUND)
 
