@@ -485,6 +485,18 @@ Implemented `EditVehicleModal.jsx` (GREEN).
 **Result:**
 Refactored `EditVehicleModal.jsx`. (REFACTOR).
 
+---
+
+## Feature 21: Restock & Delete Admin Controls
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write component test suite for RestockModal and DeleteConfirmModal verifying REST API integration with POST /restock/ and DELETE /vehicles/:id/.
+
+**Result:**
+Test file created in `frontend/src/__tests__/AdminActionsModal.test.jsx`. Ran Vitest suite (RED).
+
+
 
 
 
