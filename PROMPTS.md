@@ -160,6 +160,18 @@ Implemented `VehicleSearchView` filtering queryset by query params and added URL
 **Result:**
 Refactored `VehicleSearchView` with parameter sanitization and ordering. Ran test suite: **25 Passed (REFACTOR)**.
 
+---
+
+## Feature 8: Update Vehicle (PUT /api/vehicles/:id)
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing pytest cases for Update Vehicle endpoint in Django REST Framework testing admin updates (200), non-admin forbidden (403), invalid vehicle ID (404), and invalid negative price validation (400).
+
+**Result:**
+4 new pytest cases added to `backend/inventory/tests/test_vehicles.py`. Ran test suite: **4 Failed, 25 Passed (RED)**.
+
+
 
 
 
