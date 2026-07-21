@@ -123,3 +123,36 @@ class VehicleSearchView(APIView):
 
         serializer = VehicleSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class VehicleDetailView(APIView):
+    """
+    API View to retrieve, update, or delete a single vehicle instance.
+    """
+    def get_permissions(self):
+        if self.request.method in ['PUT', 'PATCH', 'DELETE']:
+            return [permissions.IsAuthenticated(), IsAdminUserOnly()]
+        return [permissions.IsAuthenticated()]
+
+    def get_object(self, pk):
+        try:
+            return Vehicle.objects.get(pk=pk)
+        except Vehicle.DoesNotExist:
+            return None
+
+    def get(self, request, pk):
+        vehicle = self.get_object(pk)
+        if not vehicle:
+            return Response({'detail': 'Vehicle not found.'}, status=status.HTTP_404_NOT_FOUND)
+        serializer = VehicleSerializer(vehicle)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk):
+        vehicle = self.get_object(pk)
+        if not vehicle:
+            return Response({'detail': 'Vehicle not found.'}, status=status.HTTP_404_NOT_FOUND)
+        serializer = VehicleSerializer(vehicle, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -171,6 +171,13 @@ Refactored `VehicleSearchView` with parameter sanitization and ordering. Ran tes
 **Result:**
 4 new pytest cases added to `backend/inventory/tests/test_vehicles.py`. Ran test suite: **4 Failed, 25 Passed (RED)**.
 
+### GREEN
+**Prompt:**
+> Implement the minimum Django REST Framework code (VehicleDetailView put handler and URL route) required to make all Update Vehicle tests pass. Do not refactor.
+
+**Result:**
+Implemented `VehicleDetailView` with PUT support and URL route. Ran test suite: **29 Passed (GREEN)**.
+
 
 
 
