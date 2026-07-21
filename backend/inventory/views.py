@@ -157,7 +157,7 @@ class VehicleDetailView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk: int):
-        """Delete a vehicle instance (Admin only)."""
+        """Delete a vehicle from inventory (Admin only)."""
         vehicle = self.get_object(pk)
         if not vehicle:
             return Response({'detail': 'Vehicle not found.'}, status=status.HTTP_404_NOT_FOUND)
