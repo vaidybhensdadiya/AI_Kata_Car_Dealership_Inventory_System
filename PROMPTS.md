@@ -210,6 +210,18 @@ Added `delete` method to `VehicleDetailView` returning 204 No Content upon delet
 **Result:**
 Refactored `delete` method in `VehicleDetailView`. Ran test suite: **32 Passed (REFACTOR)**.
 
+---
+
+## Feature 10: Purchase Vehicle (POST /api/vehicles/:id/purchase)
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing pytest cases for Purchase Vehicle endpoint in Django REST Framework testing quantity reduction (200), out of stock rejection (400), invalid vehicle ID (404), and unauthenticated access rejection (401).
+
+**Result:**
+4 new pytest cases added in `backend/inventory/tests/test_inventory.py`. Ran test suite: **3 Failed, 33 Passed (RED)**.
+
+
 
 
 
