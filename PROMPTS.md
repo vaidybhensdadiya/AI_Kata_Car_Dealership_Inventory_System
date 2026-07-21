@@ -235,6 +235,18 @@ Implemented `PurchaseVehicleView` decrementing stock quantity and validating 0-s
 **Result:**
 Refactored `PurchaseVehicleView` with `@transaction.atomic` and row locking. Ran test suite: **36 Passed (REFACTOR)**.
 
+---
+
+## Feature 11: Restock Vehicle (POST /api/vehicles/:id/restock)
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing pytest cases for Restock Vehicle endpoint in Django REST Framework testing admin quantity increment (200), non-admin forbidden (403), negative/zero quantity rejection (400), and invalid vehicle ID (404).
+
+**Result:**
+4 new pytest cases added in `backend/inventory/tests/test_inventory.py`. Ran test suite: **3 Failed, 37 Passed (RED)**.
+
+
 
 
 
