@@ -64,12 +64,17 @@ class UserProfileView(APIView):
 
 class VehicleListCreateView(APIView):
     """
-    API View to list all vehicles or create a new vehicle (Admin only).
+    API View to list all available vehicles (Authenticated) or create a new vehicle (Admin only).
     """
     def get_permissions(self):
         if self.request.method == 'POST':
             return [permissions.IsAuthenticated(), IsAdminUserOnly()]
         return [permissions.IsAuthenticated()]
+
+    def get(self, request):
+        vehicles = Vehicle.objects.all()
+        serializer = VehicleSerializer(vehicles, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
         serializer = VehicleSerializer(data=request.data)
