@@ -471,6 +471,13 @@ Refactored `AddVehicleModal.jsx`. (REFACTOR).
 **Result:**
 Test file created in `frontend/src/__tests__/EditVehicleModal.test.jsx`. Ran Vitest suite (RED).
 
+### GREEN
+**Prompt:**
+> Build EditVehicleModal component pre-filling existing vehicle attributes and triggering PUT /api/vehicles/:id/ updates.
+
+**Result:**
+Implemented `EditVehicleModal.jsx` (GREEN).
+
 
 
 
