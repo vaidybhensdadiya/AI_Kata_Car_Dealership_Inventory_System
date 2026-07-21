@@ -335,6 +335,18 @@ Implemented `Navbar.jsx` (GREEN).
 **Result:**
 Refactored `Navbar.jsx` responsive layout. (REFACTOR).
 
+---
+
+## Feature 15: Vehicle Cards & Grid Component
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing component tests for VehicleCard and VehicleGrid rendering make/model titles, category pills, formatted currency prices, stock availability badges, and admin controls.
+
+**Result:**
+Test file created in `frontend/src/__tests__/VehicleCard.test.jsx`. Ran Vitest suite (RED).
+
+
 
 
 
