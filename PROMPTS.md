@@ -135,6 +135,18 @@ Added `get` handler to `VehicleListCreateView` returning serialized vehicle quer
 **Result:**
 Refactored `VehicleListCreateView` with explicit query ordering. Ran test suite: **21 Passed (REFACTOR)**.
 
+---
+
+## Feature 7: Search & Filter Vehicles (GET /api/vehicles/search)
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing pytest cases for Search & Filter Vehicles endpoint in Django REST Framework testing queries by make, category, price range (min_price and max_price), and non-matching queries.
+
+**Result:**
+4 new pytest cases added to `backend/inventory/tests/test_vehicles.py`. Ran test suite: **4 Failed, 21 Passed (RED)**.
+
+
 
 
 

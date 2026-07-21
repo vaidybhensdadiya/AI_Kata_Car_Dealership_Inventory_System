@@ -116,3 +116,52 @@ class TestListVehicles:
     def test_list_vehicles_unauthenticated(self):
         response = self.client.get(self.url)
         assert response.status_code == 401
+
+
+@pytest.mark.django_db
+class TestSearchVehicles:
+    def setup_method(self):
+        self.client = APIClient()
+        self.url = '/api/vehicles/search/'
+        self.user = User.objects.create_user(
+            username='search_user',
+            email='search@dealership.com',
+            password='UserPassword123!'
+        )
+        from inventory.models import Vehicle
+        Vehicle.objects.create(make='Tesla', model='Model 3', category='Sedan', price=45000, quantity=10)
+        Vehicle.objects.create(make='Tesla', model='Model Y', category='SUV', price=55000, quantity=5)
+        Vehicle.objects.create(make='Ford', model='Mustang', category='Coupe', price=35000, quantity=2)
+        Vehicle.objects.create(make='Porsche', model='911', category='Coupe', price=120000, quantity=1)
+
+    def _get_token(self):
+        res = self.client.post('/api/auth/login/', {'username': 'search_user', 'password': 'UserPassword123!'}, format='json')
+        return res.data['access']
+
+    def test_search_by_make(self):
+        token = self._get_token()
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+        response = self.client.get(f'{self.url}?make=Tesla')
+        assert response.status_code == 200
+        assert len(response.data) == 2
+
+    def test_search_by_category(self):
+        token = self._get_token()
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+        response = self.client.get(f'{self.url}?category=Coupe')
+        assert response.status_code == 200
+        assert len(response.data) == 2
+
+    def test_search_by_price_range(self):
+        token = self._get_token()
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+        response = self.client.get(f'{self.url}?min_price=40000&max_price=60000')
+        assert response.status_code == 200
+        assert len(response.data) == 2
+
+    def test_search_no_matches(self):
+        token = self._get_token()
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+        response = self.client.get(f'{self.url}?make=Ferrari')
+        assert response.status_code == 200
+        assert response.data == []
