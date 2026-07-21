@@ -49,3 +49,37 @@ class TestUserRegistration:
         response = self.client.post(self.url, self.valid_payload, format='json')
         assert response.status_code == 400
         assert 'email' in response.data
+
+
+@pytest.mark.django_db
+class TestUserLogin:
+    def setup_method(self):
+        self.client = APIClient()
+        self.login_url = '/api/auth/login/'
+        self.user = User.objects.create_user(
+            username='login_user',
+            email='login@example.com',
+            password='SecretPassword123!'
+        )
+
+    def test_user_login_success(self):
+        payload = {'username': 'login_user', 'password': 'SecretPassword123!'}
+        response = self.client.post(self.login_url, payload, format='json')
+        assert response.status_code == 200
+        assert 'access' in response.data
+        assert 'refresh' in response.data
+        assert response.data['user']['username'] == 'login_user'
+
+    def test_user_login_invalid_password(self):
+        payload = {'username': 'login_user', 'password': 'WrongPassword!'}
+        response = self.client.post(self.login_url, payload, format='json')
+        assert response.status_code == 401
+
+    def test_user_login_nonexistent_username(self):
+        payload = {'username': 'unknown_user', 'password': 'SecretPassword123!'}
+        response = self.client.post(self.login_url, payload, format='json')
+        assert response.status_code == 401
+
+    def test_user_login_missing_credentials(self):
+        response = self.client.post(self.login_url, {}, format='json')
+        assert response.status_code == 400

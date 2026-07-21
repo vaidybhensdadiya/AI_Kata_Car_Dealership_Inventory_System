@@ -34,3 +34,15 @@ Implemented `RegisterSerializer`, `RegisterView`, and URL routing. Ran test suit
 
 **Result:**
 Refactored `RegisterSerializer` with docstrings and type annotations. Ran test suite with status: **5 Passed (REFACTOR)**.
+
+---
+
+## Feature 3: User Login (POST /api/auth/login)
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing pytest cases for User Login in Django REST Framework covering successful authentication (returning JWT access/refresh tokens and user details), invalid password, non-existent username, and missing credentials.
+
+**Result:**
+4 new pytest cases added to `backend/inventory/tests/test_auth.py`. Ran test suite: **4 Failed, 5 Passed (RED)**.
+
