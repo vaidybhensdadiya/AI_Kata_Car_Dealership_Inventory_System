@@ -185,6 +185,18 @@ Implemented `VehicleDetailView` with PUT support and URL route. Ran test suite: 
 **Result:**
 Refactored `VehicleDetailView` helper method with safe lookup and type annotations. Ran test suite: **29 Passed (REFACTOR)**.
 
+---
+
+## Feature 9: Delete Vehicle (DELETE /api/vehicles/:id)
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing pytest cases for Delete Vehicle endpoint in Django REST Framework testing admin deletion (204 No Content), non-admin forbidden (403), and non-existent vehicle ID (404).
+
+**Result:**
+3 new pytest cases added to `backend/inventory/tests/test_vehicles.py`. Ran test suite: **2 Failed, 30 Passed (RED)** (Note: 403 & 404 test expectations pass/fail depending on handler presence).
+
+
 
 
 

@@ -235,3 +235,52 @@ class TestUpdateVehicle:
         response = self.client.put(self.url, payload, format='json')
         assert response.status_code == 400
         assert 'price' in response.data
+
+
+@pytest.mark.django_db
+class TestDeleteVehicle:
+    def setup_method(self):
+        self.client = APIClient()
+        self.admin = User.objects.create_superuser(
+            username='admin_del',
+            email='admin_del@dealership.com',
+            password='AdminPassword123!'
+        )
+        self.normal_user = User.objects.create_user(
+            username='user_del',
+            email='user_del@dealership.com',
+            password='UserPassword123!'
+        )
+        from inventory.models import Vehicle
+        self.vehicle = Vehicle.objects.create(
+            make='Mazda',
+            model='CX-5',
+            category='SUV',
+            price=30000,
+            quantity=4
+        )
+        self.url = f'/api/vehicles/{self.vehicle.id}/'
+
+    def _get_token(self, username, password):
+        res = self.client.post('/api/auth/login/', {'username': username, 'password': password}, format='json')
+        return res.data['access']
+
+    def test_delete_vehicle_success_as_admin(self):
+        from inventory.models import Vehicle
+        token = self._get_token('admin_del', 'AdminPassword123!')
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert not Vehicle.objects.filter(id=self.vehicle.id).exists()
+
+    def test_delete_vehicle_forbidden_as_normal_user(self):
+        token = self._get_token('user_del', 'UserPassword123!')
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+        response = self.client.delete(self.url)
+        assert response.status_code == 403
+
+    def test_delete_vehicle_not_found(self):
+        token = self._get_token('admin_del', 'AdminPassword123!')
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+        response = self.client.delete('/api/vehicles/99999/')
+        assert response.status_code == 404
