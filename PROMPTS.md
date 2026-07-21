@@ -460,6 +460,18 @@ Implemented `AddVehicleModal.jsx` (GREEN).
 **Result:**
 Refactored `AddVehicleModal.jsx`. (REFACTOR).
 
+---
+
+## Feature 20: Edit Vehicle Form Modal
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write component test suite for EditVehicleModal checking prepopulated form state, field mutations, and PUT /api/vehicles/:id/ submit handler.
+
+**Result:**
+Test file created in `frontend/src/__tests__/EditVehicleModal.test.jsx`. Ran Vitest suite (RED).
+
+
 
 
 
