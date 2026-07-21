@@ -360,6 +360,18 @@ Implemented `VehicleCard.jsx` and `VehicleGrid.jsx` (GREEN).
 **Result:**
 Refactored `VehicleCard.jsx` styling map. (REFACTOR).
 
+---
+
+## Feature 16: Search & Multi-Filter Toolbar
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write component test suite for SearchToolbar covering make/model text query, category selector dropdown, price range inputs, and filter reset action.
+
+**Result:**
+Test file created in `frontend/src/__tests__/SearchToolbar.test.jsx`. Ran Vitest suite (RED).
+
+
 
 
 
