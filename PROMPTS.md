@@ -403,6 +403,13 @@ Test file created in `frontend/src/__tests__/PurchaseModal.test.jsx`. Ran Vitest
 **Result:**
 Implemented `PurchaseModal.jsx` (GREEN).
 
+### REFACTOR
+**Prompt:**
+> Refactor PurchaseModal component with backdrop click dismissal and clean price formatting logic.
+
+**Result:**
+Refactored `PurchaseModal.jsx`. (REFACTOR).
+
 
 
 
