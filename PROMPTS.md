@@ -446,6 +446,13 @@ Refactored `AdminStats.jsx`. (REFACTOR).
 **Result:**
 Test file created in `frontend/src/__tests__/AddVehicleModal.test.jsx`. Ran Vitest suite (RED).
 
+### GREEN
+**Prompt:**
+> Build AddVehicleModal component with full input controls, category dropdown, price/quantity validation rules, and POST /api/vehicles/ handler.
+
+**Result:**
+Implemented `AddVehicleModal.jsx` (GREEN).
+
 
 
 
