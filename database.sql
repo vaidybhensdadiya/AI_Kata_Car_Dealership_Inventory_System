@@ -1,13 +1,14 @@
 -- ========================================================
--- Car Dealership Inventory System - MySQL Database Export
+-- Car Dealership Inventory System - Essential MySQL Schema
 -- Database Name: dealership_db
 -- ========================================================
 
 CREATE DATABASE IF NOT EXISTS `dealership_db` DEFAULT CHARACTER SET utf8mb4;
 USE `dealership_db`;
 
--- Table structure for `auth_user`
-CREATE TABLE IF NOT EXISTS `auth_user` (
+-- Table 1: `auth_user` (Stores System Admins & Registered Customers)
+DROP TABLE IF EXISTS `auth_user`;
+CREATE TABLE `auth_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `password` varchar(128) NOT NULL,
   `last_login` datetime(6) DEFAULT NULL,
@@ -22,13 +23,14 @@ CREATE TABLE IF NOT EXISTS `auth_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping initial accounts for `auth_user`
+-- Insert User Accounts (admin / admin123 and customer / customer123)
 INSERT INTO `auth_user` (`id`, `password`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
 (1, 'pbkdf2_sha256$870000$admin$password123', 1, 'admin', 'System', 'Admin', 'admin@dealership.com', 1, 1, NOW()),
 (2, 'pbkdf2_sha256$870000$customer$password123', 0, 'customer', 'Demo', 'Customer', 'customer@dealership.com', 0, 1, NOW());
 
--- Table structure for `inventory_vehicle`
-CREATE TABLE IF NOT EXISTS `inventory_vehicle` (
+-- Table 2: `inventory_vehicle` (Stores Vehicle Data, Image URLs, & Specs)
+DROP TABLE IF EXISTS `inventory_vehicle`;
+CREATE TABLE `inventory_vehicle` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `make` varchar(100) NOT NULL,
   `model` varchar(100) NOT NULL,
@@ -43,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `inventory_vehicle` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping 30 vehicle records for `inventory_vehicle`
+-- Insert 30 Vehicles with Image URLs and Specs in Indian Rupees (₹)
 INSERT INTO `inventory_vehicle` (`id`, `make`, `model`, `category`, `price`, `quantity`, `year`, `image_url`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'Porsche', '911 GT3 RS', 'Coupe', 35000000.00, 3, 2024, 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80', 'Track-focused naturally aspirated 4.0L flat-six engine producing 518 hp with active aero DRS.', NOW(), NOW()),
 (2, 'BMW', 'M5 Competition', 'Sedan', 17500000.00, 5, 2024, 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80', 'Twin-turbo 4.4L V8 engine with M xDrive all-wheel drive performance and luxury cabin.', NOW(), NOW()),

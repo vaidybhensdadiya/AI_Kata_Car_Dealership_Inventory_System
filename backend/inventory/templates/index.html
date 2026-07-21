@@ -431,12 +431,14 @@
 
             <!-- Action Controls -->
             <div class="p-5 pt-0 space-y-2">
-              <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-3 rounded-xl font-bold text-xs transition-all ${outOfStock ? 'bg-slate-900 text-slate-600 cursor-not-allowed' : 'bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white shadow-lg shadow-sky-500/20 active:scale-95'}">
-                ${outOfStock ? 'Sold Out' : 'Purchase Vehicle'}
-              </button>
+              ${!isStaff ? `
+                <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-3 rounded-xl font-bold text-xs transition-all ${outOfStock ? 'bg-slate-900 text-slate-600 cursor-not-allowed' : 'bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white shadow-lg shadow-sky-500/20 active:scale-95'}">
+                  ${outOfStock ? 'Sold Out' : 'Purchase Vehicle'}
+                </button>
+              ` : ''}
 
               ${isStaff ? `
-                <div class="grid grid-cols-3 gap-1.5 pt-1 border-t border-slate-800/80">
+                <div class="grid grid-cols-3 gap-1.5 pt-1">
                   <button onclick="openRestockModal(${v.id})" class="py-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-[11px] font-semibold">Restock</button>
                   <button onclick="openEditModal(${v.id})" class="py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 text-[11px] font-semibold">Edit</button>
                   <button onclick="openDeleteModal(${v.id})" class="py-2 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-400 text-[11px] font-semibold">Delete</button>

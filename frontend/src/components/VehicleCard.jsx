@@ -1,5 +1,5 @@
 import React from 'react'
-import { ShoppingBag, Edit, Trash2, PlusCircle, AlertTriangle, CheckCircle, Tag, Calendar } from 'lucide-react'
+import { ShoppingBag, Edit, Trash2, PlusCircle, AlertTriangle, CheckCircle, Calendar } from 'lucide-react'
 
 export default function VehicleCard({
   vehicle,
@@ -94,21 +94,23 @@ export default function VehicleCard({
       </div>
 
       <div className="p-6 pt-0 space-y-3">
-        <button
-          onClick={() => onPurchase(vehicle)}
-          disabled={isOutOfStock}
-          className={`w-full py-3 px-4 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-md ${
-            isOutOfStock
-              ? 'bg-slate-900 border border-slate-800 text-slate-600 cursor-not-allowed'
-              : 'bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white shadow-sky-500/20 active:scale-[0.98]'
-          }`}
-        >
-          <ShoppingBag className="w-4 h-4" />
-          <span>{isOutOfStock ? 'Sold Out' : 'Purchase Vehicle'}</span>
-        </button>
+        {!isStaff && (
+          <button
+            onClick={() => onPurchase(vehicle)}
+            disabled={isOutOfStock}
+            className={`w-full py-3 px-4 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-md ${
+              isOutOfStock
+                ? 'bg-slate-900 border border-slate-800 text-slate-600 cursor-not-allowed'
+                : 'bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white shadow-sky-500/20 active:scale-[0.98]'
+            }`}
+          >
+            <ShoppingBag className="w-4 h-4" />
+            <span>{isOutOfStock ? 'Sold Out' : 'Purchase Vehicle'}</span>
+          </button>
+        )}
 
         {isStaff && (
-          <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-800/60">
+          <div className="grid grid-cols-3 gap-2 pt-2">
             <button
               onClick={() => onRestock(vehicle)}
               className="py-2 px-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-semibold flex items-center justify-center gap-1 transition-colors"
