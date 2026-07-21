@@ -503,6 +503,13 @@ Test file created in `frontend/src/__tests__/AdminActionsModal.test.jsx`. Ran Vi
 **Result:**
 Implemented `RestockModal.jsx` and `DeleteConfirmModal.jsx` (GREEN).
 
+### REFACTOR
+**Prompt:**
+> Refactor RestockModal quantity parsing logic for syntax cleanliness and type safety.
+
+**Result:**
+Refactored `RestockModal.jsx`. (REFACTOR).
+
 
 
 

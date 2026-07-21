@@ -12,7 +12,7 @@ export default function RestockModal({ vehicle, onClose, onSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
-    const qty = intValue = parseInt(quantity, 10)
+    const qty = parseInt(quantity, 10)
     if (isNaN(qty) || qty <= 0) {
       setError('Restock quantity must be a positive integer.')
       return
