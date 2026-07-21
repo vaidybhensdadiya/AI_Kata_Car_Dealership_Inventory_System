@@ -82,45 +82,24 @@ TEMPLATES = [
 WSGI_APPLICATION = 'dealership.wsgi.application'
 
 
-# Database Configuration (MySQL with fallback to SQLite)
-import os
+# Database Configuration (MySQL)
+import pymysql
+pymysql.install_as_MySQLdb()
 
-MYSQL_DB = os.getenv('MYSQL_DATABASE', 'dealership_db')
-MYSQL_USER = os.getenv('MYSQL_USER', 'root')
-MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'Vaidy@2005')
-MYSQL_HOST = os.getenv('MYSQL_HOST', '127.0.0.1')
-MYSQL_PORT = os.getenv('MYSQL_PORT', '3306')
-
-try:
-    import pymysql
-    pymysql.install_as_MySQLdb()
-    conn = pymysql.connect(host=MYSQL_HOST, user=MYSQL_USER, password=MYSQL_PASSWORD, port=int(MYSQL_PORT), timeout=2)
-    with conn.cursor() as cursor:
-        cursor.execute(f"CREATE DATABASE IF NOT EXISTS `{MYSQL_DB}` CHARACTER SET utf8mb4;")
-    conn.close()
-    
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': MYSQL_DB,
-            'USER': MYSQL_USER,
-            'PASSWORD': MYSQL_PASSWORD,
-            'HOST': MYSQL_HOST,
-            'PORT': MYSQL_PORT,
-            'OPTIONS': {
-                'charset': 'utf8mb4',
-                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dealership_db',
+        'USER': 'root',
+        'PASSWORD': 'Vaidy@2005',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }
     }
-except Exception as e:
-    # SQLite Fallback if local MySQL service is offline
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 
 # Password validation
