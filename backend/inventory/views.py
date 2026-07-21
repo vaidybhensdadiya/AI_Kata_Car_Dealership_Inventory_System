@@ -188,7 +188,7 @@ class PurchaseVehicleView(APIView):
 
 class RestockVehicleView(APIView):
     """
-    API View to restock a vehicle by adding quantity (Admin only).
+    API View to restock a vehicle by increasing its inventory quantity (Admin only).
     """
     permission_classes = [permissions.IsAuthenticated, IsAdminUserOnly]
 
@@ -198,9 +198,9 @@ class RestockVehicleView(APIView):
         if not vehicle:
             return Response({'detail': 'Vehicle not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-        restock_qty = request.data.get('quantity', 0)
+        raw_qty = request.data.get('quantity', 0)
         try:
-            restock_qty = int(restock_qty)
+            restock_qty = int(raw_qty)
         except (ValueError, TypeError):
             return Response({'detail': 'Valid integer quantity is required.'}, status=status.HTTP_400_BAD_REQUEST)
 
