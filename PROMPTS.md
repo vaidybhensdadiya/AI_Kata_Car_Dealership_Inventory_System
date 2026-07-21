@@ -353,6 +353,13 @@ Test file created in `frontend/src/__tests__/VehicleCard.test.jsx`. Ran Vitest s
 **Result:**
 Implemented `VehicleCard.jsx` and `VehicleGrid.jsx` (GREEN).
 
+### REFACTOR
+**Prompt:**
+> Refactor VehicleCard category color mapping and price formatter for optimized rendering.
+
+**Result:**
+Refactored `VehicleCard.jsx` styling map. (REFACTOR).
+
 
 
 
