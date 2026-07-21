@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApexAuto - Car Dealership Inventory System</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-sky-500 selection:text-slate-950">
+
+  <div id="app">
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <a href="#" onclick="showHome()" class="flex items-center gap-3 group">
+          <div className="w-11 h-11 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md p-2.5 bg-sky-500 text-white">
+            <i data-lucide="car" class="w-6 h-6"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-extrabold tracking-tight text-white group-hover:text-sky-400 transition-colors">
+              Apex<span class="text-sky-400">Auto</span>
+            </span>
+            <span class="text-[10px] font-semibold uppercase tracking-widest text-slate-400 -mt-1">
+              Dealership Inventory
+            </span>
+          </div>
+        </a>
+
+        <div id="nav-actions" class="flex items-center gap-3">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+      <!-- Auth Container (Login / Register) -->
+      <div id="auth-section" class="max-w-md mx-auto my-12 glass-panel rounded-3xl p-8 border border-slate-800 shadow-2xl">
+        <div id="login-form">
+          <div class="text-center mb-6">
+            <div class="w-14 h-14 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center mx-auto mb-3">
+              <i data-lucide="lock" class="w-7 h-7"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-white">Welcome Back</h2>
+            <p class="text-xs text-slate-400 mt-1">Sign in to your dealership account</p>
+          </div>
+
+          <div id="auth-error" class="hidden mb-4 p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs flex items-center gap-2">
+            <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
+            <span id="auth-error-msg"></span>
+          </div>
+
+          <form onsubmit="handleLogin(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Username</label>
+              <input type="text" id="login-username" required placeholder="admin or customer" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Password</label>
+              <input type="password" id="login-password" required placeholder="admin123 or customer123" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+            </div>
+            <button type="submit" class="w-full py-3 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-sky-500/25 transition-all">
+              Sign In
+            </button>
+          </form>
+
+          <div class="mt-6 text-center text-xs text-slate-400">
+            Don't have an account? <a href="#" onclick="toggleAuthMode('register')" class="text-sky-400 font-semibold hover:underline">Register now</a>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-800/80 text-center text-[11px] text-slate-500">
+            <strong>Demo Quick Login:</strong><br>
+            Admin: <code class="text-slate-300">admin / admin123</code> | Customer: <code class="text-slate-300">customer / customer123</code>
+          </div>
+        </div>
+
+        <div id="register-form" class="hidden">
+          <div class="text-center mb-6">
+            <div class="w-14 h-14 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center mx-auto mb-3">
+              <i data-lucide="user-plus" class="w-7 h-7"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-white">Create Account</h2>
+            <p class="text-xs text-slate-400 mt-1">Register for dealership access</p>
+          </div>
+
+          <form onsubmit="handleRegister(event)" class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Username *</label>
+              <input type="text" id="reg-username" required placeholder="newuser" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Email *</label>
+              <input type="email" id="reg-email" required placeholder="user@example.com" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Password *</label>
+              <input type="password" id="reg-password" required placeholder="••••••••" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+            </div>
+            <button type="submit" class="w-full mt-2 py-3 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-sky-500/25 transition-all">
+              Register Account
+            </button>
+          </form>
+
+          <div class="mt-6 text-center text-xs text-slate-400">
+            Already have an account? <a href="#" onclick="toggleAuthMode('login')" class="text-sky-400 font-semibold hover:underline">Sign in</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard View (Hidden until Logged In) -->
+      <div id="dashboard-section" class="hidden space-y-8">
+        <!-- Hero Greeting Banner -->
+        <div class="p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Dealership Live Inventory</span>
+            <h1 class="text-3xl font-extrabold text-white tracking-tight mt-1">
+              Welcome, <span id="user-greeting" class="text-sky-400">User</span>
+            </h1>
+            <p class="text-slate-400 text-sm mt-1">
+              Browse, search, purchase, or manage inventory in real time.
+            </p>
+          </div>
+          <div id="admin-add-btn-container" class="hidden">
+            <button onclick="openAddModal()" class="px-5 py-3 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-sky-500/20 flex items-center gap-2 transition-all">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i> Add Vehicle
+            </button>
+          </div>
+        </div>
+
+        <!-- Admin KPI Banner -->
+        <div id="admin-kpi-banner" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-semibold text-slate-400 uppercase">Total Units</div>
+              <div id="kpi-total-units" class="text-2xl font-black text-white mt-1">0</div>
+            </div>
+            <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center">
+              <i data-lucide="car" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-semibold text-slate-400 uppercase">Inventory MSRP</div>
+              <div id="kpi-total-value" class="text-2xl font-black text-emerald-400 mt-1">$0</div>
+            </div>
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <i data-lucide="dollar-sign" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-semibold text-slate-400 uppercase">Low Stock (&lt;3)</div>
+              <div id="kpi-low-stock" class="text-2xl font-black text-amber-400 mt-1">0</div>
+            </div>
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
+              <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-semibold text-slate-400 uppercase">Sold Out</div>
+              <div id="kpi-sold-out" class="text-2xl font-black text-rose-400 mt-1">0</div>
+            </div>
+            <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
+              <i data-lucide="package-x" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Toolbar -->
+        <div class="glass-panel rounded-3xl p-6 border border-slate-800 shadow-xl space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-[11px] font-semibold uppercase text-slate-400 mb-1">Make / Model</label>
+              <input type="text" id="filter-make" oninput="applyFilters()" placeholder="e.g. Porsche, M5..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold uppercase text-slate-400 mb-1">Category</label>
+              <select id="filter-category" onchange="applyFilters()" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+                <option value="">All Categories</option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Truck">Truck</option>
+                <option value="Coupe">Coupe</option>
+                <option value="Convertible">Convertible</option>
+                <option value="Hatchback">Hatchback</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold uppercase text-slate-400 mb-1">Min Price ($)</label>
+              <input type="number" id="filter-min-price" oninput="applyFilters()" placeholder="0" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold uppercase text-slate-400 mb-1">Max Price ($)</label>
+              <input type="number" id="filter-max-price" oninput="applyFilters()" placeholder="300000" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+            </div>
+          </div>
+        </div>
+
+        <!-- Vehicle Cards Grid -->
+        <div id="vehicle-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal Backdrop Overlay -->
+    <div id="modal-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+      <div id="modal-content" class="max-w-lg w-full glass-panel rounded-3xl p-8 border border-slate-800 shadow-2xl relative">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let authToken = localStorage.getItem('token') || null;
+    let currentUser = JSON.parse(localStorage.getItem('user') || 'null');
+    let vehiclesList = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      if (authToken && currentUser) {
+        showDashboard();
+      } else {
+        showAuth();
+      }
+    });
+
+    function toggleAuthMode(mode) {
+      document.getElementById('auth-error').classList.add('hidden');
+      if (mode === 'register') {
+        document.getElementById('login-form').classList.add('hidden');
+        document.getElementById('register-form').classList.remove('hidden');
+      } else {
+        document.getElementById('register-form').classList.add('hidden');
+        document.getElementById('login-form').classList.remove('hidden');
+      }
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+
+      try {
+        const res = await fetch('/api/auth/login/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || 'Login failed.');
+
+        authToken = data.access;
+        currentUser = data.user;
+        localStorage.setItem('token', authToken);
+        localStorage.setItem('user', JSON.stringify(currentUser));
+        showDashboard();
+      } catch (err) {
+        document.getElementById('auth-error-msg').innerText = err.message;
+        document.getElementById('auth-error').classList.remove('hidden');
+      }
+    }
+
+    async function handleRegister(e) {
+      e.preventDefault();
+      const username = document.getElementById('reg-username').value;
+      const email = document.getElementById('reg-email').value;
+      const password = document.getElementById('reg-password').value;
+
+      try {
+        const res = await fetch('/api/auth/register/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(JSON.stringify(data));
+        alert('Registration successful! Please sign in.');
+        toggleAuthMode('login');
+      } catch (err) {
+        alert('Registration failed: ' + err.message);
+      }
+    }
+
+    function handleLogout() {
+      authToken = null;
+      currentUser = null;
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      showAuth();
+    }
+
+    function showAuth() {
+      document.getElementById('auth-section').classList.remove('hidden');
+      document.getElementById('dashboard-section').classList.add('hidden');
+      document.getElementById('nav-actions').innerHTML = `
+        <span class="text-xs font-semibold text-slate-400">Dealership Guest</span>
+      `;
+    }
+
+    function showDashboard() {
+      document.getElementById('auth-section').classList.add('hidden');
+      document.getElementById('dashboard-section').classList.remove('hidden');
+
+      document.getElementById('user-greeting').innerText = currentUser.first_name || currentUser.username;
+
+      const isStaff = currentUser.is_staff;
+      document.getElementById('nav-actions').innerHTML = `
+        <div class="flex items-center gap-3">
+          <div class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300">
+            ${currentUser.username} (${isStaff ? '<strong class="text-indigo-400">Admin</strong>' : 'Customer'})
+          </div>
+          <button onclick="handleLogout()" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 text-xs font-semibold transition-all">
+            Sign Out
+          </button>
+        </div>
+      `;
+
+      if (isStaff) {
+        document.getElementById('admin-add-btn-container').classList.remove('hidden');
+        document.getElementById('admin-kpi-banner').classList.remove('hidden');
+      } else {
+        document.getElementById('admin-add-btn-container').classList.add('hidden');
+        document.getElementById('admin-kpi-banner').classList.add('hidden');
+      }
+
+      loadVehicles();
+    }
+
+    async function loadVehicles() {
+      try {
+        const res = await fetch('/api/vehicles/', {
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        vehiclesList = await res.json();
+        renderGrid(vehiclesList);
+        if (currentUser.is_staff) renderKPIs(vehiclesList);
+      } catch (err) {
+        console.error('Failed to load vehicles:', err);
+      }
+    }
+
+    async function applyFilters() {
+      const make = document.getElementById('filter-make').value.trim();
+      const category = document.getElementById('filter-category').value;
+      const min_price = document.getElementById('filter-min-price').value;
+      const max_price = document.getElementById('filter-max-price').value;
+
+      const params = new URLSearchParams();
+      if (make) params.append('make', make);
+      if (category) params.append('category', category);
+      if (min_price) params.append('min_price', min_price);
+      if (max_price) params.append('max_price', max_price);
+
+      try {
+        const res = await fetch(`/api/vehicles/search/?${params.toString()}`, {
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        const filtered = await res.json();
+        renderGrid(filtered);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderGrid(vehicles) {
+      const grid = document.getElementById('vehicle-grid');
+      if (!vehicles || vehicles.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12 text-slate-400">
+            <i data-lucide="search-x" class="w-12 h-12 mx-auto mb-2 text-slate-600"></i>
+            No vehicles match your criteria.
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      const isStaff = currentUser.is_staff;
+      grid.innerHTML = vehicles.map(v => {
+        const outOfStock = v.quantity <= 0;
+        const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(v.price);
+
+        return `
+          <div class="glass-panel rounded-3xl overflow-hidden border border-slate-800 flex flex-col justify-between p-6 space-y-4">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-400 border border-sky-500/30">${v.category}</span>
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold ${outOfStock ? 'bg-rose-500/20 text-rose-400' : 'bg-emerald-500/20 text-emerald-400'}">
+                  ${outOfStock ? 'Sold Out' : v.quantity + ' In Stock'}
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-white">${v.make} ${v.model}</h3>
+              <p class="text-xs text-slate-400 mt-1">${v.year} Model</p>
+              <div class="text-2xl font-black text-sky-400 mt-3">${formattedPrice}</div>
+            </div>
+
+            <div class="space-y-2 pt-2 border-t border-slate-800/80">
+              <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-2.5 rounded-xl font-semibold text-xs transition-all ${outOfStock ? 'bg-slate-900 text-slate-600 cursor-not-allowed' : 'bg-sky-500 hover:bg-sky-400 text-slate-950 shadow-md shadow-sky-500/20'}">
+                ${outOfStock ? 'Out of Stock' : 'Purchase Vehicle'}
+              </button>
+
+              ${isStaff ? `
+                <div class="grid grid-cols-3 gap-1.5 pt-1">
+                  <button onclick="openRestockModal(${v.id})" class="py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 text-[11px] font-semibold hover:bg-emerald-500/20">Restock</button>
+                  <button onclick="openEditModal(${v.id})" class="py-1.5 rounded-lg bg-amber-500/10 text-amber-400 text-[11px] font-semibold hover:bg-amber-500/20">Edit</button>
+                  <button onclick="openDeleteModal(${v.id})" class="py-1.5 rounded-lg bg-rose-500/10 text-rose-400 text-[11px] font-semibold hover:bg-rose-500/20">Delete</button>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function renderKPIs(vehicles) {
+      const totalUnits = vehicles.reduce((s, v) => s + v.quantity, 0);
+      const totalValue = vehicles.reduce((s, v) => s + (parseFloat(v.price) * v.quantity), 0);
+      const lowStock = vehicles.filter(v => v.quantity > 0 && v.quantity < 3).length;
+      const soldOut = vehicles.filter(v => v.quantity <= 0).length;
+
+      document.getElementById('kpi-total-units').innerText = totalUnits;
+      document.getElementById('kpi-total-value').innerText = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(totalValue);
+      document.getElementById('kpi-low-stock').innerText = lowStock;
+      document.getElementById('kpi-sold-out').innerText = soldOut;
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.add('hidden');
+    }
+
+    async function openPurchaseModal(id) {
+      const v = vehiclesList.find(x => x.id === id);
+      if (!v) return;
+
+      const base = parseFloat(v.price);
+      const tax = base * 0.07;
+      const doc = 495;
+      const total = base + tax + doc;
+
+      document.getElementById('modal-content').innerHTML = `
+        <h2 class="text-xl font-bold text-white mb-1">Confirm Purchase</h2>
+        <p class="text-xs text-slate-400 mb-4">${v.make} ${v.model}</p>
+        <div class="space-y-2 text-xs border-t border-b border-slate-800 py-3 mb-4">
+          <div class="flex justify-between"><span>MSRP</span><span>$${base.toLocaleString()}</span></div>
+          <div class="flex justify-between"><span>Sales Tax (7%)</span><span>$${tax.toLocaleString()}</span></div>
+          <div class="flex justify-between"><span>Doc Fee</span><span>$${doc.toLocaleString()}</span></div>
+          <div class="flex justify-between font-bold text-sky-400 text-sm pt-2 border-t border-slate-800"><span>Total</span><span>$${total.toLocaleString()}</span></div>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="closeModal()" class="w-1/3 py-2.5 rounded-xl bg-slate-900 text-slate-400 text-xs font-bold">Cancel</button>
+          <button onclick="confirmPurchase(${v.id})" class="w-2/3 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold">Confirm Purchase</button>
+        </div>
+      `;
+      document.getElementById('modal-overlay').classList.remove('hidden');
+    }
+
+    async function confirmPurchase(id) {
+      try {
+        const res = await fetch(`/api/vehicles/${id}/purchase/`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        if (!res.ok) throw new Error('Purchase failed');
+        alert('Vehicle purchased successfully!');
+        closeModal();
+        loadVehicles();
+      } catch (err) { alert(err.message); }
+    }
+
+    function openAddModal() {
+      document.getElementById('modal-content').innerHTML = `
+        <h2 class="text-xl font-bold text-white mb-4">Add Vehicle</h2>
+        <form onsubmit="confirmAdd(event)" class="space-y-3 text-xs">
+          <input type="text" id="add-make" placeholder="Make (e.g. Porsche)" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+          <input type="text" id="add-model" placeholder="Model (e.g. 911)" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+          <select id="add-category" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+            <option value="Sedan">Sedan</option><option value="SUV">SUV</option><option value="Truck">Truck</option><option value="Coupe">Coupe</option><option value="Convertible">Convertible</option><option value="Hatchback">Hatchback</option>
+          </select>
+          <input type="number" id="add-price" placeholder="Price ($)" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+          <input type="number" id="add-quantity" placeholder="Quantity" value="1" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+          <div class="flex gap-2 pt-2">
+            <button type="button" onclick="closeModal()" class="w-1/3 py-2.5 rounded-xl bg-slate-900 text-slate-400 font-bold">Cancel</button>
+            <button type="submit" class="w-2/3 py-2.5 rounded-xl bg-sky-500 text-slate-950 font-bold">Create Vehicle</button>
+          </div>
+        </form>
+      `;
+      document.getElementById('modal-overlay').classList.remove('hidden');
+    }
+
+    async function confirmAdd(e) {
+      e.preventDefault();
+      const payload = {
+        make: document.getElementById('add-make').value,
+        model: document.getElementById('add-model').value,
+        category: document.getElementById('add-category').value,
+        price: parseFloat(document.getElementById('add-price').value),
+        quantity: parseInt(document.getElementById('add-quantity').value)
+      };
+      try {
+        const res = await fetch('/api/vehicles/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Add failed');
+        closeModal();
+        loadVehicles();
+      } catch (err) { alert(err.message); }
+    }
+
+    function openRestockModal(id) {
+      document.getElementById('modal-content').innerHTML = `
+        <h2 class="text-xl font-bold text-white mb-2">Restock Vehicle</h2>
+        <form onsubmit="confirmRestock(event, ${id})" class="space-y-3 text-xs">
+          <input type="number" id="restock-qty" value="5" min="1" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-slate-100 font-bold">
+          <div class="flex gap-2 pt-2">
+            <button type="button" onclick="closeModal()" class="w-1/3 py-2.5 rounded-xl bg-slate-900 text-slate-400 font-bold">Cancel</button>
+            <button type="submit" class="w-2/3 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-bold">Restock</button>
+          </div>
+        </form>
+      `;
+      document.getElementById('modal-overlay').classList.remove('hidden');
+    }
+
+    async function confirmRestock(e, id) {
+      e.preventDefault();
+      const qty = parseInt(document.getElementById('restock-qty').value);
+      try {
+        const res = await fetch(`/api/vehicles/${id}/restock/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` },
+          body: JSON.stringify({ quantity: qty })
+        });
+        if (!res.ok) throw new Error('Restock failed');
+        closeModal();
+        loadVehicles();
+      } catch (err) { alert(err.message); }
+    }
+
+    function openEditModal(id) {
+      const v = vehiclesList.find(x => x.id === id);
+      if (!v) return;
+      document.getElementById('modal-content').innerHTML = `
+        <h2 class="text-xl font-bold text-white mb-4">Edit Vehicle</h2>
+        <form onsubmit="confirmEdit(event, ${id})" class="space-y-3 text-xs">
+          <input type="text" id="edit-make" value="${v.make}" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+          <input type="text" id="edit-model" value="${v.model}" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+          <input type="number" id="edit-price" value="${v.price}" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+          <input type="number" id="edit-quantity" value="${v.quantity}" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+          <div class="flex gap-2 pt-2">
+            <button type="button" onclick="closeModal()" class="w-1/3 py-2.5 rounded-xl bg-slate-900 text-slate-400 font-bold">Cancel</button>
+            <button type="submit" class="w-2/3 py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold">Save Changes</button>
+          </div>
+        </form>
+      `;
+      document.getElementById('modal-overlay').classList.remove('hidden');
+    }
+
+    async function confirmEdit(e, id) {
+      e.preventDefault();
+      const payload = {
+        make: document.getElementById('edit-make').value,
+        model: document.getElementById('edit-model').value,
+        price: parseFloat(document.getElementById('edit-price').value),
+        quantity: parseInt(document.getElementById('edit-quantity').value)
+      };
+      try {
+        const res = await fetch(`/api/vehicles/${id}/`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Edit failed');
+        closeModal();
+        loadVehicles();
+      } catch (err) { alert(err.message); }
+    }
+
+    function openDeleteModal(id) {
+      const v = vehiclesList.find(x => x.id === id);
+      document.getElementById('modal-content').innerHTML = `
+        <h2 class="text-xl font-bold text-white mb-2">Delete Listing?</h2>
+        <p class="text-xs text-slate-400 mb-4">Permanently remove ${v.make} ${v.model}?</p>
+        <div class="flex gap-2">
+          <button onclick="closeModal()" class="w-1/2 py-2.5 rounded-xl bg-slate-900 text-slate-400 font-bold">Cancel</button>
+          <button onclick="confirmDelete(${id})" class="w-1/2 py-2.5 rounded-xl bg-rose-500 text-white font-bold">Delete</button>
+        </div>
+      `;
+      document.getElementById('modal-overlay').classList.remove('hidden');
+    }
+
+    async function confirmDelete(id) {
+      try {
+        const res = await fetch(`/api/vehicles/${id}/`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        if (!res.ok) throw new Error('Delete failed');
+        closeModal();
+        loadVehicles();
+      } catch (err) { alert(err.message); }
+    }
+  </script>
+</body>
+</html>
