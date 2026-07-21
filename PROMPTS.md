@@ -410,6 +410,18 @@ Implemented `PurchaseModal.jsx` (GREEN).
 **Result:**
 Refactored `PurchaseModal.jsx`. (REFACTOR).
 
+---
+
+## Feature 18: Admin Dashboard Layout
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing component test suite for AdminStats banner verifying computation of total inventory vehicles, portfolio dollar valuation, low-stock alerts (< 3 units), and active categories.
+
+**Result:**
+Test file created in `frontend/src/__tests__/AdminStats.test.jsx`. Ran Vitest suite (RED).
+
+
 
 
 
