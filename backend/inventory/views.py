@@ -184,3 +184,29 @@ class PurchaseVehicleView(APIView):
         vehicle.quantity -= 1
         vehicle.save()
         return Response(VehicleSerializer(vehicle).data, status=status.HTTP_200_OK)
+
+
+class RestockVehicleView(APIView):
+    """
+    API View to restock a vehicle by adding quantity (Admin only).
+    """
+    permission_classes = [permissions.IsAuthenticated, IsAdminUserOnly]
+
+    @transaction.atomic
+    def post(self, request, pk: int):
+        vehicle = Vehicle.objects.select_for_update().filter(pk=pk).first()
+        if not vehicle:
+            return Response({'detail': 'Vehicle not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+        restock_qty = request.data.get('quantity', 0)
+        try:
+            restock_qty = int(restock_qty)
+        except (ValueError, TypeError):
+            return Response({'detail': 'Valid integer quantity is required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if restock_qty <= 0:
+            return Response({'detail': 'Restock quantity must be greater than zero.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        vehicle.quantity += restock_qty
+        vehicle.save()
+        return Response(VehicleSerializer(vehicle).data, status=status.HTTP_200_OK)

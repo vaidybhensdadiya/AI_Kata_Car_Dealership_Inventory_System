@@ -246,6 +246,13 @@ Refactored `PurchaseVehicleView` with `@transaction.atomic` and row locking. Ran
 **Result:**
 4 new pytest cases added in `backend/inventory/tests/test_inventory.py`. Ran test suite: **3 Failed, 37 Passed (RED)**.
 
+### GREEN
+**Prompt:**
+> Implement the minimum Django REST Framework code (RestockVehicleView and URL route) required to make all Restock Vehicle tests pass. Do not refactor.
+
+**Result:**
+Implemented `RestockVehicleView` with admin permission check and atomic stock increment. Ran test suite: **40 Passed (GREEN)**.
+
 
 
 

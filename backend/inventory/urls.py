@@ -7,6 +7,7 @@ from .views import (
     VehicleSearchView,
     VehicleDetailView,
     PurchaseVehicleView,
+    RestockVehicleView,
 )
 
 urlpatterns = [
@@ -17,4 +18,5 @@ urlpatterns = [
     path('vehicles/search/', VehicleSearchView.as_view(), name='vehicle_search'),
     path('vehicles/<int:pk>/', VehicleDetailView.as_view(), name='vehicle_detail'),
     path('vehicles/<int:pk>/purchase/', PurchaseVehicleView.as_view(), name='vehicle_purchase'),
+    path('vehicles/<int:pk>/restock/', RestockVehicleView.as_view(), name='vehicle_restock'),
 ]
