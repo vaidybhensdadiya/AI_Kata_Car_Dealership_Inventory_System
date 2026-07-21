@@ -285,6 +285,18 @@ Implemented `axiosClient.js` and `AuthContext.jsx`. State provider initialized (
 **Result:**
 Refactored `AuthContext.jsx` with safety context check. (REFACTOR).
 
+---
+
+## Feature 13: Login & Registration Pages
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write component test suite for LoginPage and RegisterPage covering form inputs, submission state, error callouts, and navigation.
+
+**Result:**
+Test file created in `frontend/src/__tests__/AuthPages.test.jsx`. Ran Vitest suite (RED).
+
+
 
 
 
