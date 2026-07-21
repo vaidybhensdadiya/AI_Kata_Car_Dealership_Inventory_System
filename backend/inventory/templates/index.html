@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Veloce Reserve — Premier Luxury & Exotic Automotive Gallery</title>
+  <title>AutoVault — Premier Luxury & Exotic Automotive Gallery</title>
   <!-- Google Fonts: Syne & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
             sans: ['Plus Jakarta Sans', 'sans-serif'],
           },
           colors: {
-            reserve: {
+            vault: {
               950: '#060911',
               900: '#0B101D',
               850: '#11182B',
@@ -74,24 +74,24 @@
     }
   </style>
 </head>
-<body class="bg-reserve-950 text-slate-100 min-h-screen font-sans selection:bg-reserve-gold selection:text-reserve-950 antialiased">
+<body class="bg-vault-950 text-slate-100 min-h-screen font-sans selection:bg-vault-gold selection:text-vault-950 antialiased">
 
   <div id="app">
-    <!-- Top Luxury Navigation Header -->
-    <header class="sticky top-0 z-40 w-full backdrop-blur-2xl bg-reserve-950/85 border-b border-white/10">
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-2xl bg-vault-950/85 border-b border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
         <!-- Logo Branding -->
         <a href="#" onclick="showDashboard()" class="flex items-center gap-3.5 group">
-          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-reserve-gold/20 via-amber-500/10 to-transparent border border-reserve-gold/40 flex items-center justify-center text-reserve-gold group-hover:scale-105 group-hover:border-reserve-gold transition-all duration-300 shadow-lg shadow-reserve-gold/5">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-vault-gold/20 via-amber-500/10 to-transparent border border-vault-gold/40 flex items-center justify-center text-vault-gold group-hover:scale-105 group-hover:border-vault-gold transition-all duration-300 shadow-lg shadow-vault-gold/5">
             <i data-lucide="shield" class="w-5 h-5"></i>
           </div>
           <div class="flex flex-col">
             <span class="font-display text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
-              VELOCE <span class="gold-gradient-text font-black">RESERVE</span>
+              Auto<span class="gold-gradient-text font-black">Vault</span>
             </span>
             <span class="text-[9px] font-bold uppercase tracking-[0.25em] text-slate-400 -mt-1">
-              Bespoke Automobile Atelier
+              Luxury Automotive Reserve
             </span>
           </div>
         </a>
@@ -108,16 +108,16 @@
 
       <!-- Auth Portal (Sign In / Register) -->
       <div id="auth-section" class="max-w-md mx-auto my-12 glass-card rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-        <div class="absolute -top-24 -right-24 w-48 h-48 bg-reserve-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-24 -right-24 w-48 h-48 bg-vault-gold/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <!-- Login Form View -->
         <div id="login-form">
           <div class="text-center mb-8">
-            <div class="w-14 h-14 rounded-2xl bg-reserve-gold/10 border border-reserve-gold/30 text-reserve-gold flex items-center justify-center mx-auto mb-4 shadow-inner">
+            <div class="w-14 h-14 rounded-2xl bg-vault-gold/10 border border-vault-gold/30 text-vault-gold flex items-center justify-center mx-auto mb-4 shadow-inner">
               <i data-lucide="key-round" class="w-6 h-6"></i>
             </div>
-            <h2 class="font-display text-2xl font-bold text-white tracking-tight">Member Portal Access</h2>
-            <p class="text-xs text-slate-400 mt-1.5">Sign in to view reserve availability & place bookings</p>
+            <h2 class="font-display text-2xl font-bold text-white tracking-tight">Sign In to AutoVault</h2>
+            <p class="text-xs text-slate-400 mt-1.5">Access your inventory portal & vehicle bookings</p>
           </div>
 
           <div id="auth-error" class="hidden mb-5 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs flex items-center gap-2.5">
@@ -130,56 +130,56 @@
               <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Username</label>
               <div class="relative">
                 <i data-lucide="user" class="w-4 h-4 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2"></i>
-                <input type="text" id="login-username" required placeholder="Enter username" class="w-full bg-reserve-900/90 border border-white/10 rounded-2xl pl-11 pr-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-reserve-gold focus:ring-1 focus:ring-reserve-gold transition-all">
+                <input type="text" id="login-username" required placeholder="Enter username" class="w-full bg-vault-900/90 border border-white/10 rounded-2xl pl-11 pr-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-vault-gold focus:ring-1 focus:ring-vault-gold transition-all">
               </div>
             </div>
             <div>
               <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Password</label>
               <div class="relative">
                 <i data-lucide="lock" class="w-4 h-4 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2"></i>
-                <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-reserve-900/90 border border-white/10 rounded-2xl pl-11 pr-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-reserve-gold focus:ring-1 focus:ring-reserve-gold transition-all">
+                <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-vault-900/90 border border-white/10 rounded-2xl pl-11 pr-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-vault-gold focus:ring-1 focus:ring-vault-gold transition-all">
               </div>
             </div>
-            <button type="submit" class="w-full py-3.5 gold-gradient-btn text-reserve-950 font-bold text-sm rounded-2xl shadow-xl shadow-reserve-gold/10 transition-all duration-200 active:scale-[0.98]">
-              Sign In to Atelier
+            <button type="submit" class="w-full py-3.5 gold-gradient-btn text-vault-950 font-bold text-sm rounded-2xl shadow-xl shadow-vault-gold/10 transition-all duration-200 active:scale-[0.98]">
+              Sign In to AutoVault
             </button>
           </form>
 
           <div class="mt-8 pt-6 border-t border-white/10 text-center text-xs text-slate-400">
-            New client? <a href="#" onclick="toggleAuthMode('register')" class="text-reserve-gold font-bold hover:underline">Register your reserve account</a>
+            New client? <a href="#" onclick="toggleAuthMode('register')" class="text-vault-gold font-bold hover:underline">Register your AutoVault account</a>
           </div>
         </div>
 
         <!-- Register Form View -->
         <div id="register-form" class="hidden">
           <div class="text-center mb-8">
-            <div class="w-14 h-14 rounded-2xl bg-reserve-gold/10 border border-reserve-gold/30 text-reserve-gold flex items-center justify-center mx-auto mb-4 shadow-inner">
+            <div class="w-14 h-14 rounded-2xl bg-vault-gold/10 border border-vault-gold/30 text-vault-gold flex items-center justify-center mx-auto mb-4 shadow-inner">
               <i data-lucide="user-plus" class="w-6 h-6"></i>
             </div>
-            <h2 class="font-display text-2xl font-bold text-white tracking-tight">Create Reserve Account</h2>
-            <p class="text-xs text-slate-400 mt-1.5">Join Veloce Reserve for immediate inventory booking</p>
+            <h2 class="font-display text-2xl font-bold text-white tracking-tight">Create AutoVault Account</h2>
+            <p class="text-xs text-slate-400 mt-1.5">Join AutoVault for immediate inventory booking</p>
           </div>
 
           <form onsubmit="handleRegister(event)" class="space-y-4">
             <div>
               <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Username *</label>
-              <input type="text" id="reg-username" required placeholder="Choose username" class="w-full bg-reserve-900/90 border border-white/10 rounded-2xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-reserve-gold">
+              <input type="text" id="reg-username" required placeholder="Choose username" class="w-full bg-vault-900/90 border border-white/10 rounded-2xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-vault-gold">
             </div>
             <div>
               <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Email *</label>
-              <input type="email" id="reg-email" required placeholder="name@example.com" class="w-full bg-reserve-900/90 border border-white/10 rounded-2xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-reserve-gold">
+              <input type="email" id="reg-email" required placeholder="name@example.com" class="w-full bg-vault-900/90 border border-white/10 rounded-2xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-vault-gold">
             </div>
             <div>
               <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Password *</label>
-              <input type="password" id="reg-password" required placeholder="Minimum 6 characters" class="w-full bg-reserve-900/90 border border-white/10 rounded-2xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-reserve-gold">
+              <input type="password" id="reg-password" required placeholder="Minimum 6 characters" class="w-full bg-vault-900/90 border border-white/10 rounded-2xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-vault-gold">
             </div>
-            <button type="submit" class="w-full py-3.5 gold-gradient-btn text-reserve-950 font-bold text-sm rounded-2xl shadow-xl shadow-reserve-gold/10 transition-all duration-200 active:scale-[0.98]">
+            <button type="submit" class="w-full py-3.5 gold-gradient-btn text-vault-950 font-bold text-sm rounded-2xl shadow-xl shadow-vault-gold/10 transition-all duration-200 active:scale-[0.98]">
               Register & Access Immediately
             </button>
           </form>
 
           <div class="mt-8 pt-6 border-t border-white/10 text-center text-xs text-slate-400">
-            Already registered? <a href="#" onclick="toggleAuthMode('login')" class="text-reserve-gold font-bold hover:underline">Sign in to account</a>
+            Already registered? <a href="#" onclick="toggleAuthMode('login')" class="text-vault-gold font-bold hover:underline">Sign in to account</a>
           </div>
         </div>
       </div>
@@ -189,11 +189,11 @@
         
         <!-- Elegant Hero Banner -->
         <div class="glass-card p-8 sm:p-10 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          <div class="absolute -right-16 -top-16 w-96 h-96 bg-gradient-to-br from-reserve-gold/15 to-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -right-16 -top-16 w-96 h-96 bg-gradient-to-br from-vault-gold/15 to-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
           
           <div class="relative z-10 max-w-2xl space-y-3">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-reserve-gold/10 border border-reserve-gold/30 text-reserve-gold text-xs font-bold uppercase tracking-widest">
-              <i data-lucide="crown" class="w-3.5 h-3.5"></i> Curated Automobile Inventory
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vault-gold/10 border border-vault-gold/30 text-vault-gold text-xs font-bold uppercase tracking-widest">
+              <i data-lucide="crown" class="w-3.5 h-3.5"></i> Curated AutoVault Inventory
             </div>
             <h1 class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
               Welcome, <span id="user-greeting" class="gold-gradient-text">Collector</span>
@@ -204,7 +204,7 @@
           </div>
 
           <div id="admin-add-btn-container" class="hidden relative z-10 shrink-0">
-            <button onclick="openAddModal()" class="px-6 py-4 gold-gradient-btn text-reserve-950 font-bold text-sm rounded-2xl shadow-xl shadow-reserve-gold/15 flex items-center gap-2.5 transition-all hover:scale-105 active:scale-95">
+            <button onclick="openAddModal()" class="px-6 py-4 gold-gradient-btn text-vault-950 font-bold text-sm rounded-2xl shadow-xl shadow-vault-gold/15 flex items-center gap-2.5 transition-all hover:scale-105 active:scale-95">
               <i data-lucide="plus-circle" class="w-5 h-5"></i> Add New Vehicle
             </button>
           </div>
@@ -224,9 +224,9 @@
           <div class="glass-card rounded-2xl p-5 flex items-center justify-between">
             <div>
               <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Portfolio MSRP</div>
-              <div id="kpi-total-value" class="text-2xl font-black text-reserve-gold mt-1">₹0</div>
+              <div id="kpi-total-value" class="text-2xl font-black text-vault-gold mt-1">₹0</div>
             </div>
-            <div class="w-11 h-11 rounded-xl bg-reserve-gold/10 border border-reserve-gold/30 text-reserve-gold flex items-center justify-center">
+            <div class="w-11 h-11 rounded-xl bg-vault-gold/10 border border-vault-gold/30 text-vault-gold flex items-center justify-center">
               <i data-lucide="indian-rupee" class="w-5 h-5"></i>
             </div>
           </div>
@@ -257,12 +257,12 @@
               <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Search Make / Model</label>
               <div class="relative">
                 <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-                <input type="text" id="filter-make" oninput="applyFilters()" placeholder="e.g. Porsche, M5, GT3..." class="w-full bg-reserve-900 border border-white/10 rounded-2xl pl-10 pr-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-reserve-gold">
+                <input type="text" id="filter-make" oninput="applyFilters()" placeholder="e.g. Porsche, M5, GT3..." class="w-full bg-vault-900 border border-white/10 rounded-2xl pl-10 pr-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-vault-gold">
               </div>
             </div>
             <div>
               <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Body Style Category</label>
-              <select id="filter-category" onchange="applyFilters()" class="w-full bg-reserve-900 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-reserve-gold">
+              <select id="filter-category" onchange="applyFilters()" class="w-full bg-vault-900 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-vault-gold">
                 <option value="">All Categories</option>
                 <option value="Sedan">Sedan</option>
                 <option value="SUV">SUV</option>
@@ -274,11 +274,11 @@
             </div>
             <div>
               <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Min Price (₹ INR)</label>
-              <input type="number" id="filter-min-price" oninput="applyFilters()" placeholder="₹0" class="w-full bg-reserve-900 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-reserve-gold">
+              <input type="number" id="filter-min-price" oninput="applyFilters()" placeholder="₹0" class="w-full bg-vault-900 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-vault-gold">
             </div>
             <div>
               <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Max Price (₹ INR)</label>
-              <input type="number" id="filter-max-price" oninput="applyFilters()" placeholder="₹5,00,00,000" class="w-full bg-reserve-900 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-reserve-gold">
+              <input type="number" id="filter-max-price" oninput="applyFilters()" placeholder="₹5,00,00,000" class="w-full bg-vault-900 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-vault-gold">
             </div>
           </div>
         </div>
@@ -291,7 +291,7 @@
     </main>
 
     <!-- Modal Backdrop Overlay -->
-    <div id="modal-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-reserve-950/85 backdrop-blur-xl">
+    <div id="modal-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-vault-950/85 backdrop-blur-xl">
       <div id="modal-content" class="max-w-lg w-full glass-card rounded-3xl p-8 relative shadow-2xl border border-white/10">
         <!-- Injected by JS -->
       </div>
@@ -384,7 +384,7 @@
         localStorage.setItem('token', authToken);
         localStorage.setItem('user', JSON.stringify(currentUser));
 
-        alert('Registration successful! Welcome to Veloce Reserve.');
+        alert('Registration successful! Welcome to AutoVault.');
         showDashboard();
       } catch (err) {
         alert(err.message);
@@ -403,7 +403,7 @@
       document.getElementById('auth-section').classList.remove('hidden');
       document.getElementById('dashboard-section').classList.add('hidden');
       document.getElementById('nav-actions').innerHTML = `
-        <span class="text-xs font-semibold text-slate-400">Atelier Guest</span>
+        <span class="text-xs font-semibold text-slate-400">AutoVault Guest</span>
       `;
     }
 
@@ -416,11 +416,11 @@
       const isStaff = currentUser.is_staff;
       document.getElementById('nav-actions').innerHTML = `
         <div class="flex items-center gap-3">
-          <div class="px-4 py-2 rounded-2xl bg-reserve-900 border border-white/10 text-xs text-slate-300 flex items-center gap-2">
-            <i data-lucide="shield" class="w-3.5 h-3.5 text-reserve-gold"></i>
-            <span>${currentUser.username} (${isStaff ? '<strong class="text-reserve-gold">Admin</strong>' : 'Member'})</span>
+          <div class="px-4 py-2 rounded-2xl bg-vault-900 border border-white/10 text-xs text-slate-300 flex items-center gap-2">
+            <i data-lucide="shield" class="w-3.5 h-3.5 text-vault-gold"></i>
+            <span>${currentUser.username} (${isStaff ? '<strong class="text-vault-gold">Admin</strong>' : 'Member'})</span>
           </div>
-          <button onclick="handleLogout()" class="px-4 py-2 rounded-2xl bg-reserve-900 border border-white/10 text-slate-400 hover:text-rose-400 text-xs font-semibold transition-all">
+          <button onclick="handleLogout()" class="px-4 py-2 rounded-2xl bg-vault-900 border border-white/10 text-slate-400 hover:text-rose-400 text-xs font-semibold transition-all">
             Sign Out
           </button>
         </div>
@@ -479,7 +479,7 @@
         grid.innerHTML = `
           <div class="col-span-full text-center py-12 text-slate-400">
             <i data-lucide="search-x" class="w-12 h-12 mx-auto mb-2 text-slate-600"></i>
-            No reserve vehicles match your criteria.
+            No AutoVault vehicles match your criteria.
           </div>
         `;
         lucide.createIcons();
@@ -493,16 +493,16 @@
         const imgUrl = v.image_url || 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80';
 
         return `
-          <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between hover:shadow-2xl hover:shadow-reserve-gold/5 hover:-translate-y-1 transition-all duration-300 group">
+          <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between hover:shadow-2xl hover:shadow-vault-gold/5 hover:-translate-y-1 transition-all duration-300 group">
             <div>
               <!-- Vehicle Image Frame -->
-              <div class="h-52 w-full relative overflow-hidden bg-reserve-900">
+              <div class="h-52 w-full relative overflow-hidden bg-vault-900">
                 <img src="${imgUrl}" alt="${v.make} ${v.model}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-reserve-950 via-transparent to-black/40"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-vault-950 via-transparent to-black/40"></div>
 
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 z-10">
-                  <span class="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-reserve-950/90 text-reserve-gold border border-reserve-gold/40 backdrop-blur-md">${v.category}</span>
-                  <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-reserve-950/90 text-slate-300 border border-white/10 backdrop-blur-md">${v.year}</span>
+                  <span class="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-vault-950/90 text-vault-gold border border-vault-gold/40 backdrop-blur-md">${v.category}</span>
+                  <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-vault-950/90 text-slate-300 border border-white/10 backdrop-blur-md">${v.year}</span>
                 </div>
 
                 <div class="absolute top-3 right-3 z-10">
@@ -514,11 +514,11 @@
 
               <!-- Vehicle Info Details -->
               <div class="p-6 space-y-3">
-                <h3 class="font-display text-xl font-bold text-white group-hover:text-reserve-gold transition-colors">${v.make} ${v.model}</h3>
+                <h3 class="font-display text-xl font-bold text-white group-hover:text-vault-gold transition-colors">${v.make} ${v.model}</h3>
                 <p class="text-slate-400 text-xs line-clamp-2 leading-relaxed">${v.description || 'Certified luxury dealership vehicle.'}</p>
                 <div class="pt-2 border-t border-white/10 flex items-baseline justify-between">
                   <span class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">MSRP</span>
-                  <span class="text-2xl font-black text-reserve-gold tracking-tight">${formattedPrice}</span>
+                  <span class="text-2xl font-black text-vault-gold tracking-tight">${formattedPrice}</span>
                 </div>
               </div>
             </div>
@@ -526,7 +526,7 @@
             <!-- Action Controls -->
             <div class="p-6 pt-0 space-y-3">
               ${!isStaff ? `
-                <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-3.5 rounded-2xl font-bold text-xs transition-all ${outOfStock ? 'bg-reserve-900 text-slate-600 cursor-not-allowed border border-white/5' : 'gold-gradient-btn text-reserve-950 shadow-lg shadow-reserve-gold/15 active:scale-95'}">
+                <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-3.5 rounded-2xl font-bold text-xs transition-all ${outOfStock ? 'bg-vault-900 text-slate-600 cursor-not-allowed border border-white/5' : 'gold-gradient-btn text-vault-950 shadow-lg shadow-vault-gold/15 active:scale-95'}">
                   ${outOfStock ? 'Sold Out' : 'Reserve & Purchase Vehicle'}
                 </button>
               ` : ''}
@@ -578,12 +578,12 @@
           <div class="flex justify-between text-slate-400"><span>Vehicle Ex-Showroom Price</span><span class="font-bold text-white">${formatINR(base)}</span></div>
           <div class="flex justify-between text-slate-400"><span>Estimated GST & Cess (18%)</span><span class="font-bold text-white">${formatINR(tax)}</span></div>
           <div class="flex justify-between text-slate-400"><span>Registration & Handling</span><span class="font-bold text-white">${formatINR(registrationFee)}</span></div>
-          <div class="flex justify-between font-extrabold text-reserve-gold text-base pt-3 border-t border-white/10"><span>Total On-Road Price</span><span>${formatINR(total)}</span></div>
+          <div class="flex justify-between font-extrabold text-vault-gold text-base pt-3 border-t border-white/10"><span>Total On-Road Price</span><span>${formatINR(total)}</span></div>
         </div>
 
         <div class="flex gap-3">
-          <button onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-reserve-900 text-slate-400 text-xs font-bold border border-white/10">Cancel</button>
-          <button onclick="confirmPurchase(${v.id})" class="w-2/3 py-3 gold-gradient-btn text-reserve-950 text-xs font-bold rounded-2xl shadow-xl shadow-reserve-gold/20">Complete Purchase</button>
+          <button onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-vault-900 text-slate-400 text-xs font-bold border border-white/10">Cancel</button>
+          <button onclick="confirmPurchase(${v.id})" class="w-2/3 py-3 gold-gradient-btn text-vault-950 text-xs font-bold rounded-2xl shadow-xl shadow-vault-gold/20">Complete Purchase</button>
         </div>
       `;
       document.getElementById('modal-overlay').classList.remove('hidden');
@@ -604,24 +604,24 @@
 
     function openAddModal() {
       document.getElementById('modal-content').innerHTML = `
-        <h2 class="font-display text-2xl font-bold text-white mb-5">Add New Reserve Vehicle</h2>
+        <h2 class="font-display text-2xl font-bold text-white mb-5">Add New AutoVault Vehicle</h2>
         <form onsubmit="confirmAdd(event)" class="space-y-4 text-xs">
           <div class="grid grid-cols-2 gap-3">
-            <input type="text" id="add-make" placeholder="Make (e.g. Porsche)" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
-            <input type="text" id="add-model" placeholder="Model (e.g. 911 GT3)" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
+            <input type="text" id="add-make" placeholder="Make (e.g. Porsche)" required class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-vault-gold">
+            <input type="text" id="add-model" placeholder="Model (e.g. 911 GT3)" required class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-vault-gold">
           </div>
           <div class="grid grid-cols-3 gap-3">
-            <select id="add-category" class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
+            <select id="add-category" class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-vault-gold">
               <option value="Coupe">Coupe</option><option value="Sedan">Sedan</option><option value="SUV">SUV</option><option value="Truck">Truck</option><option value="Convertible">Convertible</option><option value="Hatchback">Hatchback</option>
             </select>
-            <input type="number" id="add-price" placeholder="Price (₹ INR)" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
-            <input type="number" id="add-quantity" placeholder="Quantity" value="1" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
+            <input type="number" id="add-price" placeholder="Price (₹ INR)" required class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-vault-gold">
+            <input type="number" id="add-quantity" placeholder="Quantity" value="1" required class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-vault-gold">
           </div>
-          <input type="url" id="add-image" placeholder="Image URL (https://images.unsplash.com/...)" class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
-          <textarea id="add-desc" placeholder="Vehicle specification details..." rows="2" class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold"></textarea>
+          <input type="url" id="add-image" placeholder="Image URL (https://images.unsplash.com/...)" class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-vault-gold">
+          <textarea id="add-desc" placeholder="Vehicle specification details..." rows="2" class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-vault-gold"></textarea>
           <div class="flex gap-3 pt-2">
-            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-reserve-900 text-slate-400 font-bold border border-white/10">Cancel</button>
-            <button type="submit" class="w-2/3 py-3 gold-gradient-btn text-reserve-950 font-bold rounded-2xl">Create Vehicle</button>
+            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-vault-900 text-slate-400 font-bold border border-white/10">Cancel</button>
+            <button type="submit" class="w-2/3 py-3 gold-gradient-btn text-vault-950 font-bold rounded-2xl">Create Vehicle</button>
           </div>
         </form>
       `;
@@ -655,10 +655,10 @@
       document.getElementById('modal-content').innerHTML = `
         <h2 class="font-display text-2xl font-bold text-white mb-3">Restock Vehicle Stock</h2>
         <form onsubmit="confirmRestock(event, ${id})" class="space-y-4 text-xs">
-          <input type="number" id="restock-qty" value="5" min="1" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3.5 text-slate-100 font-bold text-base focus:border-reserve-gold">
+          <input type="number" id="restock-qty" value="5" min="1" required class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3.5 text-slate-100 font-bold text-base focus:border-vault-gold">
           <div class="flex gap-3 pt-2">
-            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-reserve-900 text-slate-400 font-bold border border-white/10">Cancel</button>
-            <button type="submit" class="w-2/3 py-3 bg-emerald-500 hover:bg-emerald-400 text-reserve-950 font-bold rounded-2xl">Confirm Restock</button>
+            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-vault-900 text-slate-400 font-bold border border-white/10">Cancel</button>
+            <button type="submit" class="w-2/3 py-3 bg-emerald-500 hover:bg-emerald-400 text-vault-950 font-bold rounded-2xl">Confirm Restock</button>
           </div>
         </form>
       `;
@@ -684,21 +684,21 @@
       const v = vehiclesList.find(x => x.id === id);
       if (!v) return;
       document.getElementById('modal-content').innerHTML = `
-        <h2 class="font-display text-2xl font-bold text-white mb-4">Edit Reserve Vehicle</h2>
+        <h2 class="font-display text-2xl font-bold text-white mb-4">Edit AutoVault Vehicle</h2>
         <form onsubmit="confirmEdit(event, ${id})" class="space-y-3 text-xs">
           <div class="grid grid-cols-2 gap-3">
-            <input type="text" id="edit-make" value="${v.make}" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">
-            <input type="text" id="edit-model" value="${v.model}" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">
+            <input type="text" id="edit-make" value="${v.make}" required class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100">
+            <input type="text" id="edit-model" value="${v.model}" required class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100">
           </div>
           <div class="grid grid-cols-2 gap-3">
-            <input type="number" id="edit-price" value="${v.price}" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">
-            <input type="number" id="edit-quantity" value="${v.quantity}" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">
+            <input type="number" id="edit-price" value="${v.price}" required class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100">
+            <input type="number" id="edit-quantity" value="${v.quantity}" required class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100">
           </div>
-          <input type="url" id="edit-image" value="${v.image_url || ''}" class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">
-          <textarea id="edit-desc" rows="2" class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">${v.description || ''}</textarea>
+          <input type="url" id="edit-image" value="${v.image_url || ''}" class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100">
+          <textarea id="edit-desc" rows="2" class="w-full bg-vault-900 border border-white/10 rounded-2xl p-3 text-slate-100">${v.description || ''}</textarea>
           <div class="flex gap-3 pt-2">
-            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-reserve-900 text-slate-400 font-bold border border-white/10">Cancel</button>
-            <button type="submit" class="w-2/3 py-3 bg-amber-500 hover:bg-amber-400 text-reserve-950 font-bold rounded-2xl">Save Changes</button>
+            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-vault-900 text-slate-400 font-bold border border-white/10">Cancel</button>
+            <button type="submit" class="w-2/3 py-3 bg-amber-500 hover:bg-amber-400 text-vault-950 font-bold rounded-2xl">Save Changes</button>
           </div>
         </form>
       `;
@@ -730,10 +730,10 @@
     function openDeleteModal(id) {
       const v = vehiclesList.find(x => x.id === id);
       document.getElementById('modal-content').innerHTML = `
-        <h2 class="font-display text-2xl font-bold text-white mb-2">Delete Reserve Listing?</h2>
+        <h2 class="font-display text-2xl font-bold text-white mb-2">Delete AutoVault Listing?</h2>
         <p class="text-xs text-slate-400 mb-5">Are you sure you want to permanently delete ${v.make} ${v.model} from inventory?</p>
         <div class="flex gap-3">
-          <button onclick="closeModal()" class="w-1/2 py-3 rounded-2xl bg-reserve-900 text-slate-400 font-bold border border-white/10">Cancel</button>
+          <button onclick="closeModal()" class="w-1/2 py-3 rounded-2xl bg-vault-900 text-slate-400 font-bold border border-white/10">Cancel</button>
           <button onclick="confirmDelete(${id})" class="w-1/2 py-3 bg-rose-500 hover:bg-rose-400 text-white font-bold rounded-2xl">Delete Listing</button>
         </div>
       `;
