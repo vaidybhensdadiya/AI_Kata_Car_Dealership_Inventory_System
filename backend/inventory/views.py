@@ -163,3 +163,22 @@ class VehicleDetailView(APIView):
             return Response({'detail': 'Vehicle not found.'}, status=status.HTTP_404_NOT_FOUND)
         vehicle.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class PurchaseVehicleView(APIView):
+    """
+    API View to purchase a vehicle, decreasing its inventory quantity by 1.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, pk: int):
+        vehicle = Vehicle.objects.filter(pk=pk).first()
+        if not vehicle:
+            return Response({'detail': 'Vehicle not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+        if vehicle.quantity <= 0:
+            return Response({'detail': 'Vehicle is out of stock.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        vehicle.quantity -= 1
+        vehicle.save()
+        return Response(VehicleSerializer(vehicle).data, status=status.HTTP_200_OK)

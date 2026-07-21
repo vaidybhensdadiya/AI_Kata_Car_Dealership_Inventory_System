@@ -221,6 +221,13 @@ Refactored `delete` method in `VehicleDetailView`. Ran test suite: **32 Passed (
 **Result:**
 4 new pytest cases added in `backend/inventory/tests/test_inventory.py`. Ran test suite: **3 Failed, 33 Passed (RED)**.
 
+### GREEN
+**Prompt:**
+> Implement the minimum Django REST Framework code (PurchaseVehicleView and URL route) required to make all Purchase Vehicle tests pass. Do not refactor.
+
+**Result:**
+Implemented `PurchaseVehicleView` decrementing stock quantity and validating 0-stock limit. Ran test suite: **36 Passed (GREEN)**.
+
 
 
 
