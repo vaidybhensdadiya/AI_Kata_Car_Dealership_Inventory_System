@@ -194,7 +194,14 @@ Refactored `VehicleDetailView` helper method with safe lookup and type annotatio
 > Follow strict TDD. Write failing pytest cases for Delete Vehicle endpoint in Django REST Framework testing admin deletion (204 No Content), non-admin forbidden (403), and non-existent vehicle ID (404).
 
 **Result:**
-3 new pytest cases added to `backend/inventory/tests/test_vehicles.py`. Ran test suite: **2 Failed, 30 Passed (RED)** (Note: 403 & 404 test expectations pass/fail depending on handler presence).
+3 new pytest cases added to `backend/inventory/tests/test_vehicles.py`. Ran test suite: **2 Failed, 30 Passed (RED)**.
+
+### GREEN
+**Prompt:**
+> Implement the minimum Django REST Framework code (delete method in VehicleDetailView) required to make all Delete Vehicle tests pass. Do not refactor.
+
+**Result:**
+Added `delete` method to `VehicleDetailView` returning 204 No Content upon deletion. Ran test suite: **32 Passed (GREEN)**.
 
 
 
