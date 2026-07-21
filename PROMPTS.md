@@ -435,6 +435,18 @@ Implemented `AdminStats.jsx` (GREEN).
 **Result:**
 Refactored `AdminStats.jsx`. (REFACTOR).
 
+---
+
+## Feature 19: Add Vehicle Form Modal
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write component test suite for AddVehicleModal verifying validation on make, model, category, price, quantity, year, description, and API submit dispatch.
+
+**Result:**
+Test file created in `frontend/src/__tests__/AddVehicleModal.test.jsx`. Ran Vitest suite (RED).
+
+
 
 
 
