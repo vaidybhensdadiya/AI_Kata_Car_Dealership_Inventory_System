@@ -21,31 +21,31 @@ export default function VehicleCard({
   const fallbackImg = 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80'
 
   return (
-    <div className="steel-card card-hover rounded-2xl overflow-hidden flex flex-col justify-between">
+    <div className="vault-card card-hover rounded-2xl overflow-hidden flex flex-col justify-between">
       <div>
-        {/* Large Vehicle Image */}
-        <div className="h-52 w-full relative overflow-hidden bg-[#171A21]">
+        <!-- Large Vehicle Image -->
+        <div className="h-56 w-full relative overflow-hidden bg-[#141A22]">
           <img
             src={vehicle.image_url || fallbackImg}
             alt={`${vehicle.make} ${vehicle.model}`}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1E232B] via-transparent to-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1A212C] via-transparent to-black/30"></div>
 
-          <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5">
-            <span className="px-2.5 py-1 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-[#0F1115]/90 text-[#F8FAFC] border border-white/[0.08]">
+          <div className="absolute top-3.5 left-3.5 z-10 flex items-center gap-1.5">
+            <span className="px-2.5 py-1 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-[#0B0F14]/90 text-[#F8FAFC] border border-white/[0.08]">
               {vehicle.category}
             </span>
             {vehicle.year && (
-              <span className="px-2 py-1 rounded-lg text-[10px] font-semibold bg-[#0F1115]/90 text-[#94A3B8] border border-white/[0.08] flex items-center gap-1">
+              <span className="px-2 py-1 rounded-lg text-[10px] font-semibold bg-[#0B0F14]/90 text-[#94A3B8] border border-white/[0.08] flex items-center gap-1">
                 <Calendar className="w-3 h-3" />
                 {vehicle.year}
               </span>
             )}
           </div>
 
-          <div className="absolute top-3 right-3 z-10">
+          <div className="absolute top-3.5 right-3.5 z-10">
             {isOutOfStock ? (
               <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center gap-1">
                 <AlertTriangle className="w-3 h-3" /> Sold Out
@@ -58,36 +58,37 @@ export default function VehicleCard({
           </div>
         </div>
 
-        {/* Details & Specs */}
+        <!-- Vehicle Info Details -->
         <div className="p-6 space-y-3">
           <div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-[#3B82F6]">{vehicle.make}</div>
             <h3 className="font-heading text-xl font-bold text-white tracking-tight">
-              {vehicle.make} {vehicle.model}
+              {vehicle.model}
             </h3>
             <p className="text-[#94A3B8] text-xs mt-1.5 line-clamp-2 leading-relaxed">
               {vehicle.description || 'Certified luxury dealership vehicle.'}
             </p>
           </div>
 
-          <div className="pt-2 border-t border-white/[0.08] flex items-baseline justify-between">
+          <div className="pt-3 border-t border-white/[0.08] flex items-baseline justify-between">
             <span className="text-[10px] uppercase font-bold text-[#94A3B8] tracking-widest">MSRP</span>
-            <span className="text-2xl font-bold text-[#E63946] tracking-tight">
+            <span className="text-2xl font-bold text-[#3B82F6] tracking-tight">
               {formatPrice(vehicle.price)}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Action Controls */}
+      <!-- Action Controls -->
       <div className="p-6 pt-0 space-y-3">
         {!isStaff && (
           <button
             onClick={() => onPurchase(vehicle)}
             disabled={isOutOfStock}
-            className={`w-full py-3 px-4 rounded-xl font-semibold text-xs flex items-center justify-center gap-2 transition-all shadow-md ${
+            className={`w-full py-3.5 px-4 rounded-xl font-semibold text-xs flex items-center justify-center gap-2 transition-all shadow-md ${
               isOutOfStock
-                ? 'bg-[#171A21] border border-white/[0.08] text-[#94A3B8] cursor-not-allowed'
-                : 'btn-racing active:scale-[0.98]'
+                ? 'bg-[#141A22] border border-white/[0.08] text-[#94A3B8] cursor-not-allowed'
+                : 'btn-blue active:scale-[0.98]'
             }`}
           >
             <ShoppingBag className="w-4 h-4" />

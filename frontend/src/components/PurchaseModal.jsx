@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { X, ShoppingBag, CheckCircle, AlertCircle, ShieldCheck, Car, ArrowRight } from 'lucide-react'
+import { X, ShoppingBag, CheckCircle, AlertCircle, ShieldCheck, Car } from 'lucide-react'
 import axiosClient from '../api/axiosClient'
 
 export default function PurchaseModal({ vehicle, onClose, onSuccess }) {
@@ -40,76 +40,76 @@ export default function PurchaseModal({ vehicle, onClose, onSuccess }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-      <div className="max-w-lg w-full glass-panel rounded-3xl p-8 border border-slate-800 shadow-2xl relative z-10 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+      <div className="max-w-lg w-full modal-glass rounded-2xl p-8 relative shadow-2xl overflow-hidden">
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+          className="absolute top-6 right-6 p-2 rounded-xl bg-[#141A22] border border-white/[0.08] text-[#94A3B8] hover:text-white transition-colors"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
         {purchased ? (
-          <div className="text-center py-8 space-y-4 animate-scale-up">
-            <div className="w-20 h-20 bg-emerald-500/20 border border-emerald-500/40 rounded-full flex items-center justify-center text-emerald-400 mx-auto">
-              <CheckCircle className="w-10 h-10" />
+          <div className="text-center py-8 space-y-4">
+            <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/40 rounded-full flex items-center justify-center text-emerald-400 mx-auto">
+              <CheckCircle className="w-8 h-8" />
             </div>
-            <h2 className="text-2xl font-black text-white">Purchase Confirmed!</h2>
-            <p className="text-slate-300 text-sm max-w-xs mx-auto">
-              Congratulations on purchasing your <strong className="text-sky-400">{vehicle.make} {vehicle.model}</strong>. Dealership receipt has been generated.
+            <h2 className="font-heading text-2xl font-bold text-white">Purchase Confirmed!</h2>
+            <p className="text-[#CBD5E1] text-xs max-w-xs mx-auto">
+              Congratulations on purchasing your <strong className="text-[#3B82F6]">{vehicle.make} {vehicle.model}</strong>. AutoVault receipt has been issued.
             </p>
-            <div className="pt-4 text-xs text-slate-500 flex items-center justify-center gap-1">
+            <div className="pt-2 text-xs text-[#94A3B8] flex items-center justify-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Updating dealership inventory database...</span>
+              <span>Updating dealership database...</span>
             </div>
           </div>
         ) : (
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
-                <Car className="w-6 h-6" />
+              <div className="w-10 h-10 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
+                <Car className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-xl font-extrabold text-white">Confirm Vehicle Purchase</h2>
-                <p className="text-xs text-slate-400">Review your transaction order details</p>
+                <h2 className="font-heading text-xl font-bold text-white">Confirm Purchase</h2>
+                <p className="text-xs text-[#94A3B8]">Review your transaction order details</p>
               </div>
             </div>
 
             {error && (
-              <div className="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-start gap-3 text-rose-400 text-sm">
-                <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+              <div className="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-start gap-3 text-rose-300 text-xs">
+                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                 <span>{error}</span>
               </div>
             )}
 
-            <div className="bg-slate-900/90 rounded-2xl p-4 border border-slate-800 mb-6 flex items-center justify-between">
+            <div className="bg-[#141A22] rounded-xl p-4 border border-white/[0.08] mb-6 flex items-center justify-between">
               <div>
-                <div className="text-xs font-bold text-sky-400 uppercase tracking-wider">{vehicle.category}</div>
-                <div className="text-lg font-bold text-white">{vehicle.make} {vehicle.model}</div>
-                <div className="text-xs text-slate-400 mt-0.5">{vehicle.year || '2024'} Model • In Stock: {vehicle.quantity}</div>
+                <div className="text-[10px] font-bold text-[#3B82F6] uppercase tracking-wider">{vehicle.category}</div>
+                <div className="text-base font-bold text-white">{vehicle.make} {vehicle.model}</div>
+                <div className="text-xs text-[#94A3B8] mt-0.5">{vehicle.year || '2024'} Model • In Stock: {vehicle.quantity}</div>
               </div>
               <div className="text-right">
-                <div className="text-xs text-slate-500 font-semibold uppercase">Ex-Showroom</div>
-                <div className="text-lg font-extrabold text-white">{formatPrice(basePrice)}</div>
+                <div className="text-[10px] text-[#94A3B8] font-bold uppercase">Ex-Showroom</div>
+                <div className="text-base font-bold text-white">{formatPrice(basePrice)}</div>
               </div>
             </div>
 
-            <div className="space-y-3 text-sm border-t border-b border-slate-800/80 py-4 mb-6">
-              <div className="flex justify-between text-slate-400">
+            <div className="space-y-2.5 text-xs border-t border-b border-white/[0.08] py-4 mb-6">
+              <div className="flex justify-between text-[#94A3B8]">
                 <span>Ex-Showroom Price</span>
-                <span className="font-semibold text-slate-200">{formatPrice(basePrice)}</span>
+                <span className="font-semibold text-[#F8FAFC]">{formatPrice(basePrice)}</span>
               </div>
-              <div className="flex justify-between text-slate-400">
+              <div className="flex justify-between text-[#94A3B8]">
                 <span>Estimated GST & Cess (18%)</span>
-                <span className="font-semibold text-slate-200">{formatPrice(estimatedTax)}</span>
+                <span className="font-semibold text-[#F8FAFC]">{formatPrice(estimatedTax)}</span>
               </div>
-              <div className="flex justify-between text-slate-400">
+              <div className="flex justify-between text-[#94A3B8]">
                 <span>Registration & Handling</span>
-                <span className="font-semibold text-slate-200">{formatPrice(registrationFee)}</span>
+                <span className="font-semibold text-[#F8FAFC]">{formatPrice(registrationFee)}</span>
               </div>
-              <div className="flex justify-between text-base font-extrabold text-white pt-2 border-t border-slate-800/60">
+              <div className="flex justify-between text-sm font-bold text-white pt-2 border-t border-white/[0.08]">
                 <span>Total On-Road Price</span>
-                <span className="text-sky-400">{formatPrice(totalPrice)}</span>
+                <span className="text-[#3B82F6]">{formatPrice(totalPrice)}</span>
               </div>
             </div>
 
@@ -117,14 +117,14 @@ export default function PurchaseModal({ vehicle, onClose, onSuccess }) {
               <button
                 onClick={onClose}
                 disabled={loading}
-                className="w-1/3 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-semibold text-sm hover:bg-slate-800 transition-colors"
+                className="w-1/3 py-3 rounded-xl bg-[#141A22] border border-white/[0.08] text-[#CBD5E1] font-semibold text-xs hover:bg-[#1A212C] transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleConfirmPurchase}
                 disabled={loading}
-                className="w-2/3 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-sky-500/25 flex items-center justify-center gap-2 transition-all active:scale-[0.98] disabled:opacity-50"
+                className="w-2/3 py-3 btn-blue font-semibold text-xs shadow-lg flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-50"
               >
                 {loading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

@@ -8,12 +8,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        steel: {
-          bg: '#0F1115',
-          sec: '#171A21',
-          card: '#1E232B',
-          red: '#E63946',
-          indigo: '#4F46E5',
+        vault: {
+          bg: '#0B0F14',
+          sec: '#141A22',
+          card: '#1A212C',
+          blue: '#3B82F6',
+          cyan: '#06B6D4',
+          success: '#22C55E',
+          warning: '#F59E0B',
+          danger: '#EF4444',
           border: 'rgba(255, 255, 255, 0.08)',
         },
         text: {
@@ -30,7 +33,7 @@ export default {
         'card': '16px',
       },
       boxShadow: {
-        'steel': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+        'vault': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
       }
     },
   },

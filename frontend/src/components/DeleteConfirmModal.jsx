@@ -16,51 +16,56 @@ export default function DeleteConfirmModal({ vehicle, onClose, onSuccess }) {
       onSuccess()
       onClose()
     } catch (err) {
-      setError(err.response?.data?.detail || 'Failed to delete vehicle.')
+      setError(err.response?.data?.detail || 'Failed to delete vehicle listing.')
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-      <div className="max-w-md w-full glass-panel rounded-3xl p-8 border border-slate-800 shadow-2xl relative z-10 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+      <div className="max-w-md w-full modal-glass rounded-2xl p-8 relative shadow-2xl overflow-hidden">
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+          className="absolute top-6 right-6 p-2 rounded-xl bg-[#141A22] border border-white/[0.08] text-[#94A3B8] hover:text-white transition-colors"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
-        <div className="flex flex-col items-center text-center mb-6">
-          <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 mb-4">
-            <AlertTriangle className="w-8 h-8" />
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-500">
+            <AlertTriangle className="w-5 h-5" />
           </div>
-          <h2 className="text-xl font-extrabold text-white">Delete Vehicle Listing?</h2>
-          <p className="text-xs text-slate-400 mt-1 max-w-xs">
-            Are you sure you want to permanently remove <strong className="text-rose-400">{vehicle.make} {vehicle.model}</strong> from dealership inventory? This action cannot be undone.
-          </p>
+          <div>
+            <h2 className="font-heading text-xl font-bold text-white">Delete Vehicle Listing?</h2>
+            <p className="text-xs text-[#94A3B8]">This action is permanent and cannot be undone</p>
+          </div>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-start gap-3 text-rose-400 text-sm">
-            <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" />
+          <div className="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-start gap-3 text-rose-300 text-xs">
+            <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
 
-        <div className="flex items-center gap-3 pt-2">
+        <div className="bg-[#141A22] rounded-xl p-4 border border-white/[0.08] mb-6">
+          <div className="text-sm font-bold text-white">{vehicle.make} {vehicle.model} ({vehicle.year})</div>
+          <div className="text-xs text-[#94A3B8] mt-1">Category: {vehicle.category} • Current Stock: {vehicle.quantity}</div>
+        </div>
+
+        <div className="flex items-center gap-3">
           <button
             onClick={onClose}
             disabled={loading}
-            className="w-1/2 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-semibold text-sm hover:bg-slate-800 transition-colors"
+            className="w-1/2 py-3 rounded-xl bg-[#141A22] border border-white/[0.08] text-[#CBD5E1] font-semibold text-xs hover:bg-[#1A212C] transition-colors"
           >
             Cancel
           </button>
           <button
             onClick={handleDelete}
             disabled={loading}
-            className="w-1/2 py-3 rounded-xl bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-400 hover:to-red-500 text-white font-bold text-sm shadow-lg shadow-rose-500/25 flex items-center justify-center gap-2 transition-all active:scale-[0.98] disabled:opacity-50"
+            className="w-1/2 py-3 btn-danger font-semibold text-xs shadow-lg flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-50"
           >
             {loading ? (
               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { Shield, User, Mail, Lock, AlertCircle, ArrowRight } from 'lucide-react'
+import { User, Mail, Lock, AlertCircle, ArrowRight } from 'lucide-react'
 
 export default function RegisterPage() {
   const [username, setUsername] = useState('')
@@ -29,11 +29,14 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0F1115] text-[#F8FAFC] flex items-center justify-center p-4">
-      <div className="max-w-md w-full steel-card p-8 shadow-2xl relative">
+    <div className="min-h-screen bg-[#0B0F14] text-[#F8FAFC] flex items-center justify-center p-4">
+      <div className="max-w-md w-full vault-card p-8 shadow-2xl relative">
         <div className="flex flex-col items-center text-center mb-8">
-          <div className="w-14 h-14 bg-[#E63946]/10 border border-[#E63946]/30 text-[#E63946] rounded-xl flex items-center justify-center mb-4 shadow-md">
-            <Shield className="w-7 h-7" />
+          <div className="w-14 h-14 bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-[#3B82F6] rounded-xl flex items-center justify-center mb-4 shadow-md">
+            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V7l-9-5z"/>
+              <path d="M7 15l5-7 5 7M9 13h6"/>
+            </svg>
           </div>
           <h1 className="font-heading text-3xl font-bold text-white tracking-tight">
             Create Account
@@ -59,7 +62,7 @@ export default function RegisterPage() {
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Choose username"
                 required
-                className="w-full bg-[#171A21] border border-white/[0.08] rounded-xl pl-10 pr-4 py-3 text-sm text-[#F8FAFC] placeholder-[#94A3B8] focus:outline-none focus:border-[#E63946] transition-all"
+                className="w-full bg-[#141A22] border border-white/[0.08] rounded-xl pl-10 pr-4 py-3 text-sm text-[#F8FAFC] placeholder-[#94A3B8] focus:outline-none focus:border-[#3B82F6] transition-all"
               />
             </div>
           </div>
@@ -74,7 +77,7 @@ export default function RegisterPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
                 required
-                className="w-full bg-[#171A21] border border-white/[0.08] rounded-xl pl-10 pr-4 py-3 text-sm text-[#F8FAFC] placeholder-[#94A3B8] focus:outline-none focus:border-[#E63946] transition-all"
+                className="w-full bg-[#141A22] border border-white/[0.08] rounded-xl pl-10 pr-4 py-3 text-sm text-[#F8FAFC] placeholder-[#94A3B8] focus:outline-none focus:border-[#3B82F6] transition-all"
               />
             </div>
           </div>
@@ -89,7 +92,7 @@ export default function RegisterPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Minimum 6 characters"
                 required
-                className="w-full bg-[#171A21] border border-white/[0.08] rounded-xl pl-10 pr-4 py-3 text-sm text-[#F8FAFC] placeholder-[#94A3B8] focus:outline-none focus:border-[#E63946] transition-all"
+                className="w-full bg-[#141A22] border border-white/[0.08] rounded-xl pl-10 pr-4 py-3 text-sm text-[#F8FAFC] placeholder-[#94A3B8] focus:outline-none focus:border-[#3B82F6] transition-all"
               />
             </div>
           </div>
@@ -97,7 +100,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 btn-racing text-sm font-semibold rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-50"
+            className="w-full py-3.5 btn-blue text-sm font-semibold rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-50"
           >
             {loading ? (
               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -113,7 +116,7 @@ export default function RegisterPage() {
         <div className="mt-8 pt-6 border-t border-white/[0.08] text-center">
           <p className="text-[#94A3B8] text-xs">
             Already registered?{' '}
-            <Link to="/login" className="text-[#E63946] hover:underline font-semibold transition-colors">
+            <Link to="/login" className="text-[#3B82F6] hover:underline font-semibold transition-colors">
               Sign in to account
             </Link>
           </p>
