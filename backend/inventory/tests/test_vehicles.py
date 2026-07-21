@@ -75,3 +75,44 @@ class TestAddVehicle:
         assert response.status_code == 400
         assert 'make' in response.data
         assert 'model' in response.data
+
+
+@pytest.mark.django_db
+class TestListVehicles:
+    def setup_method(self):
+        self.client = APIClient()
+        self.url = '/api/vehicles/'
+        self.user = User.objects.create_user(
+            username='list_user',
+            email='list@dealership.com',
+            password='UserPassword123!'
+        )
+
+    def _get_token(self):
+        res = self.client.post('/api/auth/login/', {'username': 'list_user', 'password': 'UserPassword123!'}, format='json')
+        return res.data['access']
+
+    def test_list_vehicles_empty(self):
+        token = self._get_token()
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.data == []
+
+    def test_list_vehicles_populated(self):
+        from inventory.models import Vehicle
+        Vehicle.objects.create(make='BMW', model='M3', category='Sedan', price=75000, quantity=3)
+        Vehicle.objects.create(make='Audi', model='RS6', category='Wagon', price=120000, quantity=2)
+
+        token = self._get_token()
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data) == 2
+        makes = [v['make'] for v in response.data]
+        assert 'BMW' in makes
+        assert 'Audi' in makes
+
+    def test_list_vehicles_unauthenticated(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 401

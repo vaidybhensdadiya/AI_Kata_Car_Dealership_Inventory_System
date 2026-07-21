@@ -110,5 +110,17 @@ Implemented Vehicle model, serializers, permissions, views, and initial migratio
 **Result:**
 Refactored `Vehicle` model with `Decimal('0.00')` validator and meta ordering. Ran test suite: **18 Passed (REFACTOR)**.
 
+---
+
+## Feature 6: List All Vehicles (GET /api/vehicles)
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write failing pytest cases for List All Vehicles endpoint in Django REST Framework testing authenticated retrieval of vehicle list, empty vehicle list handling, and unauthenticated access rejection (401).
+
+**Result:**
+3 new pytest cases added to `backend/inventory/tests/test_vehicles.py`. Ran test suite: **3 Failed, 18 Passed (RED)**.
+
+
 
 
