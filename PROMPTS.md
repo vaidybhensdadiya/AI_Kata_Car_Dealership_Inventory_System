@@ -385,6 +385,18 @@ Implemented `SearchToolbar.jsx` (GREEN).
 **Result:**
 Refactored `SearchToolbar.jsx`. (REFACTOR).
 
+---
+
+## Feature 17: Purchase Button & Modal Workflow
+
+### RED
+**Prompt:**
+> Follow strict TDD. Write component test suite for PurchaseModal displaying vehicle summary, tax/fee price breakdown, purchase confirmation button, and success state overlay.
+
+**Result:**
+Test file created in `frontend/src/__tests__/PurchaseModal.test.jsx`. Ran Vitest suite (RED).
+
+
 
 
 
