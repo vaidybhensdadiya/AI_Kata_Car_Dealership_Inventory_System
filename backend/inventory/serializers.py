@@ -46,7 +46,7 @@ class VehicleSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Vehicle
-        fields = ('id', 'make', 'model', 'category', 'price', 'quantity', 'year', 'image_url', 'created_at', 'updated_at')
+        fields = ('id', 'make', 'model', 'category', 'price', 'quantity', 'year', 'image_url', 'description', 'created_at', 'updated_at')
 
     def validate_price(self, value):
         if value < 0:

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Search, Filter, RefreshCw, DollarSign, Tag, Layers } from 'lucide-react'
+import { Search, Filter, RefreshCw, IndianRupee, Layers } from 'lucide-react'
 
 export default function SearchToolbar({
   searchParams,
@@ -20,7 +20,6 @@ export default function SearchToolbar({
           </div>
         </div>
 
-        {/* Reset Action */}
         <button
           onClick={onReset}
           className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-white text-xs font-semibold transition-all self-end md:self-auto"
@@ -30,9 +29,7 @@ export default function SearchToolbar({
         </button>
       </div>
 
-      {/* Filter Form Controls */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
-        {/* Make / Model Query */}
         <div>
           <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Search Make / Model</label>
           <div className="relative">
@@ -41,13 +38,12 @@ export default function SearchToolbar({
               type="text"
               value={searchParams.make || ''}
               onChange={(e) => onParamChange('make', e.target.value)}
-              placeholder="e.g. Toyota, Mustang..."
+              placeholder="e.g. Porsche, M5..."
               className="w-full bg-slate-900/90 border border-slate-800 rounded-xl pl-10 pr-3 py-2.5 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 text-xs"
             />
           </div>
         </div>
 
-        {/* Category Select */}
         <div>
           <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Category</label>
           <div className="relative">
@@ -65,11 +61,10 @@ export default function SearchToolbar({
           </div>
         </div>
 
-        {/* Min Price */}
         <div>
-          <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Min Price ($)</label>
+          <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Min Price (₹)</label>
           <div className="relative">
-            <DollarSign className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <IndianRupee className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="number"
               value={searchParams.min_price || ''}
@@ -80,23 +75,21 @@ export default function SearchToolbar({
           </div>
         </div>
 
-        {/* Max Price */}
         <div>
-          <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Max Price ($)</label>
+          <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Max Price (₹)</label>
           <div className="relative">
-            <DollarSign className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <IndianRupee className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="number"
               value={searchParams.max_price || ''}
               onChange={(e) => onParamChange('max_price', e.target.value)}
-              placeholder="150000"
+              placeholder="50000000"
               className="w-full bg-slate-900/90 border border-slate-800 rounded-xl pl-10 pr-3 py-2.5 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 text-xs"
             />
           </div>
         </div>
       </div>
 
-      {/* Quick Category Chips */}
       <div className="pt-2 border-t border-slate-800/60 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
         <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider whitespace-nowrap">Quick Filter:</span>
         <button

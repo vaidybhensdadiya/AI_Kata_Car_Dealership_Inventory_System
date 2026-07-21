@@ -10,9 +10,9 @@ export default function VehicleCard({
   onRestock
 }) {
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'INR',
       maximumFractionDigits: 0
     }).format(price)
   }
@@ -27,46 +27,43 @@ export default function VehicleCard({
   }[vehicle.category] || 'from-slate-700/20 to-slate-800/10 border-slate-700/30 text-slate-300'
 
   const isOutOfStock = vehicle.quantity <= 0
+  const fallbackImg = 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80'
 
   return (
     <div className="glass-panel group rounded-3xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-all duration-300 flex flex-col justify-between hover:shadow-2xl hover:shadow-sky-500/5 hover:-translate-y-1">
-      {/* Vehicle Hero Card Header */}
       <div>
-        <div className="h-48 relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 flex items-center justify-center p-6">
-          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:16px_16px]" />
+        {/* Vehicle Image Header */}
+        <div className="h-48 relative overflow-hidden bg-slate-900">
+          <img
+            src={vehicle.image_url || fallbackImg}
+            alt={`${vehicle.make} ${vehicle.model}`}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-black/30"></div>
+
           <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
             <span className={`px-3 py-1 rounded-full text-xs font-semibold border backdrop-blur-md bg-gradient-to-r ${categoryGradient}`}>
               {vehicle.category}
             </span>
             {vehicle.year && (
-              <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-900/80 border border-slate-800 text-slate-400 flex items-center gap-1">
+              <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-900/80 border border-slate-800 text-slate-300 flex items-center gap-1 backdrop-blur-md">
                 <Calendar className="w-3 h-3" />
                 {vehicle.year}
               </span>
             )}
           </div>
 
-          {/* Stock Badge */}
           <div className="absolute top-4 right-4 z-10">
             {isOutOfStock ? (
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 border border-rose-500/40 text-rose-400 flex items-center gap-1 backdrop-blur-md">
-                <AlertTriangle className="w-3.5 h-3.5" /> Out of Stock
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/30 border border-rose-500/40 text-rose-300 flex items-center gap-1 backdrop-blur-md">
+                <AlertTriangle className="w-3.5 h-3.5" /> Sold Out
               </span>
             ) : (
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center gap-1 backdrop-blur-md">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 flex items-center gap-1 backdrop-blur-md">
                 <CheckCircle className="w-3.5 h-3.5" /> {vehicle.quantity} In Stock
               </span>
             )}
-          </div>
-
-          {/* Vehicle Visual Representation */}
-          <div className="relative z-0 text-center transform group-hover:scale-110 transition-transform duration-500">
-            <div className="text-6xl font-black tracking-tighter text-slate-800/80 select-none uppercase">
-              {vehicle.make}
-            </div>
-            <div className="text-xs font-bold uppercase tracking-widest text-sky-400/60 -mt-2">
-              {vehicle.model}
-            </div>
           </div>
         </div>
 
@@ -82,24 +79,21 @@ export default function VehicleCard({
               </p>
             ) : (
               <p className="text-slate-400 text-xs mt-1.5 italic">
-                Premium certified dealership vehicle.
+                Premium certified luxury vehicle.
               </p>
             )}
           </div>
 
-          {/* Price Tag */}
           <div className="pt-2 border-t border-slate-800/60 flex items-baseline justify-between">
             <span className="text-xs uppercase font-semibold text-slate-400 tracking-wider">Price</span>
-            <span className="text-2xl font-extrabold text-white tracking-tight bg-gradient-to-r from-white via-slate-100 to-sky-400 bg-clip-text text-transparent">
+            <span className="text-2xl font-extrabold text-sky-400 tracking-tight">
               {formatPrice(vehicle.price)}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Action Buttons Footer */}
       <div className="p-6 pt-0 space-y-3">
-        {/* Customer Purchase Action */}
         <button
           onClick={() => onPurchase(vehicle)}
           disabled={isOutOfStock}
@@ -113,7 +107,6 @@ export default function VehicleCard({
           <span>{isOutOfStock ? 'Sold Out' : 'Purchase Vehicle'}</span>
         </button>
 
-        {/* Admin Manage Actions */}
         {isStaff && (
           <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-800/60">
             <button

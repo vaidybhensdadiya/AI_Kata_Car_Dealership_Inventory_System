@@ -28,12 +28,10 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Background Decorative Gradients */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-md w-full glass-panel rounded-3xl p-8 shadow-2xl relative z-10 border border-slate-800">
-        {/* Brand Header */}
         <div className="flex flex-col items-center text-center mb-8">
           <div className="w-16 h-16 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-sky-500/20 mb-4">
             <Car className="w-9 h-9 text-white" />
@@ -44,15 +42,13 @@ export default function LoginPage() {
           <p className="text-slate-400 text-sm mt-1">Sign in to your dealership account</p>
         </div>
 
-        {/* Error Callout */}
         {errorMessage && (
-          <div className="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-start gap-3 text-rose-400 text-sm animate-shake">
+          <div className="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-start gap-3 text-rose-400 text-sm">
             <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
             <span>{errorMessage}</span>
           </div>
         )}
 
-        {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Username</label>
@@ -109,7 +105,7 @@ export default function LoginPage() {
 
         <div className="mt-6 flex items-center justify-center gap-1.5 text-slate-500 text-xs">
           <ShieldCheck className="w-4 h-4 text-emerald-500" />
-          <span>JWT Secured Authentication Endpoint</span>
+          <span>JWT Secured Authentication</span>
         </div>
       </div>
     </div>

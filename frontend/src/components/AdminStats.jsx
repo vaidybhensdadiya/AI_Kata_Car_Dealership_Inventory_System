@@ -1,5 +1,5 @@
 import React from 'react'
-import { Car, DollarSign, AlertTriangle, ShieldCheck, TrendingUp, PackageX } from 'lucide-react'
+import { Car, IndianRupee, AlertTriangle, PackageX } from 'lucide-react'
 
 export default function AdminStats({ vehicles = [] }) {
   const totalVehicles = vehicles.length
@@ -9,16 +9,15 @@ export default function AdminStats({ vehicles = [] }) {
   const outOfStockCount = vehicles.filter(v => v.quantity <= 0).length
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'INR',
       maximumFractionDigits: 0
     }).format(price)
   }
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-      {/* Total Inventory Units */}
       <div className="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
         <div>
           <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Units</div>
@@ -30,7 +29,6 @@ export default function AdminStats({ vehicles = [] }) {
         </div>
       </div>
 
-      {/* Portfolio Valuation */}
       <div className="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
         <div>
           <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Inventory Value</div>
@@ -38,11 +36,10 @@ export default function AdminStats({ vehicles = [] }) {
           <div className="text-[11px] text-slate-500 mt-0.5">Combined stock MSRP</div>
         </div>
         <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-          <DollarSign className="w-6 h-6" />
+          <IndianRupee className="w-6 h-6" />
         </div>
       </div>
 
-      {/* Low Stock Warning */}
       <div className="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
         <div>
           <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Low Stock Warning</div>
@@ -54,7 +51,6 @@ export default function AdminStats({ vehicles = [] }) {
         </div>
       </div>
 
-      {/* Out of Stock */}
       <div className="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
         <div>
           <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Sold Out</div>

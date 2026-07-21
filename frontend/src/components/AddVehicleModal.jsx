@@ -10,6 +10,7 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
     price: '',
     quantity: 1,
     category: 'Sedan',
+    image_url: '',
     description: ''
   })
   const [loading, setLoading] = useState(false)
@@ -33,18 +34,13 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
       return
     }
 
-    if (parseInt(formData.quantity) < 0) {
-      setError('Quantity cannot be negative.')
-      return
-    }
-
     setLoading(true)
     try {
       await axiosClient.post('/vehicles/', {
         ...formData,
         price: parseFloat(formData.price),
-        quantity: parseInt(formData.quantity),
-        year: parseInt(formData.year)
+        quantity: parseInt(formData.quantity, 10),
+        year: parseInt(formData.year, 10)
       })
       onSuccess()
       onClose()
@@ -160,15 +156,27 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Price ($ MSRP) *</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Price (₹ INR MSRP) *</label>
             <input
               type="number"
               name="price"
-              step="0.01"
+              step="1"
               value={formData.price}
               onChange={handleChange}
-              placeholder="e.g. 185000"
+              placeholder="e.g. 15000000"
               required
+              className="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-100 text-sm focus:outline-none focus:border-sky-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Image URL</label>
+            <input
+              type="url"
+              name="image_url"
+              value={formData.image_url}
+              onChange={handleChange}
+              placeholder="https://images.unsplash.com/..."
               className="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-100 text-sm focus:outline-none focus:border-sky-500"
             />
           </div>
@@ -179,8 +187,8 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              rows="3"
-              placeholder="Enter key vehicle specifications or highlights..."
+              rows="2"
+              placeholder="Enter vehicle specification highlights..."
               className="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-100 text-sm focus:outline-none focus:border-sky-500"
             />
           </div>
