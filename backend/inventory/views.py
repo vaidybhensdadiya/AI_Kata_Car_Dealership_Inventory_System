@@ -55,3 +55,21 @@ class LoginView(APIView):
                 'is_staff': user.is_staff,
             }
         }, status=status.HTTP_200_OK)
+
+
+class UserProfileView(APIView):
+    """
+    Protected API View returning details of the currently authenticated user.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'is_staff': user.is_staff,
+        }, status=status.HTTP_200_OK)

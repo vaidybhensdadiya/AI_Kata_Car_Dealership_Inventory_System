@@ -71,4 +71,11 @@ Refactored `LoginView` with clean docstrings and formatted response structures. 
 **Result:**
 3 new pytest cases added to `backend/inventory/tests/test_auth.py`. Ran test suite: **3 Failed, 9 Passed (RED)**.
 
+### GREEN
+**Prompt:**
+> Implement the minimum Django REST Framework code required to make all Protected Endpoint tests pass. Do not refactor.
+
+**Result:**
+Implemented `UserProfileView` with `IsAuthenticated` permission and URL routing. Ran test suite: **12 Passed (GREEN)**.
+
 
