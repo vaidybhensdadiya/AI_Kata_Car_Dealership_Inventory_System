@@ -72,11 +72,13 @@ class VehicleListCreateView(APIView):
         return [permissions.IsAuthenticated()]
 
     def get(self, request):
-        vehicles = Vehicle.objects.all()
+        """Fetch all vehicles ordered by latest creation date."""
+        vehicles = Vehicle.objects.all().order_by('-created_at')
         serializer = VehicleSerializer(vehicles, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        """Add a new vehicle to the dealership inventory."""
         serializer = VehicleSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
