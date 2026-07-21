@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { Lock, User, AlertCircle, ArrowRight, Shield } from 'lucide-react'
+import { Lock, User, AlertCircle, ArrowRight } from 'lucide-react'
 
 export default function LoginPage() {
   const [username, setUsername] = useState('')
@@ -29,7 +29,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-[#0B0F14] text-[#F8FAFC] flex flex-col">
       {/* Sticky Header */}
-      <header className="w-full bg-[#0B0F14] border-b border-white/[0.04]">
+      <header className="w-full bg-[#0B0F14] border-b border-white/[0.04] shrink-0">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
@@ -52,11 +52,11 @@ export default function LoginPage() {
       </header>
 
       {/* Main Dual-Column Content */}
-      <div className="flex-1 flex flex-col md:flex-row">
+      <div className="flex-1 flex flex-col md:flex-row items-stretch justify-stretch overflow-hidden">
         
         {/* Left Side: Form Container */}
-        <div className="flex-1 flex items-center justify-center p-6 sm:p-12 md:w-1/2 lg:w-2/5 bg-[#0B0F14]">
-          <div className="max-w-md w-full bg-[#141A22] border border-white/[0.08] rounded-2xl p-8 sm:p-10 shadow-2xl relative">
+        <div className="flex-1 flex items-center justify-center p-6 sm:p-12 md:w-1/2 lg:w-[45%] bg-[#0B0F14]">
+          <div className="max-w-md w-full bg-[#141A22] border border-white/[0.08] rounded-2xl p-8 sm:p-10 shadow-2xl relative z-10">
             <div className="flex flex-col items-center text-center mb-8">
               <div className="w-12 h-12 bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-[#3B82F6] rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
@@ -124,7 +124,7 @@ export default function LoginPage() {
 
             <div className="mt-8 pt-6 border-t border-white/[0.08] text-center">
               <p className="text-[#94A3B8] text-xs">
-                New user?{' '}
+                New user?   {' '}
                 <Link to="/register" className="text-[#3B82F6] hover:underline font-semibold transition-colors">
                   Register account
                 </Link>
@@ -134,14 +134,14 @@ export default function LoginPage() {
         </div>
 
         {/* Right Side: Showcase Image with Left Fade Gradient */}
-        <div className="hidden md:flex md:w-1/2 lg:w-3/5 relative overflow-hidden bg-[#0B0F14]">
+        <div className="hidden md:flex md:w-1/2 lg:w-[55%] relative overflow-hidden bg-[#0B0F14]">
           <img
-            src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=80"
+            src="/login_showcase.jpg"
             alt="Porsche 911 GT3 RS on Snowy Mountain Pass"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#0B0F14]/25 to-[#0B0F14]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14] via-transparent to-[#0B0F14]/20" />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#0B0F14]/20 to-[#0B0F14]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14] via-transparent to-[#0B0F14]/10" />
         </div>
 
       </div>
