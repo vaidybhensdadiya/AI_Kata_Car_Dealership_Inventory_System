@@ -428,6 +428,13 @@ Test file created in `frontend/src/__tests__/AdminStats.test.jsx`. Ran Vitest su
 **Result:**
 Implemented `AdminStats.jsx` (GREEN).
 
+### REFACTOR
+**Prompt:**
+> Refactor AdminStats metric calculations for null safety and responsive grid alignment.
+
+**Result:**
+Refactored `AdminStats.jsx`. (REFACTOR).
+
 
 
 
