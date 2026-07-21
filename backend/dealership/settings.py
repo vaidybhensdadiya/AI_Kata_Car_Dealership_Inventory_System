@@ -82,24 +82,35 @@ TEMPLATES = [
 WSGI_APPLICATION = 'dealership.wsgi.application'
 
 
-# Database Configuration (MySQL)
+# Database Configuration (MySQL with SQLite for fast pytest)
+import sys
 import pymysql
 pymysql.install_as_MySQLdb()
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dealership_db',
-        'USER': 'root',
-        'PASSWORD': 'Vaidy@2005',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+IS_TESTING = 'pytest' in sys.modules or 'test' in sys.argv
+
+if IS_TESTING:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
         }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'dealership_db',
+            'USER': 'root',
+            'PASSWORD': 'Vaidy@2005',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            }
+        }
+    }
 
 
 # Password validation

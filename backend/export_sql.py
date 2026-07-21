@@ -1,97 +1,66 @@
 import os
 import pymysql
+import datetime
 
-print("Generating clean, minimal database.sql MySQL dump file...")
+print("Dumping live MySQL database (dealership_db) into database.sql...")
 
-mock_vehicles = [
-    (1, 'Porsche', '911 GT3 RS', 'Coupe', 35000000.00, 3, 2024, 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80', 'Track-focused naturally aspirated 4.0L flat-six engine producing 518 hp with active aero DRS.'),
-    (2, 'BMW', 'M5 Competition', 'Sedan', 17500000.00, 5, 2024, 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80', 'Twin-turbo 4.4L V8 engine with M xDrive all-wheel drive performance and luxury cabin.'),
-    (3, 'Mercedes-AMG', 'G 63', 'SUV', 33000000.00, 2, 2024, 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?auto=format&fit=crop&w=800&q=80', 'Handcrafted AMG 4.0L V8 biturbo luxury off-road SUV with side-exit sports exhaust.'),
-    (4, 'Audi', 'RS 7 Sportback', 'Sedan', 22400000.00, 4, 2024, 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=800&q=80', 'Aggressive fastback design powered by a 591 hp 4.0L twin-turbo V8 with quattro AWD.'),
-    (5, 'Lamborghini', 'Huracán EVO', 'Coupe', 32200000.00, 2, 2024, 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80', 'Naturally aspirated 5.2L V10 screaming to 8,500 RPM with LDVI predictive dynamics.'),
-    (6, 'Ferrari', 'Roma', 'Coupe', 37600000.00, 1, 2024, 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80', 'Timeless Italian design featuring a mid-front 3.9L turbocharged V8 delivering 612 hp.'),
-    (7, 'Land Rover', 'Range Rover SV', 'SUV', 41200000.00, 3, 2024, 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800&q=80', 'Ultra-luxury flagship SUV with executive rear seats, ceramic controls, and twin-turbo V8.'),
-    (8, 'Ford', 'Mustang Dark Horse', 'Coupe', 8500000.00, 6, 2024, 'https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=800&q=80', '500 hp 5.0L Coyote V8 with Tremec 6-speed manual transmission and MagneRide damping.'),
-    (9, 'Chevrolet', 'Corvette Z06', 'Convertible', 14500000.00, 2, 2024, 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80', 'Flat-plane crank 5.5L LT6 V8 engine producing 670 hp with power hardtop.'),
-    (10, 'Ford', 'F-150 Raptor R', 'Truck', 12500000.00, 4, 2024, 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80', 'Supercharged 5.2L V8 delivering 720 hp with Fox Live Valve shocks for high-speed desert off-roading.'),
-    (11, 'Aston Martin', 'DB12 Super Tourer', 'Coupe', 45900000.00, 1, 2024, 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80', 'Hand-built 671 hp 4.0L V8 twin-turbo grand tourer with modern interior architecture.'),
-    (12, 'Bentley', 'Continental GT Speed', 'Convertible', 52300000.00, 1, 2024, 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80', 'Iconic British open-top luxury powered by a 6.0L W12 TSI engine with active all-wheel steering.'),
-    (13, 'Rolls-Royce', 'Ghost Black Badge', 'Sedan', 69500000.00, 1, 2024, 'https://images.unsplash.com/photo-1631295868223-63265b40d9e4?auto=format&fit=crop&w=800&q=80', 'The pinnacle of bespoke luxury with Starlight Headliner and 6.75L twin-turbo V12 engine.'),
-    (14, 'Toyota', 'Land Cruiser 300', 'SUV', 21000000.00, 5, 2024, 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80', 'Legendary reliability meets modern luxury with a 3.3L Twin-Turbo V6 diesel and Multi-Terrain Select.'),
-    (15, 'Lexus', 'LC 500 Convertible', 'Convertible', 23900000.00, 2, 2024, 'https://images.unsplash.com/photo-1616422285623-13ff0162193c?auto=format&fit=crop&w=800&q=80', 'Breathtaking grand touring convertible with a naturally aspirated 5.0L V8 and Mark Levinson sound.'),
-    (16, 'Nissan', 'GT-R Nismo', 'Coupe', 21200000.00, 2, 2024, 'https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=800&q=80', 'Godzilla refined: 600 hp hand-crafted 3.8L twin-turbo V6 with carbon ceramic brakes.'),
-    (17, 'Jaguar', 'F-Type R 75', 'Convertible', 15300000.00, 3, 2024, 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80', 'Special 75th anniversary edition with supercharged 575 hp V8 exhaust symphony.'),
-    (18, 'Maserati', 'MC20 Super Sport', 'Coupe', 36900000.00, 1, 2024, 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80', 'Carbon-fiber monocoque supercar featuring the F1 twin-spark Nettuno 3.0L V6 engine.'),
-    (19, 'Volkswagen', 'Golf R 20th Edition', 'Hatchback', 5200000.00, 7, 2024, 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80', '315 hp turbocharged hot hatch with R-Performance torque-vectoring all-wheel drive.'),
-    (20, 'Hyundai', 'Ioniq 5 N', 'Hatchback', 6500000.00, 4, 2024, 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80', '641 hp high-performance EV hatchback with N e-shift paddle gear simulations.'),
-    (21, 'BMW', 'X7 M60i', 'SUV', 21700000.00, 3, 2024, 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80', 'Three-row flagship luxury SUV with a mild-hybrid 523 hp M TwinPower Turbo V8 engine.'),
-    (22, 'Mercedes-Benz', 'S-Class S 450d', 'Sedan', 17700000.00, 4, 2024, 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80', 'The benchmark for automotive luxury: 4MATIC drive, rear-axle steering, and MBUX hyperscreen.'),
-    (23, 'Audi', 'Q8 e-tron Edition', 'SUV', 11400000.00, 5, 2024, 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80', 'All-electric luxury SUV offering 402 hp, virtual exterior mirrors, and fast DC charging.'),
-    (24, 'Volvo', 'XC90 Recharge Ultimate', 'SUV', 10100000.00, 4, 2024, 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80', 'Scandinavian plug-in hybrid SUV producing 455 hp with Bowers & Wilkins audio system.'),
-    (25, 'Porsche', 'Taycan Turbo S', 'Sedan', 24400000.00, 2, 2024, 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80', '750 hp overboost electric sports sedan accelerating 0-100 km/h in 2.8 seconds.'),
-    (26, 'Dodge', 'RAM 1500 TRX', 'Truck', 13500000.00, 2, 2024, 'https://images.unsplash.com/photo-1559416523-140ddc3d238c?auto=format&fit=crop&w=800&q=80', 'Apex predator truck powered by a 702 hp Supercharged 6.2L HEMI V8 with Bilstein E2 shocks.'),
-    (27, 'Toyota', 'GR Supra 3.0', 'Coupe', 8500000.00, 5, 2024, 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80', 'Gazoo Racing tuned 382 hp inline 6-cylinder engine with 6-speed manual gearbox option.'),
-    (28, 'Mini', 'John Cooper Works', 'Hatchback', 4700000.00, 6, 2024, 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80', 'Pocket-rocket 228 hp TwinPower Turbo 4-cylinder engine with go-kart handling dynamics.'),
-    (29, 'Alfa Romeo', 'Giulia Quadrifoglio', 'Sedan', 12800000.00, 3, 2024, 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80', 'Ferrari-derived 2.9L Twin-Turbo V6 generating 505 hp with carbon-fiber active front splitter.'),
-    (30, 'Tesla', 'Model S Plaid', 'Sedan', 15000000.00, 4, 2024, 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=800&q=80', 'Tri-motor electric vehicle delivering 1,020 hp and 0-100 km/h in 2.1 seconds.')
-]
+conn = pymysql.connect(
+    host='127.0.0.1',
+    user='root',
+    password='Vaidy@2005',
+    port=3306,
+    database='dealership_db',
+    charset='utf8mb4'
+)
 
 sql = [
     "-- ========================================================",
-    "-- Car Dealership Inventory System - Essential MySQL Schema",
+    "-- Car Dealership Inventory System - MySQL Database Export",
     "-- Database Name: dealership_db",
     "-- ========================================================\n",
     "CREATE DATABASE IF NOT EXISTS `dealership_db` DEFAULT CHARACTER SET utf8mb4;",
-    "USE `dealership_db`;\n",
-    "-- Table 1: `auth_user` (Stores System Admins & Registered Customers)",
-    "DROP TABLE IF EXISTS `auth_user`;",
-    "CREATE TABLE `auth_user` (",
-    "  `id` int(11) NOT NULL AUTO_INCREMENT,",
-    "  `password` varchar(128) NOT NULL,",
-    "  `last_login` datetime(6) DEFAULT NULL,",
-    "  `is_superuser` tinyint(1) NOT NULL,",
-    "  `username` varchar(150) NOT NULL UNIQUE,",
-    "  `first_name` varchar(150) NOT NULL,",
-    "  `last_name` varchar(150) NOT NULL,",
-    "  `email` varchar(254) NOT NULL,",
-    "  `is_staff` tinyint(1) NOT NULL,",
-    "  `is_active` tinyint(1) NOT NULL,",
-    "  `date_joined` datetime(6) NOT NULL,",
-    "  PRIMARY KEY (`id`)",
-    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n",
-    "-- Insert User Accounts (admin / admin123 and customer / customer123)",
-    "INSERT INTO `auth_user` (`id`, `password`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES",
-    "(1, 'pbkdf2_sha256$870000$admin$password123', 1, 'admin', 'System', 'Admin', 'admin@dealership.com', 1, 1, NOW()),",
-    "(2, 'pbkdf2_sha256$870000$customer$password123', 0, 'customer', 'Demo', 'Customer', 'customer@dealership.com', 0, 1, NOW());\n",
-    "-- Table 2: `inventory_vehicle` (Stores Vehicle Data, Image URLs, & Specs)",
-    "DROP TABLE IF EXISTS `inventory_vehicle`;",
-    "CREATE TABLE `inventory_vehicle` (",
-    "  `id` bigint(20) NOT NULL AUTO_INCREMENT,",
-    "  `make` varchar(100) NOT NULL,",
-    "  `model` varchar(100) NOT NULL,",
-    "  `category` varchar(50) NOT NULL,",
-    "  `price` decimal(14,2) NOT NULL,",
-    "  `quantity` int(11) NOT NULL,",
-    "  `year` int(11) NOT NULL DEFAULT 2024,",
-    "  `image_url` varchar(500) NOT NULL DEFAULT '',",
-    "  `description` longtext NOT NULL,",
-    "  `created_at` datetime(6) NOT NULL DEFAULT NOW(),",
-    "  `updated_at` datetime(6) NOT NULL DEFAULT NOW(),",
-    "  PRIMARY KEY (`id`)",
-    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n",
-    "-- Insert 30 Vehicles with Image URLs and Specs in Indian Rupees (₹)",
-    "INSERT INTO `inventory_vehicle` (`id`, `make`, `model`, `category`, `price`, `quantity`, `year`, `image_url`, `description`, `created_at`, `updated_at`) VALUES"
+    "USE `dealership_db`;\n"
 ]
 
-rows = []
-for v in mock_vehicles:
-    desc_escaped = v[8].replace("'", "''")
-    rows.append(f"({v[0]}, '{v[1]}', '{v[2]}', '{v[3]}', {v[4]:.2f}, {v[5]}, {v[6]}, '{v[7]}', '{desc_escaped}', NOW(), NOW())")
+tables_to_dump = ['auth_user', 'inventory_vehicle']
 
-sql.append(",\n".join(rows) + ";")
+with conn.cursor() as cursor:
+    for table in tables_to_dump:
+        cursor.execute(f"SHOW CREATE TABLE `{table}`;")
+        create_stmt = cursor.fetchone()[1]
+        
+        sql.append(f"-- Table structure for `{table}`")
+        sql.append(f"DROP TABLE IF EXISTS `{table}`;")
+        sql.append(f"{create_stmt};\n")
+
+        cursor.execute(f"SELECT * FROM `{table}`;")
+        rows = cursor.fetchall()
+        if rows:
+            cursor.execute(f"SHOW COLUMNS FROM `{table}`;")
+            columns = [f"`{col[0]}`" for col in cursor.fetchall()]
+            col_names = ", ".join(columns)
+            
+            sql.append(f"-- Dumping data for `{table}` ({len(rows)} records)")
+            row_strings = []
+            for row in rows:
+                formatted_vals = []
+                for val in row:
+                    if val is None:
+                        formatted_vals.append("NULL")
+                    elif isinstance(val, (int, float)):
+                        formatted_vals.append(str(val))
+                    elif isinstance(val, (datetime.datetime, datetime.date)):
+                        formatted_vals.append(f"'{val.strftime('%Y-%m-%d %H:%M:%S')}'")
+                    else:
+                        escaped = str(val).replace("\\", "\\\\").replace("'", "''")
+                        formatted_vals.append(f"'{escaped}'")
+                row_strings.append(f"({', '.join(formatted_vals)})")
+            sql.append(f"INSERT INTO `{table}` ({col_names}) VALUES\n" + ",\n".join(row_strings) + ";\n")
+
+conn.close()
 
 sql_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'database.sql')
 with open(sql_path, 'w', encoding='utf-8') as f:
     f.write("\n".join(sql))
 
-print(f"Successfully generated clean database.sql at {sql_path}")
+print(f"Successfully dumped live MySQL database state to {sql_path}")

@@ -3,171 +3,245 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ApexAuto - Luxury Dealership Inventory</title>
+  <title>Veloce Reserve — Premier Luxury & Exotic Automotive Gallery</title>
+  <!-- Google Fonts: Syne & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            reserve: {
+              950: '#060911',
+              900: '#0B101D',
+              850: '#11182B',
+              800: '#18223B',
+              gold: '#E2B866',
+              amber: '#D4AF37',
+            }
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    .glass-panel {
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+    body {
+      background-color: #060911;
+      background-image: 
+        radial-gradient(at 10% 10%, rgba(212, 175, 55, 0.04) 0px, transparent 50%),
+        radial-gradient(at 90% 90%, rgba(56, 189, 248, 0.03) 0px, transparent 50%);
+    }
+    .glass-card {
+      background: rgba(11, 16, 29, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .glass-card:hover {
+      border-color: rgba(226, 184, 102, 0.3);
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF5D6 0%, #E2B866 50%, #B8860B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-gradient-btn {
+      background: linear-gradient(135deg, #E2B866 0%, #C59B43 100%);
+    }
+    .gold-gradient-btn:hover {
+      background: linear-gradient(135deg, #F0CA7D 0%, #D4AF37 100%);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0B101D;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #2A3655;
+      border-radius: 4px;
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-sky-500 selection:text-slate-950">
+<body class="bg-reserve-950 text-slate-100 min-h-screen font-sans selection:bg-reserve-gold selection:text-reserve-950 antialiased">
 
   <div id="app">
-    <!-- Top Navigation Header -->
-    <header class="sticky top-0 z-40 w-full backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80">
+    <!-- Top Luxury Navigation Header -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-2xl bg-reserve-950/85 border-b border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <a href="#" onclick="showDashboard()" class="flex items-center gap-3 group">
-          <div class="w-11 h-11 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md p-2.5 bg-sky-500 text-white group-hover:scale-105 transition-transform">
-            <i data-lucide="car" class="w-6 h-6"></i>
+        
+        <!-- Logo Branding -->
+        <a href="#" onclick="showDashboard()" class="flex items-center gap-3.5 group">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-reserve-gold/20 via-amber-500/10 to-transparent border border-reserve-gold/40 flex items-center justify-center text-reserve-gold group-hover:scale-105 group-hover:border-reserve-gold transition-all duration-300 shadow-lg shadow-reserve-gold/5">
+            <i data-lucide="shield" class="w-5 h-5"></i>
           </div>
           <div class="flex flex-col">
-            <span class="text-xl font-extrabold tracking-tight text-white group-hover:text-sky-400 transition-colors">
-              Apex<span class="text-sky-400">Auto</span>
+            <span class="font-display text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
+              VELOCE <span class="gold-gradient-text font-black">RESERVE</span>
             </span>
-            <span class="text-[10px] font-semibold uppercase tracking-widest text-slate-400 -mt-1">
-              India Inventory Portal
+            <span class="text-[9px] font-bold uppercase tracking-[0.25em] text-slate-400 -mt-1">
+              Bespoke Automobile Atelier
             </span>
           </div>
         </a>
 
+        <!-- Top Right Actions -->
         <div id="nav-actions" class="flex items-center gap-3">
           <!-- Populated by JS -->
         </div>
       </div>
     </header>
 
-    <!-- Main Container -->
+    <!-- Main Content Container -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-      <!-- Auth Container (Login / Register) -->
-      <div id="auth-section" class="max-w-md mx-auto my-12 glass-panel rounded-3xl p-8 border border-slate-800 shadow-2xl">
+      <!-- Auth Portal (Sign In / Register) -->
+      <div id="auth-section" class="max-w-md mx-auto my-12 glass-card rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-48 h-48 bg-reserve-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Login Form View -->
         <div id="login-form">
-          <div class="text-center mb-6">
-            <div class="w-14 h-14 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center mx-auto mb-3">
-              <i data-lucide="lock" class="w-7 h-7"></i>
+          <div class="text-center mb-8">
+            <div class="w-14 h-14 rounded-2xl bg-reserve-gold/10 border border-reserve-gold/30 text-reserve-gold flex items-center justify-center mx-auto mb-4 shadow-inner">
+              <i data-lucide="key-round" class="w-6 h-6"></i>
             </div>
-            <h2 class="text-2xl font-bold text-white">Sign In to ApexAuto</h2>
-            <p class="text-xs text-slate-400 mt-1">Access your dealership account</p>
+            <h2 class="font-display text-2xl font-bold text-white tracking-tight">Member Portal Access</h2>
+            <p class="text-xs text-slate-400 mt-1.5">Sign in to view reserve availability & place bookings</p>
           </div>
 
-          <div id="auth-error" class="hidden mb-4 p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs flex items-center gap-2">
+          <div id="auth-error" class="hidden mb-5 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs flex items-center gap-2.5">
             <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
             <span id="auth-error-msg"></span>
           </div>
 
           <form onsubmit="handleLogin(event)" class="space-y-4">
             <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Username</label>
-              <input type="text" id="login-username" required placeholder="Enter username" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Username</label>
+              <div class="relative">
+                <i data-lucide="user" class="w-4 h-4 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2"></i>
+                <input type="text" id="login-username" required placeholder="Enter username" class="w-full bg-reserve-900/90 border border-white/10 rounded-2xl pl-11 pr-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-reserve-gold focus:ring-1 focus:ring-reserve-gold transition-all">
+              </div>
             </div>
             <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Password</label>
-              <input type="password" id="login-password" required placeholder="Enter password" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Password</label>
+              <div class="relative">
+                <i data-lucide="lock" class="w-4 h-4 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2"></i>
+                <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-reserve-900/90 border border-white/10 rounded-2xl pl-11 pr-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-reserve-gold focus:ring-1 focus:ring-reserve-gold transition-all">
+              </div>
             </div>
-            <button type="submit" class="w-full py-3 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-sky-500/25 transition-all">
-              Sign In
+            <button type="submit" class="w-full py-3.5 gold-gradient-btn text-reserve-950 font-bold text-sm rounded-2xl shadow-xl shadow-reserve-gold/10 transition-all duration-200 active:scale-[0.98]">
+              Sign In to Atelier
             </button>
           </form>
 
-          <div class="mt-6 text-center text-xs text-slate-400">
-            Don't have an account? <a href="#" onclick="toggleAuthMode('register')" class="text-sky-400 font-semibold hover:underline">Register account</a>
+          <div class="mt-8 pt-6 border-t border-white/10 text-center text-xs text-slate-400">
+            New client? <a href="#" onclick="toggleAuthMode('register')" class="text-reserve-gold font-bold hover:underline">Register your reserve account</a>
           </div>
         </div>
 
+        <!-- Register Form View -->
         <div id="register-form" class="hidden">
-          <div class="text-center mb-6">
-            <div class="w-14 h-14 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center mx-auto mb-3">
-              <i data-lucide="user-plus" class="w-7 h-7"></i>
+          <div class="text-center mb-8">
+            <div class="w-14 h-14 rounded-2xl bg-reserve-gold/10 border border-reserve-gold/30 text-reserve-gold flex items-center justify-center mx-auto mb-4 shadow-inner">
+              <i data-lucide="user-plus" class="w-6 h-6"></i>
             </div>
-            <h2 class="text-2xl font-bold text-white">Create Account</h2>
-            <p class="text-xs text-slate-400 mt-1">Register for dealership portal</p>
+            <h2 class="font-display text-2xl font-bold text-white tracking-tight">Create Reserve Account</h2>
+            <p class="text-xs text-slate-400 mt-1.5">Join Veloce Reserve for immediate inventory booking</p>
           </div>
 
-          <form onsubmit="handleRegister(event)" class="space-y-3">
+          <form onsubmit="handleRegister(event)" class="space-y-4">
             <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Username *</label>
-              <input type="text" id="reg-username" required placeholder="Choose username" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Username *</label>
+              <input type="text" id="reg-username" required placeholder="Choose username" class="w-full bg-reserve-900/90 border border-white/10 rounded-2xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-reserve-gold">
             </div>
             <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Email *</label>
-              <input type="email" id="reg-email" required placeholder="user@example.com" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Email *</label>
+              <input type="email" id="reg-email" required placeholder="name@example.com" class="w-full bg-reserve-900/90 border border-white/10 rounded-2xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-reserve-gold">
             </div>
             <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Password *</label>
-              <input type="password" id="reg-password" required placeholder="••••••••" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Password *</label>
+              <input type="password" id="reg-password" required placeholder="Minimum 6 characters" class="w-full bg-reserve-900/90 border border-white/10 rounded-2xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-reserve-gold">
             </div>
-            <button type="submit" class="w-full mt-2 py-3 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-sky-500/25 transition-all">
-              Register Account
+            <button type="submit" class="w-full py-3.5 gold-gradient-btn text-reserve-950 font-bold text-sm rounded-2xl shadow-xl shadow-reserve-gold/10 transition-all duration-200 active:scale-[0.98]">
+              Register & Access Immediately
             </button>
           </form>
 
-          <div class="mt-6 text-center text-xs text-slate-400">
-            Already registered? <a href="#" onclick="toggleAuthMode('login')" class="text-sky-400 font-semibold hover:underline">Sign in</a>
+          <div class="mt-8 pt-6 border-t border-white/10 text-center text-xs text-slate-400">
+            Already registered? <a href="#" onclick="toggleAuthMode('login')" class="text-reserve-gold font-bold hover:underline">Sign in to account</a>
           </div>
         </div>
       </div>
 
-      <!-- Dashboard / Homepage Section -->
+      <!-- Main Dashboard / Showroom Section -->
       <div id="dashboard-section" class="hidden space-y-8">
-        <!-- Creative Hero Banner -->
-        <div class="p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
-          <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div class="relative z-10 max-w-2xl">
-            <span class="text-xs font-bold uppercase tracking-widest text-sky-400 flex items-center gap-1.5 mb-2">
-              <i data-lucide="sparkles" class="w-4 h-4 text-sky-400"></i> Premium Automotive Dealership
-            </span>
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Welcome, <span id="user-greeting" class="bg-gradient-to-r from-sky-400 via-indigo-300 to-white bg-clip-text text-transparent">User</span>
+        
+        <!-- Elegant Hero Banner -->
+        <div class="glass-card p-8 sm:p-10 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div class="absolute -right-16 -top-16 w-96 h-96 bg-gradient-to-br from-reserve-gold/15 to-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <div class="relative z-10 max-w-2xl space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-reserve-gold/10 border border-reserve-gold/30 text-reserve-gold text-xs font-bold uppercase tracking-widest">
+              <i data-lucide="crown" class="w-3.5 h-3.5"></i> Curated Automobile Inventory
+            </div>
+            <h1 class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              Welcome, <span id="user-greeting" class="gold-gradient-text">Collector</span>
             </h1>
-            <p class="text-slate-400 text-sm mt-2 leading-relaxed">
-              Explore 30 luxury, sport, sedan, SUV, and convertible vehicles with real-time Indian Rupee (₹) pricing, stock tracking, and instant purchasing.
+            <p class="text-slate-300 text-sm leading-relaxed pt-1">
+              Explore 30 luxury sedans, exotics, SUVs, and grand tourers. Real-time Indian Rupee (₹) pricing, specification sheets, and atomic inventory checkout.
             </p>
           </div>
-          <div id="admin-add-btn-container" class="hidden relative z-10">
-            <button onclick="openAddModal()" class="px-5 py-3.5 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm rounded-2xl shadow-xl shadow-sky-500/20 flex items-center gap-2 transition-all hover:scale-105 active:scale-95">
+
+          <div id="admin-add-btn-container" class="hidden relative z-10 shrink-0">
+            <button onclick="openAddModal()" class="px-6 py-4 gold-gradient-btn text-reserve-950 font-bold text-sm rounded-2xl shadow-xl shadow-reserve-gold/15 flex items-center gap-2.5 transition-all hover:scale-105 active:scale-95">
               <i data-lucide="plus-circle" class="w-5 h-5"></i> Add New Vehicle
             </button>
           </div>
         </div>
 
-        <!-- Admin KPI Stats Banner -->
+        <!-- Admin KPI Banner -->
         <div id="admin-kpi-banner" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
+          <div class="glass-card rounded-2xl p-5 flex items-center justify-between">
             <div>
-              <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Units</div>
+              <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Units</div>
               <div id="kpi-total-units" class="text-2xl font-black text-white mt-1">0</div>
             </div>
             <div class="w-11 h-11 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center">
               <i data-lucide="car" class="w-5 h-5"></i>
             </div>
           </div>
-          <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
+          <div class="glass-card rounded-2xl p-5 flex items-center justify-between">
             <div>
-              <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Inventory Value</div>
-              <div id="kpi-total-value" class="text-2xl font-black text-emerald-400 mt-1">₹0</div>
+              <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Portfolio MSRP</div>
+              <div id="kpi-total-value" class="text-2xl font-black text-reserve-gold mt-1">₹0</div>
             </div>
-            <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <div class="w-11 h-11 rounded-xl bg-reserve-gold/10 border border-reserve-gold/30 text-reserve-gold flex items-center justify-center">
               <i data-lucide="indian-rupee" class="w-5 h-5"></i>
             </div>
           </div>
-          <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
+          <div class="glass-card rounded-2xl p-5 flex items-center justify-between">
             <div>
-              <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Low Stock (&lt;3)</div>
+              <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Low Stock (&lt;3)</div>
               <div id="kpi-low-stock" class="text-2xl font-black text-amber-400 mt-1">0</div>
             </div>
             <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
               <i data-lucide="alert-triangle" class="w-5 h-5"></i>
             </div>
           </div>
-          <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex items-center justify-between">
+          <div class="glass-card rounded-2xl p-5 flex items-center justify-between">
             <div>
-              <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Sold Out</div>
+              <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Sold Out</div>
               <div id="kpi-sold-out" class="text-2xl font-black text-rose-400 mt-1">0</div>
             </div>
             <div class="w-11 h-11 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
@@ -176,16 +250,19 @@
           </div>
         </div>
 
-        <!-- Filter Toolbar -->
-        <div class="glass-panel rounded-3xl p-6 border border-slate-800 shadow-xl space-y-4">
+        <!-- Filter & Search Toolbar -->
+        <div class="glass-card rounded-3xl p-6 space-y-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Make / Model</label>
-              <input type="text" id="filter-make" oninput="applyFilters()" placeholder="e.g. Porsche, M5..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Search Make / Model</label>
+              <div class="relative">
+                <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                <input type="text" id="filter-make" oninput="applyFilters()" placeholder="e.g. Porsche, M5, GT3..." class="w-full bg-reserve-900 border border-white/10 rounded-2xl pl-10 pr-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-reserve-gold">
+              </div>
             </div>
             <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Category</label>
-              <select id="filter-category" onchange="applyFilters()" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Body Style Category</label>
+              <select id="filter-category" onchange="applyFilters()" class="w-full bg-reserve-900 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-reserve-gold">
                 <option value="">All Categories</option>
                 <option value="Sedan">Sedan</option>
                 <option value="SUV">SUV</option>
@@ -196,17 +273,17 @@
               </select>
             </div>
             <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Min Price (₹)</label>
-              <input type="number" id="filter-min-price" oninput="applyFilters()" placeholder="₹0" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Min Price (₹ INR)</label>
+              <input type="number" id="filter-min-price" oninput="applyFilters()" placeholder="₹0" class="w-full bg-reserve-900 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-reserve-gold">
             </div>
             <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Max Price (₹)</label>
-              <input type="number" id="filter-max-price" oninput="applyFilters()" placeholder="₹5,00,00,000" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Max Price (₹ INR)</label>
+              <input type="number" id="filter-max-price" oninput="applyFilters()" placeholder="₹5,00,00,000" class="w-full bg-reserve-900 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-reserve-gold">
             </div>
           </div>
         </div>
 
-        <!-- Vehicle Cards Grid -->
+        <!-- Vehicle Grid Display -->
         <div id="vehicle-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <!-- Populated by JS -->
         </div>
@@ -214,8 +291,8 @@
     </main>
 
     <!-- Modal Backdrop Overlay -->
-    <div id="modal-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-      <div id="modal-content" class="max-w-lg w-full glass-panel rounded-3xl p-8 border border-slate-800 shadow-2xl relative">
+    <div id="modal-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-reserve-950/85 backdrop-blur-xl">
+      <div id="modal-content" class="max-w-lg w-full glass-card rounded-3xl p-8 relative shadow-2xl border border-white/10">
         <!-- Injected by JS -->
       </div>
     </div>
@@ -266,7 +343,7 @@
           body: JSON.stringify({ username, password })
         });
         const data = await res.json();
-        if (!res.ok) throw new Error(data.detail || 'Invalid username or password.');
+        if (!res.ok) throw new Error(data.detail || 'Invalid credentials.');
 
         authToken = data.access;
         currentUser = data.user;
@@ -292,11 +369,25 @@
           body: JSON.stringify({ username, email, password })
         });
         const data = await res.json();
-        if (!res.ok) throw new Error(JSON.stringify(data));
-        alert('Registration successful! Please sign in.');
-        toggleAuthMode('login');
+        if (!res.ok) {
+          let msg = 'Registration failed.';
+          if (typeof data === 'object') {
+            const k = Object.keys(data)[0];
+            msg = `${k}: ${data[k][0]}`;
+          }
+          throw new Error(msg);
+        }
+
+        // Auto-login newly registered user immediately!
+        authToken = data.access;
+        currentUser = data.user;
+        localStorage.setItem('token', authToken);
+        localStorage.setItem('user', JSON.stringify(currentUser));
+
+        alert('Registration successful! Welcome to Veloce Reserve.');
+        showDashboard();
       } catch (err) {
-        alert('Registration failed: ' + err.message);
+        alert(err.message);
       }
     }
 
@@ -312,7 +403,7 @@
       document.getElementById('auth-section').classList.remove('hidden');
       document.getElementById('dashboard-section').classList.add('hidden');
       document.getElementById('nav-actions').innerHTML = `
-        <span class="text-xs font-semibold text-slate-400">Dealership Guest</span>
+        <span class="text-xs font-semibold text-slate-400">Atelier Guest</span>
       `;
     }
 
@@ -325,11 +416,11 @@
       const isStaff = currentUser.is_staff;
       document.getElementById('nav-actions').innerHTML = `
         <div class="flex items-center gap-3">
-          <div class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 flex items-center gap-1.5">
-            <i data-lucide="user" class="w-3.5 h-3.5 text-sky-400"></i>
-            <span>${currentUser.username} (${isStaff ? '<strong class="text-indigo-400">Admin</strong>' : 'Customer'})</span>
+          <div class="px-4 py-2 rounded-2xl bg-reserve-900 border border-white/10 text-xs text-slate-300 flex items-center gap-2">
+            <i data-lucide="shield" class="w-3.5 h-3.5 text-reserve-gold"></i>
+            <span>${currentUser.username} (${isStaff ? '<strong class="text-reserve-gold">Admin</strong>' : 'Member'})</span>
           </div>
-          <button onclick="handleLogout()" class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 text-xs font-semibold transition-all">
+          <button onclick="handleLogout()" class="px-4 py-2 rounded-2xl bg-reserve-900 border border-white/10 text-slate-400 hover:text-rose-400 text-xs font-semibold transition-all">
             Sign Out
           </button>
         </div>
@@ -388,7 +479,7 @@
         grid.innerHTML = `
           <div class="col-span-full text-center py-12 text-slate-400">
             <i data-lucide="search-x" class="w-12 h-12 mx-auto mb-2 text-slate-600"></i>
-            No vehicles match your criteria.
+            No reserve vehicles match your criteria.
           </div>
         `;
         lucide.createIcons();
@@ -402,46 +493,49 @@
         const imgUrl = v.image_url || 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80';
 
         return `
-          <div class="glass-panel rounded-3xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-all duration-300 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1 group">
+          <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between hover:shadow-2xl hover:shadow-reserve-gold/5 hover:-translate-y-1 transition-all duration-300 group">
             <div>
-              <!-- Vehicle Image Photo -->
-              <div class="h-48 w-full relative overflow-hidden bg-slate-900">
-                <img src="${imgUrl}" alt="${v.make} ${v.model}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-black/30"></div>
+              <!-- Vehicle Image Frame -->
+              <div class="h-52 w-full relative overflow-hidden bg-reserve-900">
+                <img src="${imgUrl}" alt="${v.make} ${v.model}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-t from-reserve-950 via-transparent to-black/40"></div>
 
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 z-10">
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-950/80 backdrop-blur-md text-sky-400 border border-sky-500/30">${v.category}</span>
-                  <span class="px-2 py-1 rounded-full text-[10px] font-semibold bg-slate-950/80 backdrop-blur-md text-slate-300 border border-slate-800">${v.year}</span>
+                  <span class="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-reserve-950/90 text-reserve-gold border border-reserve-gold/40 backdrop-blur-md">${v.category}</span>
+                  <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-reserve-950/90 text-slate-300 border border-white/10 backdrop-blur-md">${v.year}</span>
                 </div>
 
                 <div class="absolute top-3 right-3 z-10">
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-bold backdrop-blur-md ${outOfStock ? 'bg-rose-500/30 text-rose-300 border border-rose-500/40' : 'bg-emerald-500/30 text-emerald-300 border border-emerald-500/40'}">
-                    ${outOfStock ? 'Sold Out' : v.quantity + ' In Stock'}
+                  <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md ${outOfStock ? 'bg-rose-500/30 text-rose-300 border border-rose-500/40' : 'bg-emerald-500/30 text-emerald-300 border border-emerald-500/40'}">
+                    ${outOfStock ? 'Sold Out' : v.quantity + ' Available'}
                   </span>
                 </div>
               </div>
 
-              <!-- Vehicle Title & Specs -->
-              <div class="p-5 space-y-2">
-                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">${v.make} ${v.model}</h3>
+              <!-- Vehicle Info Details -->
+              <div class="p-6 space-y-3">
+                <h3 class="font-display text-xl font-bold text-white group-hover:text-reserve-gold transition-colors">${v.make} ${v.model}</h3>
                 <p class="text-slate-400 text-xs line-clamp-2 leading-relaxed">${v.description || 'Certified luxury dealership vehicle.'}</p>
-                <div class="text-2xl font-black text-sky-400 pt-2">${formattedPrice}</div>
+                <div class="pt-2 border-t border-white/10 flex items-baseline justify-between">
+                  <span class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">MSRP</span>
+                  <span class="text-2xl font-black text-reserve-gold tracking-tight">${formattedPrice}</span>
+                </div>
               </div>
             </div>
 
             <!-- Action Controls -->
-            <div class="p-5 pt-0 space-y-2">
+            <div class="p-6 pt-0 space-y-3">
               ${!isStaff ? `
-                <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-3 rounded-xl font-bold text-xs transition-all ${outOfStock ? 'bg-slate-900 text-slate-600 cursor-not-allowed' : 'bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white shadow-lg shadow-sky-500/20 active:scale-95'}">
-                  ${outOfStock ? 'Sold Out' : 'Purchase Vehicle'}
+                <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-3.5 rounded-2xl font-bold text-xs transition-all ${outOfStock ? 'bg-reserve-900 text-slate-600 cursor-not-allowed border border-white/5' : 'gold-gradient-btn text-reserve-950 shadow-lg shadow-reserve-gold/15 active:scale-95'}">
+                  ${outOfStock ? 'Sold Out' : 'Reserve & Purchase Vehicle'}
                 </button>
               ` : ''}
 
               ${isStaff ? `
-                <div class="grid grid-cols-3 gap-1.5 pt-1">
-                  <button onclick="openRestockModal(${v.id})" class="py-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-[11px] font-semibold">Restock</button>
-                  <button onclick="openEditModal(${v.id})" class="py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 text-[11px] font-semibold">Edit</button>
-                  <button onclick="openDeleteModal(${v.id})" class="py-2 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-400 text-[11px] font-semibold">Delete</button>
+                <div class="grid grid-cols-3 gap-2">
+                  <button onclick="openRestockModal(${v.id})" class="py-2.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-bold">Restock</button>
+                  <button onclick="openEditModal(${v.id})" class="py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 text-xs font-bold">Edit</button>
+                  <button onclick="openDeleteModal(${v.id})" class="py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-400 text-xs font-bold">Delete</button>
                 </div>
               ` : ''}
             </div>
@@ -472,24 +566,24 @@
       if (!v) return;
 
       const base = parseFloat(v.price);
-      const tax = base * 0.18; // 18% GST for India
+      const tax = base * 0.18; // 18% GST
       const registrationFee = 25000;
       const total = base + tax + registrationFee;
 
       document.getElementById('modal-content').innerHTML = `
-        <h2 class="text-xl font-bold text-white mb-1">Confirm Vehicle Purchase</h2>
-        <p class="text-xs text-slate-400 mb-4">${v.make} ${v.model} (${v.year})</p>
+        <h2 class="font-display text-2xl font-bold text-white mb-1">Confirm Vehicle Purchase</h2>
+        <p class="text-xs text-slate-400 mb-5">${v.make} ${v.model} (${v.year})</p>
 
-        <div class="space-y-2 text-xs border-t border-b border-slate-800 py-3 mb-4">
+        <div class="space-y-3 text-xs border-t border-b border-white/10 py-4 mb-6">
           <div class="flex justify-between text-slate-400"><span>Vehicle Ex-Showroom Price</span><span class="font-bold text-white">${formatINR(base)}</span></div>
           <div class="flex justify-between text-slate-400"><span>Estimated GST & Cess (18%)</span><span class="font-bold text-white">${formatINR(tax)}</span></div>
           <div class="flex justify-between text-slate-400"><span>Registration & Handling</span><span class="font-bold text-white">${formatINR(registrationFee)}</span></div>
-          <div class="flex justify-between font-extrabold text-sky-400 text-base pt-2 border-t border-slate-800"><span>Total On-Road Price</span><span>${formatINR(total)}</span></div>
+          <div class="flex justify-between font-extrabold text-reserve-gold text-base pt-3 border-t border-white/10"><span>Total On-Road Price</span><span>${formatINR(total)}</span></div>
         </div>
 
-        <div class="flex gap-2">
-          <button onclick="closeModal()" class="w-1/3 py-2.5 rounded-xl bg-slate-900 text-slate-400 text-xs font-bold border border-slate-800">Cancel</button>
-          <button onclick="confirmPurchase(${v.id})" class="w-2/3 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white text-xs font-bold shadow-lg shadow-sky-500/20">Complete Purchase</button>
+        <div class="flex gap-3">
+          <button onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-reserve-900 text-slate-400 text-xs font-bold border border-white/10">Cancel</button>
+          <button onclick="confirmPurchase(${v.id})" class="w-2/3 py-3 gold-gradient-btn text-reserve-950 text-xs font-bold rounded-2xl shadow-xl shadow-reserve-gold/20">Complete Purchase</button>
         </div>
       `;
       document.getElementById('modal-overlay').classList.remove('hidden');
@@ -510,24 +604,24 @@
 
     function openAddModal() {
       document.getElementById('modal-content').innerHTML = `
-        <h2 class="text-xl font-bold text-white mb-4">Add New Vehicle</h2>
-        <form onsubmit="confirmAdd(event)" class="space-y-3 text-xs">
+        <h2 class="font-display text-2xl font-bold text-white mb-5">Add New Reserve Vehicle</h2>
+        <form onsubmit="confirmAdd(event)" class="space-y-4 text-xs">
           <div class="grid grid-cols-2 gap-3">
-            <input type="text" id="add-make" placeholder="Make (e.g. Porsche)" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
-            <input type="text" id="add-model" placeholder="Model (e.g. 911 GT3)" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+            <input type="text" id="add-make" placeholder="Make (e.g. Porsche)" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
+            <input type="text" id="add-model" placeholder="Model (e.g. 911 GT3)" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
           </div>
           <div class="grid grid-cols-3 gap-3">
-            <select id="add-category" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+            <select id="add-category" class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
               <option value="Coupe">Coupe</option><option value="Sedan">Sedan</option><option value="SUV">SUV</option><option value="Truck">Truck</option><option value="Convertible">Convertible</option><option value="Hatchback">Hatchback</option>
             </select>
-            <input type="number" id="add-price" placeholder="Price (₹ INR)" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
-            <input type="number" id="add-quantity" placeholder="Quantity" value="1" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+            <input type="number" id="add-price" placeholder="Price (₹ INR)" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
+            <input type="number" id="add-quantity" placeholder="Quantity" value="1" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
           </div>
-          <input type="url" id="add-image" placeholder="Image URL (https://images.unsplash.com/...)" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
-          <textarea id="add-desc" placeholder="Vehicle specification details..." rows="2" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100"></textarea>
-          <div class="flex gap-2 pt-2">
-            <button type="button" onclick="closeModal()" class="w-1/3 py-2.5 rounded-xl bg-slate-900 text-slate-400 font-bold border border-slate-800">Cancel</button>
-            <button type="submit" class="w-2/3 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold">Create Vehicle</button>
+          <input type="url" id="add-image" placeholder="Image URL (https://images.unsplash.com/...)" class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold">
+          <textarea id="add-desc" placeholder="Vehicle specification details..." rows="2" class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100 focus:border-reserve-gold"></textarea>
+          <div class="flex gap-3 pt-2">
+            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-reserve-900 text-slate-400 font-bold border border-white/10">Cancel</button>
+            <button type="submit" class="w-2/3 py-3 gold-gradient-btn text-reserve-950 font-bold rounded-2xl">Create Vehicle</button>
           </div>
         </form>
       `;
@@ -559,12 +653,12 @@
 
     function openRestockModal(id) {
       document.getElementById('modal-content').innerHTML = `
-        <h2 class="text-xl font-bold text-white mb-2">Restock Vehicle Stock</h2>
-        <form onsubmit="confirmRestock(event, ${id})" class="space-y-3 text-xs">
-          <input type="number" id="restock-qty" value="5" min="1" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-slate-100 font-bold text-base">
-          <div class="flex gap-2 pt-2">
-            <button type="button" onclick="closeModal()" class="w-1/3 py-2.5 rounded-xl bg-slate-900 text-slate-400 font-bold border border-slate-800">Cancel</button>
-            <button type="submit" class="w-2/3 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold">Confirm Restock</button>
+        <h2 class="font-display text-2xl font-bold text-white mb-3">Restock Vehicle Stock</h2>
+        <form onsubmit="confirmRestock(event, ${id})" class="space-y-4 text-xs">
+          <input type="number" id="restock-qty" value="5" min="1" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3.5 text-slate-100 font-bold text-base focus:border-reserve-gold">
+          <div class="flex gap-3 pt-2">
+            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-reserve-900 text-slate-400 font-bold border border-white/10">Cancel</button>
+            <button type="submit" class="w-2/3 py-3 bg-emerald-500 hover:bg-emerald-400 text-reserve-950 font-bold rounded-2xl">Confirm Restock</button>
           </div>
         </form>
       `;
@@ -590,21 +684,21 @@
       const v = vehiclesList.find(x => x.id === id);
       if (!v) return;
       document.getElementById('modal-content').innerHTML = `
-        <h2 class="text-xl font-bold text-white mb-4">Edit Vehicle</h2>
+        <h2 class="font-display text-2xl font-bold text-white mb-4">Edit Reserve Vehicle</h2>
         <form onsubmit="confirmEdit(event, ${id})" class="space-y-3 text-xs">
           <div class="grid grid-cols-2 gap-3">
-            <input type="text" id="edit-make" value="${v.make}" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
-            <input type="text" id="edit-model" value="${v.model}" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+            <input type="text" id="edit-make" value="${v.make}" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">
+            <input type="text" id="edit-model" value="${v.model}" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">
           </div>
           <div class="grid grid-cols-2 gap-3">
-            <input type="number" id="edit-price" value="${v.price}" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
-            <input type="number" id="edit-quantity" value="${v.quantity}" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
+            <input type="number" id="edit-price" value="${v.price}" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">
+            <input type="number" id="edit-quantity" value="${v.quantity}" required class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">
           </div>
-          <input type="url" id="edit-image" value="${v.image_url || ''}" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">
-          <textarea id="edit-desc" rows="2" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-100">${v.description || ''}</textarea>
-          <div class="flex gap-2 pt-2">
-            <button type="button" onclick="closeModal()" class="w-1/3 py-2.5 rounded-xl bg-slate-900 text-slate-400 font-bold border border-slate-800">Cancel</button>
-            <button type="submit" class="w-2/3 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold">Save Changes</button>
+          <input type="url" id="edit-image" value="${v.image_url || ''}" class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">
+          <textarea id="edit-desc" rows="2" class="w-full bg-reserve-900 border border-white/10 rounded-2xl p-3 text-slate-100">${v.description || ''}</textarea>
+          <div class="flex gap-3 pt-2">
+            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-2xl bg-reserve-900 text-slate-400 font-bold border border-white/10">Cancel</button>
+            <button type="submit" class="w-2/3 py-3 bg-amber-500 hover:bg-amber-400 text-reserve-950 font-bold rounded-2xl">Save Changes</button>
           </div>
         </form>
       `;
@@ -636,11 +730,11 @@
     function openDeleteModal(id) {
       const v = vehiclesList.find(x => x.id === id);
       document.getElementById('modal-content').innerHTML = `
-        <h2 class="text-xl font-bold text-white mb-2">Delete Vehicle Listing?</h2>
-        <p class="text-xs text-slate-400 mb-4">Are you sure you want to permanently delete ${v.make} ${v.model}?</p>
-        <div class="flex gap-2">
-          <button onclick="closeModal()" class="w-1/2 py-2.5 rounded-xl bg-slate-900 text-slate-400 font-bold border border-slate-800">Cancel</button>
-          <button onclick="confirmDelete(${id})" class="w-1/2 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold">Delete Listing</button>
+        <h2 class="font-display text-2xl font-bold text-white mb-2">Delete Reserve Listing?</h2>
+        <p class="text-xs text-slate-400 mb-5">Are you sure you want to permanently delete ${v.make} ${v.model} from inventory?</p>
+        <div class="flex gap-3">
+          <button onclick="closeModal()" class="w-1/2 py-3 rounded-2xl bg-reserve-900 text-slate-400 font-bold border border-white/10">Cancel</button>
+          <button onclick="confirmDelete(${id})" class="w-1/2 py-3 bg-rose-500 hover:bg-rose-400 text-white font-bold rounded-2xl">Delete Listing</button>
         </div>
       `;
       document.getElementById('modal-overlay').classList.remove('hidden');
