@@ -453,6 +453,13 @@ Test file created in `frontend/src/__tests__/AddVehicleModal.test.jsx`. Ran Vite
 **Result:**
 Implemented `AddVehicleModal.jsx` (GREEN).
 
+### REFACTOR
+**Prompt:**
+> Refactor AddVehicleModal with try/catch/finally block formatting and safe error payload parsing.
+
+**Result:**
+Refactored `AddVehicleModal.jsx`. (REFACTOR).
+
 
 
 

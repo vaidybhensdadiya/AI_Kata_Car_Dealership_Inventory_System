@@ -50,13 +50,13 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
       onClose()
     } catch (err) {
       const resp = err.response?.data
-      if (typeof resp === 'object') {
+      if (resp && typeof resp === 'object') {
         const firstKey = Object.keys(resp)[0]
         setError(`${firstKey}: ${resp[firstKey][0]}`)
       } else {
         setError('Failed to create vehicle.')
       }
-    } fontFinally: {
+    } finally {
       setLoading(false)
     }
   }
