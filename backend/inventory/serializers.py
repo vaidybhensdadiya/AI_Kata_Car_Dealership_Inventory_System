@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from .models import Vehicle
 
 class UserSerializer(serializers.ModelSerializer):
     """
@@ -37,3 +38,22 @@ class RegisterSerializer(serializers.ModelSerializer):
             first_name=validated_data.get('first_name', ''),
             last_name=validated_data.get('last_name', '')
         )
+
+
+class VehicleSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Vehicle model with validation for price and quantity.
+    """
+    class Meta:
+        model = Vehicle
+        fields = ('id', 'make', 'model', 'category', 'price', 'quantity', 'year', 'image_url', 'created_at', 'updated_at')
+
+    def validate_price(self, value):
+        if value < 0:
+            raise serializers.ValidationError("Price cannot be negative.")
+        return value
+
+    def validate_quantity(self, value):
+        if value < 0:
+            raise serializers.ValidationError("Quantity cannot be negative.")
+        return value

@@ -96,5 +96,12 @@ Created `UserSerializer` and simplified `LoginView` and `UserProfileView`. Ran t
 **Result:**
 6 new pytest cases added to `backend/inventory/tests/test_vehicles.py`. Ran test suite: **6 Failed, 12 Passed (RED)**.
 
+### GREEN
+**Prompt:**
+> Implement the minimum Django REST Framework code (Vehicle model, VehicleSerializer, IsAdminUserOnly permission, VehicleListCreateView) required to make all Add Vehicle tests pass. Do not refactor.
+
+**Result:**
+Implemented Vehicle model, serializers, permissions, views, and initial migrations. Ran test suite: **18 Passed (GREEN)**.
+
 
 

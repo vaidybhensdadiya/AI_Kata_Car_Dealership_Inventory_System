@@ -3,7 +3,9 @@ from rest_framework.response import Response
 from rest_framework import status, permissions
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import RegisterSerializer, UserSerializer
+from .models import Vehicle
+from .serializers import RegisterSerializer, UserSerializer, VehicleSerializer
+from .permissions import IsAdminUserOnly
 
 class RegisterView(APIView):
     """
@@ -58,3 +60,20 @@ class UserProfileView(APIView):
 
     def get(self, request):
         return Response(UserSerializer(request.user).data, status=status.HTTP_200_OK)
+
+
+class VehicleListCreateView(APIView):
+    """
+    API View to list all vehicles or create a new vehicle (Admin only).
+    """
+    def get_permissions(self):
+        if self.request.method == 'POST':
+            return [permissions.IsAuthenticated(), IsAdminUserOnly()]
+        return [permissions.IsAuthenticated()]
+
+    def post(self, request):
+        serializer = VehicleSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
