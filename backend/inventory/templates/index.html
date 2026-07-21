@@ -129,12 +129,12 @@
     <!-- Main Workspace -->
     <main class="w-full min-h-[calc(100vh-80px)]">
 
-      <!-- Side-by-Side Authentication Section -->
-      <div id="auth-section" class="min-h-[calc(100vh-80px)] flex flex-col lg:flex-row">
+      <!-- Seamless Blended Authentication Portal Section -->
+      <div id="auth-section" class="min-h-[calc(100vh-80px)] relative flex items-center justify-center lg:justify-start px-4 sm:px-8 lg:px-20 overflow-hidden">
         
-        <!-- Left: Form Container -->
-        <div class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gradient-to-b from-[#0B0F14] to-[#141A22]">
-          <div class="max-w-md w-full vault-card p-8 shadow-2xl relative border border-vault-border bg-[#1A212C]">
+        <!-- Floating Form Card Container -->
+        <div class="z-10 w-full max-w-md py-12">
+          <div class="vault-card p-8 sm:p-10 shadow-2xl relative border border-white/[0.08] bg-[#1A212C]/90 backdrop-blur-xl">
             <div id="login-form">
               <div class="text-center mb-8">
                 <div class="w-12 h-12 rounded-xl bg-vault-sec border border-vault-border text-vault-blue flex items-center justify-center mx-auto mb-4">
@@ -202,21 +202,12 @@
           </div>
         </div>
 
-        <!-- Right: Unique Custom Tuned Automotive Showcase Image -->
-        <div class="hidden lg:block lg:w-1/2 relative overflow-hidden border-l border-vault-border">
-          <img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=1200&q=80" alt="Luxury Auto Reserve" class="absolute inset-0 w-full h-full object-cover brightness-[0.7] transform hover:scale-[1.02] transition-transform duration-[4000ms]" />
-          <div class="absolute inset-0 bg-gradient-to-r from-vault-bg via-transparent to-transparent"></div>
-          <div class="absolute bottom-12 left-12 right-12 space-y-3">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vault-blue/10 border border-vault-blue/30 text-vault-blue text-xs font-semibold uppercase tracking-wider">
-              AutoVault Reserve
-            </div>
-            <h2 class="font-heading text-3xl font-bold text-white tracking-tight leading-tight">
-              Curated Custom Tuned Reserve
-            </h2>
-            <p class="text-text-secondary text-xs leading-relaxed max-w-md">
-              Unlock access to customized high-performance exotics, customized trucks, and hypercars with atomic real-time tracking.
-            </p>
-          </div>
+        <!-- Seamless Blended Dark Car Showcase Background -->
+        <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-3/5 pointer-events-none overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=1600&q=80" alt="AutoVault Luxury Reserve" class="w-full h-full object-cover object-center opacity-90 scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-r from-vault-bg via-vault-bg/50 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-vault-bg via-transparent to-vault-bg"></div>
+          <div class="absolute inset-0 bg-gradient-to-b from-vault-bg/70 via-transparent to-vault-bg/90"></div>
         </div>
       </div>
 

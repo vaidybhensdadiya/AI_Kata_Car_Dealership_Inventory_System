@@ -29,10 +29,10 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0F14] text-[#F8FAFC] flex">
-      {/* Form Side */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gradient-to-b from-[#0B0F14] to-[#141A22]">
-        <div className="max-w-md w-full vault-card p-8 shadow-2xl relative border border-white/[0.08] bg-[#1A212C]">
+    <div className="min-h-screen bg-[#0B0F14] text-[#F8FAFC] relative flex items-center justify-center lg:justify-start px-4 sm:px-8 lg:px-20 overflow-hidden">
+      {/* Left: Floating Form Card */}
+      <div className="z-10 w-full max-w-md py-12">
+        <div className="vault-card p-8 sm:p-10 shadow-2xl relative border border-white/[0.08] bg-[#1A212C]/90 backdrop-blur-xl">
           <div className="flex flex-col items-center text-center mb-8">
             <div className="w-14 h-14 bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-[#3B82F6] rounded-xl flex items-center justify-center mb-4 shadow-md">
               <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -126,25 +126,17 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      {/* Unique Studio Car Showcase Image Side */}
-      <div className="hidden lg:block lg:w-1/2 relative overflow-hidden border-l border-white/[0.08]">
+      {/* Right: Seamless Blended Dark Car Showcase Background */}
+      <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-3/5 pointer-events-none overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=1200&q=80"
-          alt="Luxury Auto Reserve"
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.7] transform hover:scale-[1.02] transition-transform duration-[4000ms]"
+          src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=1600&q=80"
+          alt="AutoVault Luxury Reserve"
+          className="w-full h-full object-cover object-center opacity-90 scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B0F14] via-transparent to-transparent"></div>
-        <div className="absolute bottom-12 left-12 right-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-[#3B82F6] text-xs font-semibold uppercase tracking-wider">
-            AutoVault Reserve
-          </div>
-          <h2 className="font-heading text-3xl font-bold text-white tracking-tight leading-tight">
-            Curated Custom Tuned Reserve
-          </h2>
-          <p className="text-[#CBD5E1] text-xs leading-relaxed max-w-md">
-            Unlock access to customized high-performance exotics, customized trucks, and hypercars with atomic real-time tracking.
-          </p>
-        </div>
+        {/* Soft Radial & Multi-Directional Gradient Fades for Seamless Merging */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B0F14] via-[#0B0F14]/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14] via-transparent to-[#0B0F14]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F14]/70 via-transparent to-[#0B0F14]/90"></div>
       </div>
     </div>
   )
