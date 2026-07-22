@@ -11,19 +11,25 @@ export default function Navbar({ onOpenAuth }) {
   }
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-40 w-full bg-transparent border-b border-white/[0.04] py-2">
+    <header className="sticky top-0 z-40 w-full bg-[#0A0A0A]/85 backdrop-blur-md border-b border-white/[0.08] py-2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
 
-        {/* Left: logo icon (chevron mark) + site name */}
-        <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white group-hover:border-white transition-all duration-300">
-            <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
+        {/* Restore Original Logo but with Amber Theme Colors */}
+        <Link to="/" className="flex items-center gap-3.5 group">
+          <div className="w-10 h-10 rounded-xl bg-[#D98A3D]/10 border border-[#D98A3D]/30 flex items-center justify-center text-[#D98A3D] group-hover:bg-[#D98A3D] group-hover:text-white transition-all duration-300 shadow-md">
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V7l-9-5z" />
+              <path d="M7 15l5-7 5 7M9 13h6" />
             </svg>
           </div>
-          <span className="font-heading text-lg font-bold tracking-widest text-[#F5F3EF]">
-            AUTO<span className="text-white font-light">VAULT</span>
-          </span>
+          <div className="flex flex-col">
+            <span className="font-heading text-xl font-bold tracking-tight text-white flex items-center gap-1">
+              Auto<span class="text-[#D98A3D]">Vault</span>
+            </span>
+            <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#9A9A9A] -mt-1">
+              Luxury Automotive Reserve
+            </span>
+          </div>
         </Link>
 
         {/* Right: existing nav links, restyled as small, evenly spaced, white/off-white text */}
@@ -36,17 +42,17 @@ export default function Navbar({ onOpenAuth }) {
 
           {user ? (
             <div className="flex items-center gap-4">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-[#9A9A9A] flex items-center gap-1.5">
+              <div className="px-4 py-2 rounded-xl bg-[#151515] border border-white/[0.08] text-xs text-[#F5F3EF] flex items-center gap-2">
                 <User className="w-3.5 h-3.5 text-[#D98A3D]" />
-                <span className="text-[#F5F3EF]">
+                <span>
                   {user.username} {isStaff && <span className="text-[#D98A3D] font-bold">[ADMIN]</span>}
                 </span>
               </div>
               <button
                 onClick={handleLogout}
-                className="text-[11px] font-bold uppercase tracking-wider text-[#9A9A9A] hover:text-rose-400 flex items-center gap-1 transition-colors"
+                className="px-4 py-2 rounded-xl bg-[#151515] border border-white/[0.08] text-[#9A9A9A] hover:text-rose-400 text-xs font-semibold flex items-center gap-1.5 transition-all"
               >
-                <LogOut className="w-3 h-3" />
+                <LogOut className="w-3.5 h-3.5" />
                 <span>Sign Out</span>
               </button>
             </div>
@@ -60,7 +66,7 @@ export default function Navbar({ onOpenAuth }) {
               </button>
               <button
                 onClick={() => onOpenAuth && onOpenAuth('register')}
-                className="text-[11px] font-bold uppercase tracking-wider text-[#9A9A9A] hover:text-[#F5F3EF] transition-colors"
+                className="px-4 py-2 rounded-xl bg-[#F5F3EF] hover:bg-white text-[#0A0A0A] font-bold text-xs shadow-md transition-all"
               >
                 Register
               </button>

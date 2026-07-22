@@ -89,6 +89,17 @@ export default function DashboardPage() {
     }
   }
 
+  // Auto scroll down upon successful login/register flow
+  const handleAuthSuccess = () => {
+    fetchVehicles()
+    setTimeout(() => {
+      const element = document.getElementById('catalog-content-area')
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }, 300)
+  }
+
   const categories = ['SUV', 'Sedan', 'Coupe', 'Convertible', 'Hatchback', 'Truck']
 
   return (
@@ -112,7 +123,7 @@ export default function DashboardPage() {
         {/* Hero Content Layer */}
         <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center justify-center space-y-8 my-auto">
           <div className="text-[10px] uppercase font-bold tracking-[0.25em] text-[#9A9A9A] max-w-lg select-none">
-            [ 0.9% APR FINANCING. AVAILABLE FOR UP TO 24 MONTHS ON ALL NEW INVENTORY ]
+            [ AUTOVAULT RESERVE SHOWROOM — CURATED SPEED. DEFINED LUXURY. ]
           </div>
 
           <h1 className="font-heading text-5xl sm:text-7xl lg:text-[96px] font-extralight text-[#F5F3EF] tracking-tighter leading-none select-none">
@@ -131,9 +142,9 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* Main Catalog View Dashboard Grid - Only visible to authenticated users */}
+      {/* Main Content Workspace - dynamically displayed or hidden based on token */}
       {token && (
-        <main id="catalog-content-area" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 scroll-mt-24">
+        <main id="catalog-content-area" className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 scroll-mt-24">
           
           {/* Admin Stats Controls */}
           {isStaff && <AdminStats vehicles={vehicles} />}
@@ -240,7 +251,7 @@ export default function DashboardPage() {
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         initialMode={authModalMode}
-        onSuccess={fetchVehicles}
+        onSuccess={handleAuthSuccess}
       />
 
       {/* Action Modals */}
