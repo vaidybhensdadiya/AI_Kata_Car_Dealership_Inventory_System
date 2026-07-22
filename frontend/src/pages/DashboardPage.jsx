@@ -160,7 +160,7 @@ export default function DashboardPage() {
                 </div>
 
                 <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-none">
-                  Find Your Next <span className="text-[#D98A3D]">Dream Car</span>
+                  Find Your Next <span className="italic font-medium text-[#D98A3D]">Dream Car</span>
                 </h1>
 
                 <p className="text-[#9A9A9A] text-sm sm:text-base leading-relaxed max-w-xl font-light">
@@ -205,7 +205,7 @@ export default function DashboardPage() {
                       <div className="text-[10px] font-bold uppercase tracking-wider text-[#D98A3D]">Featured Reserve</div>
                       <div className="text-sm font-bold text-white">Porsche 911 GT3 RS</div>
                     </div>
-                    <div className="text-right">
+                    <div class="text-right">
                       <div className="text-xs font-extrabold text-white">₹3,50,00,000</div>
                     </div>
                   </div>
@@ -225,41 +225,43 @@ export default function DashboardPage() {
           />
 
           {/* Categories Pills classification bar */}
-          <section id="categories-section" className="space-y-4">
+          <section id="categories-section" className="space-y-6">
             <div className="text-[10px] uppercase font-bold tracking-[0.25em] text-[#9A9A9A] flex items-center gap-2">
-              <Compass className="w-4 h-4 text-[#D98A3D]" /> [ Classification Categories ]
+              <Compass className="w-4 h-4 text-[#D98A3D]" /> [ CLASSIFICATION CATEGORIES ]
             </div>
-            <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none">
+            <div className="flex items-center gap-6 overflow-x-auto pb-2 scrollbar-none">
               <button
                 onClick={() => handleParamChange('category', '')}
-                className={`px-5 py-2.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 ${
+                className={`text-[10px] font-bold uppercase tracking-[0.2em] whitespace-nowrap pb-1.5 transition-all duration-300 ${
                   !searchParams.category
-                    ? 'bg-[#F5F3EF] text-[#0A0A0A] shadow-md'
-                    : 'bg-[#111111] border border-white/[0.08] text-[#9A9A9A] hover:text-[#F5F3EF]'
+                    ? 'border-b-2 border-[#D98A3D] text-[#F5F3EF]'
+                    : 'border-b-2 border-transparent text-[#9A9A9A] hover:text-[#F5F3EF]'
                 }`}
               >
-                All Reserves
+                [ ALL RESERVES ]
               </button>
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => handleParamChange('category', cat)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 ${
+                  className={`text-[10px] font-bold uppercase tracking-[0.2em] whitespace-nowrap pb-1.5 transition-all duration-300 ${
                     searchParams.category === cat
-                      ? 'bg-[#F5F3EF] text-[#0A0A0A] shadow-md'
-                      : 'bg-[#111111] border border-white/[0.08] text-[#9A9A9A] hover:text-[#F5F3EF]'
+                      ? 'border-b-2 border-[#D98A3D] text-[#F5F3EF]'
+                      : 'border-b-2 border-transparent text-[#9A9A9A] hover:text-[#F5F3EF]'
                   }`}
                 >
-                  {cat}
+                  [ {cat} ]
                 </button>
               ))}
             </div>
           </section>
 
-          {/* Featured Reserves showroom grid */}
-          <section id="inventory-section" className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="font-heading text-2xl font-bold tracking-tight text-[#F5F3EF]">Reserve Showroom</h2>
+          {/* Featured Reserves showroom grid with spacing asymmetry */}
+          <section id="inventory-section" className="pt-16 pb-6 space-y-6">
+            <div className="flex items-center justify-between pb-4">
+              <h2 className="font-heading text-2xl font-bold tracking-tight text-[#F5F3EF]">
+                Reserve <span className="italic font-medium text-white">Showroom</span>
+              </h2>
               <div className="flex items-center gap-3">
                 <span className="text-xs text-[#9A9A9A] font-semibold uppercase tracking-wider">[ {vehicles.length} Models ]</span>
                 {isStaff && (

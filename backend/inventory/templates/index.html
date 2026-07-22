@@ -183,7 +183,7 @@
             </div>
 
             <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-none">
-              Find Your Next <span class="text-[#D98A3D]">Dream Car</span>
+              Find Your Next <span class="italic font-medium text-[#D98A3D]">Dream Car</span>
             </h1>
 
             <p class="text-[#9A9A9A] text-sm sm:text-base leading-relaxed max-w-xl font-light">
@@ -282,7 +282,9 @@
               <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
             </div>
             <div>
-              <h2 class="font-heading text-lg font-bold text-text-primary">Refine Search Specification</h2>
+              <h2 class="font-heading text-lg font-bold text-text-primary">
+                Refine Search <span class="italic font-medium text-white">Specification</span>
+              </h2>
               <p class="text-[11px] text-text-secondary">cinematic catalog navigation filter system</p>
             </div>
           </div>
@@ -320,15 +322,16 @@
         </div>
       </div>
 
-      <!-- Showroom Inventory Grid -->
-      <section id="inventory-section" class="space-y-4">
-        <div class="flex items-center justify-between">
-          <h2 class="font-heading text-2xl font-bold tracking-tight text-[#F5F3EF]">Reserve Showroom</h2>
+      <!-- Showroom Inventory Grid with spacing asymmetry -->
+      <section id="inventory-section" class="pt-16 pb-6 space-y-6">
+        <div class="flex items-center justify-between pb-4">
+          <h2 class="font-heading text-2xl font-bold tracking-tight text-[#F5F3EF]">
+            Reserve <span class="italic font-medium text-white">Showroom</span>
+          </h2>
           <div id="admin-add-btn-container" class="hidden">
-            <button onclick="openAddModal()" class="px-5 py-2.5 btn-blue font-semibold text-xs rounded-full shadow flex items-center gap-1.5 group">
-              <i data-lucide="plus-circle" class="w-4 h-4"></i>
+            <button onclick="openAddModal()" class="px-5 py-2.5 bg-[#0A0A0A] border border-white/[0.08] hover:border-white/20 text-[#F5F3EF] font-semibold text-xs rounded-full shadow flex items-center gap-1.5 transition-all">
+              <i data-lucide="plus-circle" class="w-4 h-4 text-[#D98A3D]"></i>
               <span>Add Vehicle</span>
-              <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
             </button>
           </div>
         </div>
@@ -429,7 +432,7 @@
           </form>
 
           <div class="mt-6 pt-5 border-t border-white/[0.04] text-center">
-            <button onclick="toggleAuthMode('login')" class="text-xs text-[#9A9A9A]">
+            <button onclick="toggleAuthMode('login')" class="text-xs text-[#D98A3D]">
               Already registered? <span class="text-[#D98A3D] font-semibold hover:underline">Sign in</span>
             </button>
           </div>
@@ -751,12 +754,17 @@
 
             <!-- Action Controls -->
             <div class="p-6 pt-0 space-y-3">
-              ${!isStaff ? `
-                <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-3.5 px-4 rounded-full font-semibold text-xs flex items-center justify-center gap-2 transition-all duration-300 border ${outOfStock ? 'border-white/[0.04] text-[#8A5A52] opacity-40 cursor-not-allowed' : 'border-[#F5F3EF]/20 hover:border-[#F5F3EF] hover:bg-[#F5F3EF]/[0.06] text-[#F5F3EF] active:scale-[0.98]' }">
-                  ${!outOfStock ? '<i data-lucide="shopping-bag" class="w-4 h-4"></i>' : ''}
-                  <span>${outOfStock ? 'Sold Out' : 'Purchase Vehicle'}</span>
-                </button>
-              ` : ''}
+              ${!isStaff ? (
+                outOfStock ? `
+                  <div class="w-full py-3.5 px-4 text-center text-xs font-semibold text-[#8A5A52] tracking-wide select-none">
+                    Sold Out
+                  </div>
+                ` : `
+                  <button onclick="openPurchaseModal(${v.id})" class="w-full py-2.5 px-4 rounded-md font-semibold text-xs transition-all border border-[#F5F3EF]/20 hover:border-[#D98A3D] hover:text-[#D98A3D] text-[#F5F3EF] bg-transparent active:scale-[0.98]">
+                    Purchase Vehicle
+                  </button>
+                `
+              ) : ''}
 
               ${isStaff ? `
                 <div class="grid grid-cols-3 gap-2">
@@ -810,10 +818,14 @@
 
         <div class="flex gap-3">
           <button onclick="closeModal()" class="w-1/3 py-3 rounded-full bg-[#0A0A0A] border border-white/[0.08] text-[#9A9A9A] hover:text-white transition-all text-xs font-semibold">Cancel</button>
-          <button onclick="confirmPurchase(${v.id})" class="w-2/3 py-3.5 btn-blue text-xs font-semibold shadow-lg">Complete Acquisition</button>
+          <button onclick="confirmPurchase(${v.id})" class="w-2/3 py-3.5 bg-[#F5F3EF] hover:bg-white text-[#0A0A0A] font-bold text-xs shadow-lg flex items-center justify-center gap-1.5 rounded-full active:scale-[0.98]">
+            <span>Complete Acquisition</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </button>
         </div>
       `;
       document.getElementById('modal-overlay').classList.remove('hidden');
+      lucide.createIcons();
     }
 
     async function confirmPurchase(id) {

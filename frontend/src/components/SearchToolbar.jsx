@@ -15,7 +15,9 @@ export default function SearchToolbar({
             <Filter className="w-4 h-4" />
           </div>
           <div>
-            <h2 className="font-heading text-lg font-bold text-[#F5F3EF]">Refine Search Specification</h2>
+            <h2 className="font-heading text-lg font-bold text-[#F5F3EF]">
+              Refine Search <span className="italic font-medium text-white">Specification</span>
+            </h2>
             <p className="text-[11px] text-[#9A9A9A]">cinematic catalog navigation filter system</p>
           </div>
         </div>

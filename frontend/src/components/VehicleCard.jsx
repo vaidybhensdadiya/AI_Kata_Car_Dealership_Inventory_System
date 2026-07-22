@@ -1,5 +1,5 @@
 import React from 'react'
-import { ShoppingBag, Edit, Trash2, PlusCircle, Calendar } from 'lucide-react'
+import { Edit, Trash2, PlusCircle } from 'lucide-react'
 
 export default function VehicleCard({
   vehicle,
@@ -77,18 +77,18 @@ export default function VehicleCard({
       {/* Action Controls */}
       <div className="p-6 pt-0 space-y-3">
         {!isStaff && (
-          <button
-            onClick={() => onPurchase(vehicle)}
-            disabled={isOutOfStock}
-            className={`w-full py-3.5 px-4 rounded-full font-semibold text-xs flex items-center justify-center gap-2 transition-all border ${
-              isOutOfStock
-                ? 'border-white/[0.04] text-[#8A5A52] opacity-40 cursor-not-allowed'
-                : 'border-[#F5F3EF]/20 hover:border-[#F5F3EF] hover:bg-[#F5F3EF]/[0.06] text-[#F5F3EF] active:scale-[0.98]'
-            }`}
-          >
-            {!isOutOfStock && <ShoppingBag className="w-4 h-4" />}
-            <span>{isOutOfStock ? 'Sold Out' : 'Purchase Vehicle'}</span>
-          </button>
+          isOutOfStock ? (
+            <div className="w-full py-3.5 px-4 text-center text-xs font-semibold text-[#8A5A52] tracking-wide select-none">
+              Sold Out
+            </div>
+          ) : (
+            <button
+              onClick={() => onPurchase(vehicle)}
+              className="w-full py-2.5 px-4 rounded-md font-semibold text-xs transition-all border border-[#F5F3EF]/20 hover:border-[#D98A3D] hover:text-[#D98A3D] text-[#F5F3EF] bg-transparent active:scale-[0.98]"
+            >
+              Purchase Vehicle
+            </button>
+          )
         )}
 
         {isStaff && (
