@@ -21,14 +21,14 @@ export default function VehicleCard({
   const fallbackImg = 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80'
 
   return (
-    <div className="vault-card card-hover rounded-2xl overflow-hidden flex flex-col justify-between group">
+    <div className="bg-[#121212] border border-white/[0.05] rounded-2xl p-3 pb-5 flex flex-col justify-between group transition-all duration-300 hover:border-[#D98A3D]/30 hover:bg-[#161616] h-full">
       <div>
-        {/* Large Vehicle Image */}
-        <div className="h-56 w-full relative overflow-hidden bg-[#0A0A0A]">
+        {/* Large Vehicle Image (Framed with premium gap & rounded corners) */}
+        <div className="h-56 w-full relative overflow-hidden rounded-xl bg-[#0A0A0A]">
           <img
             src={vehicle.image_url || fallbackImg}
             alt={`${vehicle.make} ${vehicle.model}`}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
             loading="lazy"
           />
           {/* Subtle dark duotone / color-grade overlay */}
@@ -43,18 +43,18 @@ export default function VehicleCard({
         </div>
 
         {/* Vehicle Info Details */}
-        <div className="p-6 space-y-3">
+        <div className="p-4 pt-5 space-y-4">
           <div>
             <div className="text-[10px] font-bold uppercase tracking-widest text-[#D98A3D]">{vehicle.make}</div>
-            <h3 className="font-heading text-xl font-bold text-white tracking-tight">
+            <h3 className="font-heading text-lg font-bold text-white tracking-tight mt-0.5">
               {vehicle.model}
             </h3>
-            <p className="text-[#9A9A9A] text-xs mt-1.5 line-clamp-2 leading-relaxed font-light">
+            <p className="text-[#9A9A9A] text-xs mt-2 line-clamp-2 leading-relaxed font-light">
               {vehicle.description || 'Certified luxury reserve automotive specification.'}
             </p>
           </div>
 
-          <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between">
+          <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between">
             <div className="flex flex-col">
               <span className="text-[9px] uppercase font-bold text-[#9A9A9A] tracking-widest">MSRP</span>
               {isOutOfStock ? (
@@ -75,7 +75,7 @@ export default function VehicleCard({
       </div>
 
       {/* Action Controls */}
-      <div className="p-6 pt-0 space-y-3">
+      <div className="p-4 pt-0 space-y-3">
         {!isStaff && (
           isOutOfStock ? (
             <div className="w-full py-3.5 px-4 text-center text-xs font-semibold text-[#8A5A52] tracking-wide select-none">

@@ -290,17 +290,16 @@ export default function DashboardPage() {
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                {vehicles.map((v, idx) => (
-                  <div key={v.id} className={idx === 0 ? 'sm:col-span-2' : ''}>
-                    <VehicleCard
-                      vehicle={v}
-                      isStaff={isStaff}
-                      onPurchase={(v) => setPurchaseVehicle(v)}
-                      onEdit={(v) => setEditVehicle(v)}
-                      onDelete={(v) => setDeleteVehicle(v)}
-                      onRestock={(v) => setRestockVehicle(v)}
-                    />
-                  </div>
+                {vehicles.map((v) => (
+                  <VehicleCard
+                    key={v.id}
+                    vehicle={v}
+                    isStaff={isStaff}
+                    onPurchase={(v) => setPurchaseVehicle(v)}
+                    onEdit={(v) => setEditVehicle(v)}
+                    onDelete={(v) => setDeleteVehicle(v)}
+                    onRestock={(v) => setRestockVehicle(v)}
+                  />
                 ))}
               </div>
             )}
