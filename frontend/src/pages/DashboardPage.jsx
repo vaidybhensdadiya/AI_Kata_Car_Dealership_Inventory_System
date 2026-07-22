@@ -119,14 +119,18 @@ export default function DashboardPage() {
             <div className="absolute inset-0 bg-[#0A0A0A]/10"></div>
           </div>
 
-          <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center justify-center space-y-8 my-auto animate-fade-in">
+          <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center justify-center space-y-6 my-auto animate-fade-in">
             <div className="text-[10px] uppercase font-bold tracking-[0.25em] text-[#9A9A9A] max-w-lg select-none">
-              [ AUTOVAULT RESERVE SHOWROOM — CURATED SPEED. DEFINED LUXURY. ]
+              [ AUTOVAULT — LUXURY AUTOMOTIVE RESERVE ]
             </div>
 
             <h1 className="font-heading text-5xl sm:text-7xl lg:text-[96px] font-extralight text-[#F5F3EF] tracking-tighter leading-none select-none">
               Yours <span className="font-medium italic text-white">To Drive.</span>
             </h1>
+
+            <p className="text-[#9A9A9A] text-xs sm:text-sm font-light tracking-wide max-w-md select-none leading-relaxed">
+              A private reserve of curated performance exotics and grand tourers. Experience automotive luxury engineered to captivate.
+            </p>
 
             <div className="pt-4">
               <button
@@ -160,7 +164,7 @@ export default function DashboardPage() {
                 </h1>
 
                 <p className="text-[#9A9A9A] text-sm sm:text-base leading-relaxed max-w-xl font-light">
-                  Welcome, <span className="text-[#D98A3D] font-bold">{user?.first_name || user?.username}</span>. Browse 30 curated luxury sedans, exotic sportscars, SUVs, and high-performance vehicles with atomic inventory availability in Indian Rupees (₹).
+                  Welcome back, <span className="text-[#D98A3D] font-bold">{user?.first_name || user?.username}</span>. Access your curated private portfolio of premium exotics, track-focused supercars, and high-performance luxury reserves.
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -244,70 +248,70 @@ export default function DashboardPage() {
                     searchParams.category === cat
                       ? 'bg-[#F5F3EF] text-[#0A0A0A] shadow-md'
                       : 'bg-[#111111] border border-white/[0.08] text-[#9A9A9A] hover:text-[#F5F3EF]'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </section>
-
-        {/* Featured Reserves showroom grid */}
-        <section id="inventory-section" className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="font-heading text-2xl font-bold tracking-tight text-[#F5F3EF]">Reserve Showroom</h2>
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-[#9A9A9A] font-semibold uppercase tracking-wider">[ {vehicles.length} Models ]</span>
-              {isStaff && (
-                <button
-                  onClick={() => setShowAddModal(true)}
-                  className="px-4 py-2 bg-[#111111] border border-white/[0.08] hover:border-white/20 text-[#F5F3EF] text-xs font-bold rounded-full transition-all flex items-center gap-1.5"
+                  }`}
                 >
-                  <PlusCircle className="w-4 h-4 text-[#D98A3D]" />
-                  <span>Create Listing</span>
+                  {cat}
                 </button>
-              )}
-            </div>
-          </div>
-
-          {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-                <div key={n} className="editorial-card h-80 animate-pulse bg-[#151515]" />
               ))}
             </div>
-          ) : vehicles.length === 0 ? (
-            <div className="editorial-card p-12 text-center text-[#9A9A9A]">
-              <SearchX className="w-12 h-12 mx-auto mb-3 text-[#9A9A9A]" />
-              <h3 className="font-heading text-lg font-bold text-[#F5F3EF] mb-1">No matches found</h3>
-              <p className="text-xs text-[#9A9A9A]">No vehicles matched your search filter criteria.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {vehicles.map((v) => (
-                <VehicleCard
-                  key={v.id}
-                  vehicle={v}
-                  isStaff={isStaff}
-                  onPurchase={(v) => setPurchaseVehicle(v)}
-                  onEdit={(v) => setEditVehicle(v)}
-                  onDelete={(v) => setDeleteVehicle(v)}
-                  onRestock={(v) => setRestockVehicle(v)}
-                />
-              ))}
-            </div>
-          )}
-        </section>
+          </section>
 
-        {/* Minimal Footer */}
-        <footer className="pt-8 border-t border-white/[0.08] text-center text-xs text-[#9A9A9A] space-y-2">
-          <div className="flex items-center justify-center gap-1.5 font-bold text-[#F5F3EF] tracking-widest uppercase">
-            <div className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-white text-[9px] font-bold">AV</div>
-            <span>AutoVault Reserve</span>
-          </div>
-          <p>© 2026 AutoVault. All rights reserved. Certified Luxury Vehicle Inventory Portal.</p>
-        </footer>
-      </main>
+          {/* Featured Reserves showroom grid */}
+          <section id="inventory-section" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="font-heading text-2xl font-bold tracking-tight text-[#F5F3EF]">Reserve Showroom</h2>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-[#9A9A9A] font-semibold uppercase tracking-wider">[ {vehicles.length} Models ]</span>
+                {isStaff && (
+                  <button
+                    onClick={() => setShowAddModal(true)}
+                    className="px-4 py-2 bg-[#111111] border border-white/[0.08] hover:border-white/20 text-[#F5F3EF] text-xs font-bold rounded-full transition-all flex items-center gap-1.5"
+                  >
+                    <PlusCircle className="w-4 h-4 text-[#D98A3D]" />
+                    <span>Create Listing</span>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {loading ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                  <div key={n} className="editorial-card h-80 animate-pulse bg-[#151515]" />
+                ))}
+              </div>
+            ) : vehicles.length === 0 ? (
+              <div className="editorial-card p-12 text-center text-[#9A9A9A]">
+                <SearchX className="w-12 h-12 mx-auto mb-3 text-[#9A9A9A]" />
+                <h3 className="font-heading text-lg font-bold text-[#F5F3EF] mb-1">No matches found</h3>
+                <p className="text-xs text-[#9A9A9A]">No vehicles matched your search filter criteria.</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {vehicles.map((v) => (
+                  <VehicleCard
+                    key={v.id}
+                    vehicle={v}
+                    isStaff={isStaff}
+                    onPurchase={(v) => setPurchaseVehicle(v)}
+                    onEdit={(v) => setEditVehicle(v)}
+                    onDelete={(v) => setDeleteVehicle(v)}
+                    onRestock={(v) => setRestockVehicle(v)}
+                  />
+                ))}
+              </div>
+            )}
+          </section>
+
+          {/* Minimal Footer */}
+          <footer className="pt-8 border-t border-white/[0.08] text-center text-xs text-[#9A9A9A] space-y-2">
+            <div className="flex items-center justify-center gap-1.5 font-bold text-[#F5F3EF] tracking-widest uppercase">
+              <div className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-white text-[9px] font-bold">AV</div>
+              <span>AutoVault Reserve</span>
+            </div>
+            <p>© 2026 AutoVault. All rights reserved. Certified Luxury Vehicle Inventory Portal.</p>
+          </footer>
+        </main>
       )}
 
       {/* Auth Modal overlay triggered by Explore Deals or Navbar links */}

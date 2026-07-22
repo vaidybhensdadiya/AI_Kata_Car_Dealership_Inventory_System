@@ -144,14 +144,18 @@
       </div>
 
       <!-- Hero Content Layer -->
-      <div class="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center justify-center space-y-8 my-auto animate-fade-in">
+      <div class="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center justify-center space-y-6 my-auto animate-fade-in">
         <div class="text-[10px] uppercase font-bold tracking-[0.25em] text-[#9A9A9A] max-w-lg select-none">
-          [ AUTOVAULT RESERVE SHOWROOM — CURATED SPEED. DEFINED LUXURY. ]
+          [ AUTOVAULT — LUXURY AUTOMOTIVE RESERVE ]
         </div>
 
         <h1 class="font-heading text-5xl sm:text-7xl lg:text-[96px] font-extralight text-[#F5F3EF] tracking-tighter leading-none select-none">
           Yours <span class="font-medium italic text-white">To Drive.</span>
         </h1>
+
+        <p class="text-[#9A9A9A] text-xs sm:text-sm font-light tracking-wide max-w-md select-none leading-relaxed">
+          A private reserve of curated performance exotics and grand tourers. Experience automotive luxury engineered to captivate.
+        </p>
 
         <div class="pt-4">
           <button
@@ -183,7 +187,7 @@
             </h1>
 
             <p class="text-[#9A9A9A] text-sm sm:text-base leading-relaxed max-w-xl font-light">
-              Welcome, <span id="user-greeting" class="text-[#D98A3D] font-bold">Collector</span>. Browse 30 curated luxury sedans, exotic sportscars, SUVs, and high-performance vehicles with atomic inventory availability in Indian Rupees (₹).
+              Welcome back, <span id="user-greeting" class="text-[#D98A3D] font-bold">Collector</span>. Access your curated private portfolio of premium exotics, track-focused supercars, and high-performance luxury reserves.
             </p>
 
             <div class="flex flex-wrap items-center gap-4 pt-2">
@@ -367,7 +371,7 @@
           </div>
 
           <div id="auth-error-login" class="hidden mb-5 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs flex items-center gap-2.5">
-            <svg class="w-4 h-4 shrink-0 text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <svg class="w-4 h-4 shrink-0 text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
             <span id="auth-error-msg-login"></span>
           </div>
 
@@ -605,9 +609,9 @@
       document.getElementById('hero-showcase').classList.remove('hidden');
       document.getElementById('catalog-content-area').classList.add('hidden');
       document.getElementById('nav-actions').innerHTML = `
-        <div class="flex items-center gap-4">
-          <button onclick="openAuthModal('login')" class="text-[11px] font-bold uppercase tracking-wider text-[#9A9A9A] hover:text-[#F5F3EF] transition-colors">Sign In</button>
-          <button onclick="openAuthModal('register')" class="px-4 py-2 rounded-xl bg-[#F5F3EF] hover:bg-white text-[#0A0A0A] font-bold text-xs shadow-md transition-all">Register</button>
+        <div class="flex items-center gap-3">
+          <button onclick="openAuthModal('login')" class="px-4 py-2 rounded-xl bg-[#F5F3EF] hover:bg-white text-[#0A0A0A] font-bold text-xs shadow-md transition-all">Sign In</button>
+          <button onclick="openAuthModal('register')" class="px-4 py-2 rounded-xl bg-transparent border border-white/20 hover:border-white text-white font-bold text-xs transition-all">Register</button>
         </div>
       `;
     }

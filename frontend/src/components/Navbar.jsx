@@ -57,16 +57,16 @@ export default function Navbar({ onOpenAuth }) {
               </button>
             </div>
           ) : (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <button
                 onClick={() => onOpenAuth && onOpenAuth('login')}
-                className="text-[11px] font-bold uppercase tracking-wider text-[#9A9A9A] hover:text-[#F5F3EF] transition-colors"
+                className="px-4 py-2 rounded-xl bg-[#F5F3EF] hover:bg-white text-[#0A0A0A] font-bold text-xs shadow-md transition-all"
               >
                 Sign In
               </button>
               <button
                 onClick={() => onOpenAuth && onOpenAuth('register')}
-                className="px-4 py-2 rounded-xl bg-[#F5F3EF] hover:bg-white text-[#0A0A0A] font-bold text-xs shadow-md transition-all"
+                className="px-4 py-2 rounded-xl bg-transparent border border-white/20 hover:border-white text-white font-bold text-xs transition-all"
               >
                 Register
               </button>
