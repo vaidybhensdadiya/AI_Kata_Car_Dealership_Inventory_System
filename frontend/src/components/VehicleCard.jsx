@@ -1,5 +1,5 @@
 import React from 'react'
-import { ShoppingBag, Edit, Trash2, PlusCircle, AlertTriangle, CheckCircle, Calendar } from 'lucide-react'
+import { ShoppingBag, Edit, Trash2, PlusCircle, Calendar } from 'lucide-react'
 
 export default function VehicleCard({
   vehicle,
@@ -31,30 +31,14 @@ export default function VehicleCard({
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-black/30"></div>
+          {/* Subtle dark duotone / color-grade overlay */}
+          <div className="absolute inset-0 bg-[#D98A3D]/5 mix-blend-color-burn"></div>
+          <div className="absolute inset-0 bg-[#0A0A0A]/20 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-          <div className="absolute top-3.5 left-3.5 z-10 flex items-center gap-1.5">
-            <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-[#0A0A0A]/90 text-[#F5F3EF] border border-white/[0.08]">
-              {vehicle.category}
-            </span>
-            {vehicle.year && (
-              <span className="px-2 py-1 rounded-full text-[10px] font-semibold bg-[#0A0A0A]/90 text-[#9A9A9A] border border-white/[0.08] flex items-center gap-1">
-                <Calendar className="w-3 h-3 text-[#D98A3D]" />
-                {vehicle.year}
-              </span>
-            )}
-          </div>
-
-          <div className="absolute top-3.5 right-3.5 z-10">
-            {isOutOfStock ? (
-              <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center gap-1">
-                <AlertTriangle className="w-3 h-3" /> Sold Out
-              </span>
-            ) : (
-              <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
-                <CheckCircle className="w-3 h-3" /> {vehicle.quantity} Available
-              </span>
-            )}
+          {/* Single small text label overlaid at bottom-left */}
+          <div className="absolute bottom-3.5 left-4 z-10 text-[10px] font-bold tracking-widest text-[#F5F3EF]/90 uppercase">
+            {vehicle.category} &middot; {vehicle.year || '2024'}
           </div>
         </div>
 
@@ -65,14 +49,25 @@ export default function VehicleCard({
             <h3 className="font-heading text-xl font-bold text-white tracking-tight">
               {vehicle.model}
             </h3>
-            <p className="text-[#9A9A9A] text-xs mt-1.5 line-clamp-2 leading-relaxed">
+            <p className="text-[#9A9A9A] text-xs mt-1.5 line-clamp-2 leading-relaxed font-light">
               {vehicle.description || 'Certified luxury reserve automotive specification.'}
             </p>
           </div>
 
-          <div className="pt-3 border-t border-white/[0.08] flex items-baseline justify-between">
-            <span className="text-[10px] uppercase font-bold text-[#9A9A9A] tracking-widest">MSRP</span>
-            <span className="text-2xl font-bold text-[#D98A3D] group-hover:text-amber-400 transition-colors tracking-tight">
+          <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between">
+            <div className="flex flex-col">
+              <span className="text-[9px] uppercase font-bold text-[#9A9A9A] tracking-widest">MSRP</span>
+              {isOutOfStock ? (
+                <span className="text-[10px] font-semibold text-[#8A5A52] tracking-wide mt-0.5">
+                  Sold Out
+                </span>
+              ) : (
+                <span className="text-[10px] font-semibold text-[#D98A3D] tracking-wide mt-0.5">
+                  {vehicle.quantity} Available
+                </span>
+              )}
+            </div>
+            <span className="text-xl font-bold text-[#D98A3D] group-hover:text-amber-400 transition-colors tracking-tight">
               {formatPrice(vehicle.price)}
             </span>
           </div>
@@ -85,12 +80,13 @@ export default function VehicleCard({
           <button
             onClick={() => onPurchase(vehicle)}
             disabled={isOutOfStock}
-            className={`w-full py-3.5 px-4 rounded-full font-semibold text-xs flex items-center justify-center gap-2 transition-all shadow-md ${isOutOfStock
-                ? 'bg-[#111111] border border-white/[0.08] text-[#9A9A9A] cursor-not-allowed'
-                : 'bg-[#F5F3EF] hover:bg-white text-[#0A0A0A] active:scale-[0.98]'
-              }`}
+            className={`w-full py-3.5 px-4 rounded-full font-semibold text-xs flex items-center justify-center gap-2 transition-all border ${
+              isOutOfStock
+                ? 'border-white/[0.04] text-[#8A5A52] opacity-40 cursor-not-allowed'
+                : 'border-[#F5F3EF]/20 hover:border-[#F5F3EF] hover:bg-[#F5F3EF]/[0.06] text-[#F5F3EF] active:scale-[0.98]'
+            }`}
           >
-            <ShoppingBag className="w-4 h-4" />
+            {!isOutOfStock && <ShoppingBag className="w-4 h-4" />}
             <span>{isOutOfStock ? 'Sold Out' : 'Purchase Vehicle'}</span>
           </button>
         )}

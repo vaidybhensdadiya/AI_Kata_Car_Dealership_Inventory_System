@@ -274,9 +274,9 @@
         </div>
       </div>
 
-      <!-- Integrated Search & Filter Toolbar -->
-      <div class="space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <!-- Inline Filter Bar Row -->
+      <div class="w-full py-6 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-4">
           <div class="flex items-center gap-2">
             <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-vault-amber">
               <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
@@ -286,39 +286,36 @@
               <p class="text-[11px] text-text-secondary">cinematic catalog navigation filter system</p>
             </div>
           </div>
-          <button onclick="resetSearchFilters()" class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0A0A0A] border border-white/[0.08] hover:border-white/20 text-text-secondary hover:text-text-primary text-xs font-semibold transition-all">
+          <button onclick="resetSearchFilters()" class="flex items-center gap-1.5 text-xs text-[#9A9A9A] hover:text-[#F5F3EF] transition-colors">
             <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
             <span>Reset Filters</span>
           </button>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">[ Search Make/Model ]</label>
-            <div class="relative">
-              <i data-lucide="search" class="w-4 h-4 text-text-secondary absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-              <input type="text" id="filter-make" oninput="applyFilters()" placeholder="e.g. Porsche, 911..." class="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl pl-10 pr-3.5 py-3 text-xs text-text-primary focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all">
-            </div>
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-2">[ SEARCH MAKE/MODEL ]</label>
+            <input type="text" id="filter-make" oninput="applyFilters()" placeholder="e.g. Porsche, 911..." class="w-full bg-transparent border-b border-white/20 focus:border-[#D98A3D] rounded-none py-2 px-0 text-xs text-[#F5F3EF] placeholder-[#9A9A9A] focus:outline-none transition-all">
           </div>
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">[ Body Category ]</label>
-            <select id="filter-category" onchange="applyFilters()" class="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all appearance-none">
-              <option value="">All Classifications</option>
-              <option value="Sedan">Sedan</option>
-              <option value="SUV">SUV</option>
-              <option value="Truck">Truck</option>
-              <option value="Coupe">Coupe</option>
-              <option value="Convertible">Convertible</option>
-              <option value="Hatchback">Hatchback</option>
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-2">[ CATEGORY ]</label>
+            <select id="filter-category" onchange="applyFilters()" class="w-full bg-transparent border-b border-white/20 focus:border-[#D98A3D] rounded-none py-2 px-0 text-xs text-[#F5F3EF] focus:outline-none transition-all appearance-none">
+              <option value="" class="bg-[#0A0A0A] text-[#F5F3EF]">All Classifications</option>
+              <option value="Sedan" class="bg-[#0A0A0A] text-[#F5F3EF]">Sedan</option>
+              <option value="SUV" class="bg-[#0A0A0A] text-[#F5F3EF]">SUV</option>
+              <option value="Truck" class="bg-[#0A0A0A] text-[#F5F3EF]">Truck</option>
+              <option value="Coupe" class="bg-[#0A0A0A] text-[#F5F3EF]">Coupe</option>
+              <option value="Convertible" class="bg-[#0A0A0A] text-[#F5F3EF]">Convertible</option>
+              <option value="Hatchback" class="bg-[#0A0A0A] text-[#F5F3EF]">Hatchback</option>
             </select>
           </div>
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">[ Minimum Price, ₹ ]</label>
-            <input type="number" id="filter-min-price" oninput="applyFilters()" placeholder="0" class="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all">
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-2">[ MIN PRICE (₹ INR) ]</label>
+            <input type="number" id="filter-min-price" oninput="applyFilters()" placeholder="0" class="w-full bg-transparent border-b border-white/20 focus:border-[#D98A3D] rounded-none py-2 px-0 text-xs text-[#F5F3EF] placeholder-[#9A9A9A] focus:outline-none transition-all">
           </div>
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">[ Maximum Price, ₹ ]</label>
-            <input type="number" id="filter-max-price" oninput="applyFilters()" placeholder="50,00,00,000" class="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all">
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-2">[ MAX PRICE (₹ INR) ]</label>
+            <input type="number" id="filter-max-price" oninput="applyFilters()" placeholder="50000000" class="w-full bg-transparent border-b border-white/20 focus:border-[#D98A3D] rounded-none py-2 px-0 text-xs text-[#F5F3EF] placeholder-[#9A9A9A] focus:outline-none transition-all">
           </div>
         </div>
       </div>
@@ -707,37 +704,27 @@
       }
 
       const isStaff = currentUser.is_staff;
-      grid.innerHTML = vehicles.map(v => {
+      grid.innerHTML = vehicles.map((v, idx) => {
         const outOfStock = v.quantity <= 0;
         const formattedPrice = formatINR(v.price);
         const imgUrl = v.image_url || 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80';
+        const colSpanClass = idx === 0 ? 'sm:col-span-2' : '';
 
         return `
-          <div class="vault-card card-hover overflow-hidden flex flex-col justify-between group">
+          <div class="vault-card card-hover overflow-hidden flex flex-col justify-between group ${colSpanClass}">
             <div>
               <!-- Large Product Photography -->
               <div class="h-56 w-full relative overflow-hidden bg-[#0A0A0A]">
                 <img src="${imgUrl}" alt="${v.make} ${v.model}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-black/30"></div>
+                
+                <!-- Subtle dark duotone / color-grade overlay -->
+                <div class="absolute inset-0 bg-[#D98A3D]/5 mix-blend-color-burn"></div>
+                <div class="absolute inset-0 bg-[#0A0A0A]/20 mix-blend-multiply"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-                <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-1.5">
-                  <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-[#0A0A0A]/90 text-[#F5F3EF] border border-white/[0.08]">${v.category}</span>
-                  <span class="px-2 py-1 rounded-full text-[10px] font-semibold bg-[#0A0A0A]/90 text-[#9A9A9A] border border-white/[0.08] flex items-center gap-1">
-                    <i data-lucide="calendar" class="w-3 h-3 text-[#D98A3D]"></i>
-                    ${v.year}
-                  </span>
-                </div>
-
-                <div class="absolute top-3.5 right-3.5 z-10">
-                  ${outOfStock ? `
-                    <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center gap-1">
-                      <i data-lucide="alert-triangle" class="w-3 h-3"></i> Sold Out
-                    </span>
-                  ` : `
-                    <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
-                      <i data-lucide="check-circle" class="w-3 h-3"></i> ${v.quantity} Available
-                    </span>
-                  `}
+                <!-- Single small text label overlaid at bottom-left -->
+                <div class="absolute bottom-3.5 left-4 z-10 text-[10px] font-bold tracking-widest text-[#F5F3EF]/90 uppercase">
+                  ${v.category} &middot; ${v.year || '2024'}
                 </div>
               </div>
 
@@ -746,11 +733,18 @@
                 <div>
                   <div class="text-[10px] font-bold uppercase tracking-widest text-[#D98A3D]">${v.make}</div>
                   <h3 class="font-heading text-xl font-bold text-white tracking-tight">${v.model}</h3>
-                  <p class="text-[#9A9A9A] text-xs mt-1.5 line-clamp-2 leading-relaxed">${v.description || 'Certified luxury reserve automotive specification.'}</p>
+                  <p class="text-[#9A9A9A] text-xs mt-1.5 line-clamp-2 leading-relaxed font-light">${v.description || 'Certified luxury reserve automotive specification.'}</p>
                 </div>
-                <div class="pt-3 border-t border-white/[0.08] flex items-baseline justify-between">
-                  <span class="text-[10px] uppercase font-bold text-[#9A9A9A] tracking-widest">MSRP</span>
-                  <span class="text-2xl font-bold text-[#D98A3D] group-hover:text-amber-400 transition-colors tracking-tight">${formattedPrice}</span>
+                <div class="pt-3 border-t border-white/[0.08] flex items-center justify-between">
+                  <div class="flex flex-col">
+                    <span class="text-[9px] uppercase font-bold text-[#9A9A9A] tracking-widest">MSRP</span>
+                    ${outOfStock ? `
+                      <span class="text-[10px] font-semibold text-[#8A5A52] tracking-wide mt-0.5">Sold Out</span>
+                    ` : `
+                      <span class="text-[10px] font-semibold text-[#D98A3D] tracking-wide mt-0.5">${v.quantity} Available</span>
+                    `}
+                  </div>
+                  <span class="text-xl font-bold text-[#D98A3D] group-hover:text-amber-400 transition-colors tracking-tight">${formattedPrice}</span>
                 </div>
               </div>
             </div>
@@ -758,8 +752,8 @@
             <!-- Action Controls -->
             <div class="p-6 pt-0 space-y-3">
               ${!isStaff ? `
-                <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-3.5 px-4 rounded-full font-semibold text-xs flex items-center justify-center gap-2 transition-all duration-300 shadow-md ${outOfStock ? 'bg-[#111111] border border-white/[0.08] text-[#9A9A9A] cursor-not-allowed' : 'btn-blue active:scale-[0.98]' }">
-                  <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-3.5 px-4 rounded-full font-semibold text-xs flex items-center justify-center gap-2 transition-all duration-300 border ${outOfStock ? 'border-white/[0.04] text-[#8A5A52] opacity-40 cursor-not-allowed' : 'border-[#F5F3EF]/20 hover:border-[#F5F3EF] hover:bg-[#F5F3EF]/[0.06] text-[#F5F3EF] active:scale-[0.98]' }">
+                  ${!outOfStock ? '<i data-lucide="shopping-bag" class="w-4 h-4"></i>' : ''}
                   <span>${outOfStock ? 'Sold Out' : 'Purchase Vehicle'}</span>
                 </button>
               ` : ''}

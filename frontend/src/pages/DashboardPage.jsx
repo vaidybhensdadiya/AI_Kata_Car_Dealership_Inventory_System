@@ -205,7 +205,7 @@ export default function DashboardPage() {
                       <div className="text-[10px] font-bold uppercase tracking-wider text-[#D98A3D]">Featured Reserve</div>
                       <div className="text-sm font-bold text-white">Porsche 911 GT3 RS</div>
                     </div>
-                    <div class="text-right">
+                    <div className="text-right">
                       <div className="text-xs font-extrabold text-white">₹3,50,00,000</div>
                     </div>
                   </div>
@@ -288,16 +288,17 @@ export default function DashboardPage() {
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                {vehicles.map((v) => (
-                  <VehicleCard
-                    key={v.id}
-                    vehicle={v}
-                    isStaff={isStaff}
-                    onPurchase={(v) => setPurchaseVehicle(v)}
-                    onEdit={(v) => setEditVehicle(v)}
-                    onDelete={(v) => setDeleteVehicle(v)}
-                    onRestock={(v) => setRestockVehicle(v)}
-                  />
+                {vehicles.map((v, idx) => (
+                  <div key={v.id} className={idx === 0 ? 'sm:col-span-2' : ''}>
+                    <VehicleCard
+                      vehicle={v}
+                      isStaff={isStaff}
+                      onPurchase={(v) => setPurchaseVehicle(v)}
+                      onEdit={(v) => setEditVehicle(v)}
+                      onDelete={(v) => setDeleteVehicle(v)}
+                      onRestock={(v) => setRestockVehicle(v)}
+                    />
+                  </div>
                 ))}
               </div>
             )}
