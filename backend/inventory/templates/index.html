@@ -172,14 +172,14 @@
     <!-- Main Content Workspace (Unlocked and displayed only after authentication) -->
     <main id="catalog-content-area" class="hidden max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 scroll-mt-24">
 
-      <!-- Showcase Hero Card (Themed in Black & Amber) -->
-      <section id="split-hero-showcase" class="vault-card rounded-2xl p-8 sm:p-12 relative overflow-hidden bg-[#151515] border border-white/[0.08]">
+      <!-- Showcase Hero Section (Integrated directly on dark canvas, borderless) -->
+      <section id="split-hero-showcase" class="relative overflow-hidden py-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           <!-- Left Content Column -->
           <div class="lg:col-span-7 space-y-6">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D98A3D]/10 border border-[#D98A3D]/30 text-[#D98A3D] text-xs font-semibold uppercase tracking-wider">
-              <i data-lucide="sparkles" class="w-4 h-4"></i> Luxury Automotive Marketplace
+            <div class="text-[10px] uppercase font-bold tracking-[0.25em] text-[#9A9A9A] select-none">
+              [ PRIVATE RESERVE MARKETPLACE ]
             </div>
 
             <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-none">
@@ -329,10 +329,9 @@
             Reserve <span class="italic font-medium text-white">Showroom</span>
           </h2>
           <div id="admin-add-btn-container" class="hidden">
-            <button onclick="openAddModal()" class="px-5 py-2.5 btn-blue font-semibold text-xs rounded-full shadow flex items-center gap-1.5 group">
-              <i data-lucide="plus-circle" class="w-4 h-4"></i>
+            <button onclick="openAddModal()" class="px-5 py-2.5 bg-[#0A0A0A] border border-white/[0.08] hover:border-white/20 text-[#F5F3EF] font-semibold text-xs rounded-full shadow flex items-center gap-1.5 transition-all">
+              <i data-lucide="plus-circle" class="w-4 h-4 text-[#D98A3D]"></i>
               <span>Add Vehicle</span>
-              <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
             </button>
           </div>
         </div>
@@ -463,6 +462,7 @@
       }
     });
 
+    // Formatting currency logic
     function formatINR(price) {
       return new Intl.NumberFormat('en-IN', {
         style: 'currency',

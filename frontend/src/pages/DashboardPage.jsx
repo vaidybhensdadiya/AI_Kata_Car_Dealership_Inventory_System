@@ -11,7 +11,7 @@ import RestockVehicleModal from '../components/RestockModal'
 import DeleteConfirmModal from '../components/DeleteConfirmModal'
 import AuthModal from '../components/AuthModal'
 import axiosClient from '../api/axiosClient'
-import { PlusCircle, ArrowUpRight, SearchX, Compass, Sparkles, ArrowRight } from 'lucide-react'
+import { PlusCircle, ArrowUpRight, SearchX, Compass, ArrowRight } from 'lucide-react'
 
 export default function DashboardPage() {
   const { user, token, isStaff } = useAuth()
@@ -73,8 +73,8 @@ export default function DashboardPage() {
   }
 
   const handleOpenAuthModal = (mode = 'login') => {
-    setAuthModalMode(mode)
     setAuthModalOpen(true)
+    setAuthModalMode(mode)
   }
 
   const handleExploreClick = () => {
@@ -124,11 +124,11 @@ export default function DashboardPage() {
               [ AUTOVAULT — LUXURY AUTOMOTIVE RESERVE ]
             </div>
 
-            <h1 className="font-heading text-5xl sm:text-7xl lg:text-[96px] font-extralight text-[#F5F3EF] tracking-tighter leading-none select-none">
-              Yours <span className="font-medium italic text-white">To Drive.</span>
+            <h1 class="font-heading text-5xl sm:text-7xl lg:text-[96px] font-extralight text-[#F5F3EF] tracking-tighter leading-none select-none">
+              Yours <span class="font-medium italic text-white">To Drive.</span>
             </h1>
 
-            <p className="text-[#9A9A9A] text-xs sm:text-sm font-light tracking-wide max-w-md select-none leading-relaxed">
+            <p class="text-[#9A9A9A] text-xs sm:text-sm font-light tracking-wide max-w-md select-none leading-relaxed">
               A private reserve of curated performance exotics and grand tourers. Experience automotive luxury engineered to captivate.
             </p>
 
@@ -149,14 +149,14 @@ export default function DashboardPage() {
       {token && (
         <main id="catalog-content-area" className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 animate-fade-in">
           
-          {/* 2. AUTHENTICATED USER VIEW: Showcase Hero Card (Themed in Black & Amber) */}
-          <section id="hero-showcase" className="vault-card rounded-2xl p-8 sm:p-12 relative overflow-hidden bg-[#151515] border border-white/[0.08]">
+          {/* 2. AUTHENTICATED USER VIEW: Showcase Hero Layout (Integrated directly on dark canvas, borderless) */}
+          <section id="hero-showcase" className="relative overflow-hidden py-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
               {/* Left Content Column */}
               <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D98A3D]/10 border border-[#D98A3D]/30 text-[#D98A3D] text-xs font-semibold uppercase tracking-wider">
-                  <Sparkles className="w-4 h-4" /> Luxury Automotive Marketplace
+                <div className="text-[10px] uppercase font-bold tracking-[0.25em] text-[#9A9A9A] select-none">
+                  [ PRIVATE RESERVE MARKETPLACE ]
                 </div>
 
                 <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-none">
@@ -199,13 +199,13 @@ export default function DashboardPage() {
                     alt="Porsche 911 GT3 RS Showroom"
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between backdrop-blur-md bg-[#0A0A0A]/85 p-3 rounded-xl border border-white/[0.08]">
                     <div>
                       <div className="text-[10px] font-bold uppercase tracking-wider text-[#D98A3D]">Featured Reserve</div>
                       <div className="text-sm font-bold text-white">Porsche 911 GT3 RS</div>
                     </div>
-                    <div class="text-right">
+                    <div className="text-right">
                       <div className="text-xs font-extrabold text-white">₹3,50,00,000</div>
                     </div>
                   </div>
