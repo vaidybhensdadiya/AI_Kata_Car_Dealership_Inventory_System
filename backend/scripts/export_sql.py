@@ -1,25 +1,31 @@
 import os
 import pymysql
 import datetime
+from dotenv import load_dotenv
 
-print("Dumping live MySQL database (dealership_db) into database.sql...")
+# Load env variables from backend/.env
+backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+load_dotenv(os.path.join(backend_dir, '.env'))
+
+db_name = os.getenv('DB_NAME', 'dealership_db')
+print(f"Dumping live MySQL database ({db_name}) into database.sql...")
 
 conn = pymysql.connect(
-    host='127.0.0.1',
-    user='root',
-    password='Vaidy@2005',
-    port=3306,
-    database='dealership_db',
+    host=os.getenv('DB_HOST', '127.0.0.1'),
+    user=os.getenv('DB_USER', 'root'),
+    password=os.getenv('DB_PASSWORD', ''),
+    port=int(os.getenv('DB_PORT', '3306')),
+    database=db_name,
     charset='utf8mb4'
 )
 
 sql = [
     "-- ========================================================",
     "-- Car Dealership Inventory System - MySQL Database Export",
-    "-- Database Name: dealership_db",
+    f"-- Database Name: {db_name}",
     "-- ========================================================\n",
-    "CREATE DATABASE IF NOT EXISTS `dealership_db` DEFAULT CHARACTER SET utf8mb4;",
-    "USE `dealership_db`;\n"
+    f"CREATE DATABASE IF NOT EXISTS `{db_name}` DEFAULT CHARACTER SET utf8mb4;",
+    f"USE `{db_name}`;\n"
 ]
 
 tables_to_dump = ['auth_user', 'inventory_vehicle']
@@ -59,7 +65,10 @@ with conn.cursor() as cursor:
 
 conn.close()
 
-sql_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'database.sql')
+# database.sql is in the root directory (parent of backend)
+workspace_root = os.path.dirname(backend_dir)
+sql_path = os.path.join(workspace_root, 'database.sql')
+
 with open(sql_path, 'w', encoding='utf-8') as f:
     f.write("\n".join(sql))
 

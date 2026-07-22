@@ -1,5 +1,9 @@
+import sys
 import os
 import django
+
+# Add the parent directory of this script to the python path to find dealership and inventory modules
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dealership.settings')
 django.setup()
