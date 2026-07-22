@@ -17,48 +17,48 @@ export default function AdminStats({ vehicles = [] }) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-      <div className="steel-card rounded-2xl p-5 flex items-center justify-between">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="editorial-card p-5 flex items-center justify-between">
         <div>
-          <div className="text-[11px] font-semibold text-[#94A3B8] uppercase tracking-wider">Total Units</div>
-          <div className="font-heading text-2xl font-bold text-white mt-1">{totalQuantity}</div>
-          <div className="text-[11px] text-[#94A3B8] mt-0.5">{totalVehicles} unique models</div>
+          <div className="text-[10px] font-bold text-[#9A9A9A] uppercase tracking-wider">[ Total Units ]</div>
+          <div className="font-heading text-2xl font-bold text-[#F5F3EF] mt-1">{totalQuantity}</div>
+          <div className="text-[11px] text-[#9A9A9A] mt-0.5">{totalVehicles} Models Loaded</div>
         </div>
-        <div className="w-11 h-11 rounded-xl bg-[#171A21] border border-white/[0.08] flex items-center justify-center text-sky-400">
-          <Car className="w-5 h-5" />
+        <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-[#D98A3D]">
+          <Car className="w-4 h-4" />
         </div>
       </div>
 
-      <div className="steel-card rounded-2xl p-5 flex items-center justify-between">
+      <div className="editorial-card p-5 flex items-center justify-between">
         <div>
-          <div className="text-[11px] font-semibold text-[#94A3B8] uppercase tracking-wider">Portfolio MSRP</div>
-          <div className="font-heading text-2xl font-bold text-emerald-400 mt-1">{formatPrice(totalPortfolioValue)}</div>
-          <div className="text-[11px] text-[#94A3B8] mt-0.5">Combined stock value</div>
+          <div className="text-[10px] font-bold text-[#9A9A9A] uppercase tracking-wider">[ Portfolio MSRP ]</div>
+          <div className="font-heading text-2xl font-bold text-[#D98A3D] mt-1">{formatPrice(totalPortfolioValue)}</div>
+          <div className="text-[11px] text-[#9A9A9A] mt-0.5">Asset Book Value</div>
         </div>
-        <div className="w-11 h-11 rounded-xl bg-[#171A21] border border-white/[0.08] flex items-center justify-center text-emerald-400">
-          <IndianRupee className="w-5 h-5" />
+        <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-[#D98A3D]">
+          <IndianRupee className="w-4 h-4" />
         </div>
       </div>
 
-      <div className="steel-card rounded-2xl p-5 flex items-center justify-between">
+      <div className="editorial-card p-5 flex items-center justify-between">
         <div>
-          <div className="text-[11px] font-semibold text-[#94A3B8] uppercase tracking-wider">Low Stock Warning</div>
+          <div className="text-[10px] font-bold text-[#9A9A9A] uppercase tracking-wider">[ Low Stock Alert ]</div>
           <div className="font-heading text-2xl font-bold text-amber-400 mt-1">{lowStockCount}</div>
-          <div className="text-[11px] text-[#94A3B8] mt-0.5">&lt; 3 items remaining</div>
+          <div className="text-[11px] text-[#9A9A9A] mt-0.5">&lt; 3 Units Remaining</div>
         </div>
-        <div className="w-11 h-11 rounded-xl bg-[#171A21] border border-white/[0.08] flex items-center justify-center text-amber-400">
-          <AlertTriangle className="w-5 h-5" />
+        <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-amber-400">
+          <AlertTriangle className="w-4 h-4" />
         </div>
       </div>
 
-      <div className="steel-card rounded-2xl p-5 flex items-center justify-between">
+      <div className="editorial-card p-5 flex items-center justify-between">
         <div>
-          <div className="text-[11px] font-semibold text-[#94A3B8] uppercase tracking-wider">Sold Out</div>
+          <div className="text-[10px] font-bold text-[#9A9A9A] uppercase tracking-wider">[ Sold Out ]</div>
           <div className="font-heading text-2xl font-bold text-rose-400 mt-1">{outOfStockCount}</div>
-          <div className="text-[11px] text-[#94A3B8] mt-0.5">Requires restocking</div>
+          <div className="text-[11px] text-[#9A9A9A] mt-0.5">Requires Restocking</div>
         </div>
-        <div className="w-11 h-11 rounded-xl bg-[#171A21] border border-white/[0.08] flex items-center justify-center text-rose-400">
-          <PackageX className="w-5 h-5" />
+        <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-rose-400">
+          <PackageX className="w-4 h-4" />
         </div>
       </div>
     </div>

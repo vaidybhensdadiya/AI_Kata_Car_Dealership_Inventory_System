@@ -7,7 +7,7 @@
   <!-- Google Fonts: Poppins & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons CDN -->
@@ -19,20 +19,19 @@
         extend: {
           colors: {
             vault: {
-              bg: '#0B0F14',
-              sec: '#141A22',
-              card: '#1A212C',
-              blue: '#3B82F6',
-              cyan: '#06B6D4',
-              success: '#22C55E',
+              bg: '#0A0A0A',
+              sec: '#111111',
+              card: '#151515',
+              blue: '#F5F3EF',
+              amber: '#D98A3D',
               warning: '#F59E0B',
               danger: '#EF4444',
               border: 'rgba(255, 255, 255, 0.08)',
             },
             text: {
-              primary: '#F8FAFC',
-              secondary: '#CBD5E1',
-              muted: '#94A3B8',
+              primary: '#F5F3EF',
+              secondary: '#9A9A9A',
+              muted: '#777777',
             }
           },
           fontFamily: {
@@ -45,101 +44,94 @@
   </script>
   <style>
     body {
-      background-color: #0B0F14;
-      color: #F8FAFC;
+      background-color: #0A0A0A;
+      color: #F5F3EF;
       font-family: 'Inter', sans-serif;
     }
     h1, h2, h3, h4, h5, h6, .font-heading {
       font-family: 'Poppins', sans-serif;
     }
     .vault-card {
-      background-color: #1A212C;
+      background-color: #151515;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.7);
     }
     .vault-glass {
-      background: rgba(11, 15, 20, 0.85);
+      background: rgba(10, 10, 10, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
     .modal-glass {
-      background: rgba(20, 26, 34, 0.95);
+      background: rgba(21, 21, 21, 0.95);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
     .btn-blue {
-      background-color: #3B82F6;
-      color: #FFFFFF;
+      background-color: #F5F3EF;
+      color: #0A0A0A;
       font-weight: 600;
-      transition: all 250ms ease-in-out;
+      border-radius: 9999px;
+      transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
     }
     .btn-blue:hover {
-      background-color: #2563EB;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px -6px rgba(59, 130, 246, 0.4);
+      background-color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -8px rgba(245, 243, 239, 0.3);
     }
     .btn-blue:active {
       transform: translateY(0);
     }
     .card-hover {
-      transition: all 250ms ease-in-out;
+      transition: all 350ms cubic-bezier(0.16, 1, 0.3, 1);
     }
     .card-hover:hover {
       transform: translateY(-6px);
-      border-color: rgba(255, 255, 255, 0.18);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+      border-color: rgba(217, 138, 61, 0.4);
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.8);
     }
   </style>
 </head>
-<body class="bg-vault-bg text-text-primary min-h-screen font-sans selection:bg-vault-blue selection:text-white antialiased">
+<body class="bg-vault-bg text-text-primary min-h-screen font-sans selection:bg-vault-amber selection:text-white antialiased">
 
   <div id="app">
-    <!-- Sticky Glass Navbar -->
-    <header class="sticky top-0 z-40 w-full vault-glass shrink-0">
+    <!-- Sticky Transparent-to-Solid Navbar -->
+    <header class="sticky top-0 z-40 w-full vault-glass py-4">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
-        <!-- Sleek Monoline Shield Emblem Logo -->
-        <a href="#" onclick="showDashboard()" class="flex items-center gap-3.5 group">
-          <div class="w-10 h-10 rounded-xl bg-vault-blue/10 border border-vault-blue/30 flex items-center justify-center text-vault-blue group-hover:bg-vault-blue group-hover:text-white transition-all duration-300 shadow-md">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V7l-9-5z"/>
-              <path d="M7 15l5-7 5 7M9 13h6"/>
+        <!-- Monoline Chevron Emblem Logo -->
+        <a href="#" onclick="showDashboard()" class="flex items-center gap-2.5 group">
+          <div class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white group-hover:border-white transition-all duration-300">
+            <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </div>
-          <div class="flex flex-col">
-            <span class="font-heading text-xl font-bold tracking-tight text-white flex items-center gap-1">
-              Auto<span class="text-vault-blue">Vault</span>
-            </span>
-            <span class="text-[9px] font-semibold uppercase tracking-[0.2em] text-text-muted -mt-1">
-              Luxury Automotive Reserve
-            </span>
-          </div>
+          <span class="font-heading text-lg font-bold tracking-widest text-text-primary">
+            AUTO<span class="text-white font-light">VAULT</span>
+          </span>
         </a>
 
-        <!-- Right User Actions -->
+        <!-- Right Navigation & Profile Trigger -->
         <div id="nav-actions" class="flex items-center gap-3">
           <!-- Populated by JS -->
         </div>
       </div>
     </header>
 
-    <!-- Authentication Split Showroom Section (Center when active) -->
-    <div id="auth-section" class="max-w-7xl mx-auto my-8 bg-[#0B0F14] rounded-2xl overflow-hidden flex flex-col md:flex-row border border-white/[0.08] shadow-2xl items-stretch">
-      
-      <!-- Left Side: Clean Form Container -->
-      <div class="flex-1 p-8 sm:p-12 lg:p-16 bg-vault-card flex flex-col justify-center md:w-[45%]">
-        
-        <!-- Login Form Panel -->
+    <!-- Main Content Workspace -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+      <!-- Authentication Portal Modal Overlay -->
+      <div id="auth-section" class="max-w-md mx-auto my-12 vault-card p-8 relative overflow-hidden shadow-2xl">
         <div id="login-form">
           <div class="text-center mb-8">
-            <div class="w-12 h-12 rounded-xl bg-vault-sec border border-vault-border text-vault-blue flex items-center justify-center mx-auto mb-4">
-              <i data-lucide="key-round" class="w-5 h-5"></i>
+            <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white mx-auto mb-3">
+              <span class="text-xs font-bold tracking-widest">AV</span>
             </div>
-            <h2 class="font-heading text-2xl font-bold text-white tracking-tight">Portal Sign In</h2>
-            <p class="text-xs text-text-muted mt-1">Access your AutoVault reserve account</p>
+            <h2 class="font-heading text-2xl font-bold text-white tracking-tight">Portal Authentication</h2>
+            <p class="text-xs text-text-secondary mt-1">Access your AutoVault reserve inventory</p>
           </div>
 
           <div id="auth-error" class="hidden mb-5 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs flex items-center gap-2.5">
@@ -149,102 +141,95 @@
 
           <form onsubmit="handleLogin(event)" class="space-y-4">
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-widest text-[#94A3B8] mb-1.5">Username</label>
-              <input type="text" id="login-username" required placeholder="Enter username" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-3 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-vault-blue transition-all">
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">Username</label>
+              <input type="text" id="login-username" required placeholder="Enter username" class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
             </div>
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-widest text-[#94A3B8] mb-1.5">Password</label>
-              <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-3 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-vault-blue transition-all">
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">Password</label>
+              <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
             </div>
-            <button type="submit" class="w-full py-3.5 btn-blue font-semibold text-sm rounded-xl shadow-lg">
-              Sign In to AutoVault
+            <button type="submit" class="w-full py-3.5 btn-blue font-semibold text-xs shadow-lg flex items-center justify-center gap-1.5">
+              <span>Sign In to AutoVault</span>
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
             </button>
           </form>
 
-          <div class="mt-8 pt-6 border-t border-vault-border text-center text-xs text-text-muted">
-            New user? <a href="#" onclick="toggleAuthMode('register')" class="text-vault-blue font-semibold hover:underline">Register account</a>
+          <div class="mt-8 pt-6 border-t border-vault-border text-center text-xs text-text-secondary">
+            New user? <a href="#" onclick="toggleAuthMode('register')" class="text-vault-amber font-semibold hover:underline">Register account</a>
           </div>
         </div>
 
-        <!-- Register Form Panel -->
         <div id="register-form" class="hidden">
           <div class="text-center mb-8">
-            <div class="w-12 h-12 rounded-xl bg-vault-sec border border-vault-border text-vault-blue flex items-center justify-center mx-auto mb-4">
-              <i data-lucide="user-plus" class="w-5 h-5"></i>
+            <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white mx-auto mb-3">
+              <span class="text-xs font-bold tracking-widest">AV</span>
             </div>
-            <h2 class="font-heading text-2xl font-bold text-white tracking-tight">Create Account</h2>
-            <p class="text-xs text-text-muted mt-1">Join AutoVault for immediate inventory access</p>
+            <h2 class="font-heading text-2xl font-bold text-white tracking-tight">Create Reserve Account</h2>
+            <p class="text-xs text-text-secondary mt-1">Register for immediate reserve access</p>
           </div>
 
           <form onsubmit="handleRegister(event)" class="space-y-4">
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-widest text-[#94A3B8] mb-1.5">Username *</label>
-              <input type="text" id="reg-username" required placeholder="Choose username" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-vault-blue">
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">Username *</label>
+              <input type="text" id="reg-username" required placeholder="Choose username" class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-2.5 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
             </div>
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-widest text-[#94A3B8] mb-1.5">Email *</label>
-              <input type="email" id="reg-email" required placeholder="name@example.com" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-vault-blue">
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">Email *</label>
+              <input type="email" id="reg-email" required placeholder="name@example.com" class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-2.5 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
             </div>
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-widest text-[#94A3B8] mb-1.5">Password *</label>
-              <input type="password" id="reg-password" required placeholder="Minimum 6 characters" class="w-full bg-vault-sec border border-vault-border rounded-xl px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-vault-blue">
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">Password *</label>
+              <input type="password" id="reg-password" required placeholder="Minimum 6 characters" class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-2.5 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
             </div>
-            <button type="submit" class="w-full py-3.5 btn-blue font-semibold text-sm rounded-xl shadow-lg">
-              Register & Access
+            <button type="submit" class="w-full py-3.5 btn-blue font-semibold text-xs shadow-lg flex items-center justify-center gap-1.5">
+              <span>Register & Access</span>
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
             </button>
           </form>
 
-          <div class="mt-8 pt-6 border-t border-vault-border text-center text-xs text-text-muted">
-            Already registered? <a href="#" onclick="toggleAuthMode('login')" class="text-vault-blue font-semibold hover:underline">Sign in to account</a>
+          <div class="mt-8 pt-6 border-t border-vault-border text-center text-xs text-text-secondary">
+            Already registered? <a href="#" onclick="toggleAuthMode('login')" class="text-vault-amber font-semibold hover:underline">Sign in to account</a>
           </div>
         </div>
-
       </div>
 
-      <!-- Right Side: Showroom Car Imagery -->
-      <div class="hidden md:flex md:w-[55%] relative min-h-[550px] bg-[#0B0F14]">
-        <img src="/static/login_showcase.jpg" alt="AutoVault Reserve" class="absolute inset-0 w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-l from-transparent via-[#0B0F14]/20 to-[#0B0F14]"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0F14] via-transparent to-[#0B0F14]/10"></div>
-      </div>
-    </div>
-
-    <!-- Main Content Workspace -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <!-- Main Showroom Showcase Section -->
-      <div id="dashboard-section" class="hidden space-y-12">
+      <div id="dashboard-section" class="hidden space-y-12 animate-fade-in">
         
         <!-- Full-Width Luxury Showroom Hero Section -->
-        <section id="hero-showcase" class="vault-card rounded-2xl p-8 sm:p-12 relative overflow-hidden bg-gradient-to-r from-vault-card via-vault-sec to-vault-card border border-white/[0.08]">
+        <section id="hero-showcase" class="relative py-12 overflow-hidden bg-[#0A0A0A]">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div class="lg:col-span-7 space-y-6">
-              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-vault-blue/10 border border-vault-blue/30 text-vault-blue text-xs font-semibold uppercase tracking-wider">
-                <i data-lucide="sparkles" class="w-4 h-4"></i> Luxury Automotive Marketplace
+            
+            <!-- Left Hero Content -->
+            <div class="lg:col-span-7 space-y-8">
+              <div class="text-[10px] uppercase font-bold tracking-[0.25em] text-text-secondary">
+                [ 0.9% APR FINANCING AVAILABLE FOR A LIMITED TIME. VIEW RESERVES ]
               </div>
 
-              <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-none">
-                Find Your Next <span class="text-vault-blue">Dream Car</span>
+              <h1 class="font-heading text-5xl sm:text-7xl lg:text-[85px] font-extrabold text-white tracking-tighter leading-[0.9] select-none">
+                Yours <span class="font-light text-text-secondary italic">to Drive.</span>
               </h1>
 
-              <p class="text-text-secondary text-sm sm:text-base leading-relaxed max-w-xl">
-                Welcome, <span id="user-greeting" class="text-vault-blue font-bold">Collector</span>. Browse 30 curated luxury sedans, exotic sportscars, SUVs, and high-performance vehicles with atomic inventory availability in Indian Rupees (₹).
+              <p class="text-text-secondary text-sm sm:text-base leading-relaxed max-w-xl font-light">
+                Discover curated reserve sports models and luxury tourers. A cinematic showroom experience featuring dramatically lit exotics available for acquisition.
               </p>
 
-              <div class="flex items-center gap-4 pt-2">
-                <a href="#inventory-section" class="px-6 py-3.5 btn-blue font-semibold text-sm rounded-xl shadow-lg flex items-center gap-2">
-                  <span>Explore Reserve Inventory</span>
-                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              <div class="flex items-center gap-4">
+                <a href="#inventory-section" class="px-8 py-4 btn-blue font-semibold text-xs rounded-full shadow-lg flex items-center gap-1.5 group">
+                  <span>Explore The Deals</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                 </a>
               </div>
             </div>
 
+            <!-- Right Hero Photo -->
             <div class="lg:col-span-5 relative">
-              <div class="h-64 sm:h-80 w-full rounded-2xl overflow-hidden shadow-2xl relative border border-white/[0.1]">
-                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=1200&q=80" alt="Porsche 911 GT3 RS" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" />
-                <div class="absolute inset-0 bg-gradient-to-t from-vault-card via-transparent to-transparent"></div>
-                <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between backdrop-blur-md bg-vault-bg/80 p-3 rounded-xl border border-white/[0.08]">
+              <div class="h-80 w-full rounded-2xl overflow-hidden shadow-2xl relative border border-white/[0.08]">
+                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=1200&q=80" alt="Porsche 911" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" />
+                <div class="absolute inset-0 bg-gradient-to-t from-vault-bg via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between backdrop-blur-md bg-[#0A0A0A]/85 p-3 rounded-xl border border-white/[0.08]">
                   <div>
-                    <div class="text-[10px] font-bold uppercase tracking-wider text-vault-blue">Featured Reserve</div>
+                    <div class="text-[9px] font-bold uppercase tracking-wider text-vault-amber">[ Current Reserve ]</div>
                     <div class="text-sm font-bold text-white">Porsche 911 GT3 RS</div>
                   </div>
                   <div class="text-right">
@@ -257,59 +242,75 @@
         </section>
 
         <!-- Admin KPI Stats Banner -->
-        <div id="admin-kpi-banner" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="vault-card rounded-2xl p-5 flex items-center justify-between">
+        <div id="admin-kpi-banner" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="vault-card p-5 flex items-center justify-between">
             <div>
-              <div class="text-[11px] font-semibold text-text-muted uppercase tracking-wider">Total Units</div>
+              <div class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">[ Total Units ]</div>
               <div id="kpi-total-units" class="text-2xl font-bold text-white mt-1">0</div>
             </div>
-            <div class="w-11 h-11 rounded-xl bg-vault-sec border border-vault-border text-sky-400 flex items-center justify-center">
-              <i data-lucide="car" class="w-5 h-5"></i>
+            <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-vault-amber">
+              <i data-lucide="car" class="w-4 h-4"></i>
             </div>
           </div>
-          <div class="vault-card rounded-2xl p-5 flex items-center justify-between">
+          <div class="vault-card p-5 flex items-center justify-between">
             <div>
-              <div class="text-[11px] font-semibold text-text-muted uppercase tracking-wider">Portfolio MSRP</div>
-              <div id="kpi-total-value" class="text-2xl font-bold text-emerald-400 mt-1">₹0</div>
+              <div class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">[ Portfolio MSRP ]</div>
+              <div id="kpi-total-value" class="text-2xl font-bold text-vault-amber mt-1">₹0</div>
             </div>
-            <div class="w-11 h-11 rounded-xl bg-vault-sec border border-vault-border text-emerald-400 flex items-center justify-center">
-              <i data-lucide="indian-rupee" class="w-5 h-5"></i>
+            <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-vault-amber">
+              <i data-lucide="indian-rupee" class="w-4 h-4"></i>
             </div>
           </div>
-          <div class="vault-card rounded-2xl p-5 flex items-center justify-between">
+          <div class="vault-card p-5 flex items-center justify-between">
             <div>
-              <div class="text-[11px] font-semibold text-text-muted uppercase tracking-wider">Low Stock (&lt;3)</div>
+              <div class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">[ Low Stock Alert ]</div>
               <div id="kpi-low-stock" class="text-2xl font-bold text-amber-400 mt-1">0</div>
             </div>
-            <div class="w-11 h-11 rounded-xl bg-vault-sec border border-vault-border text-amber-400 flex items-center justify-center">
-              <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+            <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-amber-400">
+              <i data-lucide="alert-triangle" class="w-4 h-4"></i>
             </div>
           </div>
-          <div class="vault-card rounded-2xl p-5 flex items-center justify-between">
+          <div class="vault-card p-5 flex items-center justify-between">
             <div>
-              <div class="text-[11px] font-semibold text-text-muted uppercase tracking-wider">Sold Out</div>
+              <div class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">[ Sold Out ]</div>
               <div id="kpi-sold-out" class="text-2xl font-bold text-rose-400 mt-1">0</div>
             </div>
-            <div class="w-11 h-11 rounded-xl bg-vault-sec border border-vault-border text-rose-400 flex items-center justify-center">
-              <i data-lucide="package-x" class="w-5 h-5"></i>
+            <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-rose-400">
+              <i data-lucide="package-x" class="w-4 h-4"></i>
             </div>
           </div>
         </div>
 
         <!-- Integrated Search & Filter Toolbar -->
-        <div class="vault-card rounded-2xl p-6 space-y-4">
+        <div class="space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-vault-amber">
+                <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h2 class="font-heading text-lg font-bold text-text-primary">Refine Search Specification</h2>
+                <p class="text-[11px] text-text-secondary">cinematic catalog navigation filter system</p>
+              </div>
+            </div>
+            <button onclick="document.getElementById('filter-make').value=''; document.getElementById('filter-category').value=''; document.getElementById('filter-min-price').value=''; document.getElementById('filter-max-price').value=''; applyFilters();" class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0A0A0A] border border-white/[0.08] hover:border-white/20 text-text-secondary hover:text-text-primary text-xs font-semibold transition-all">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+              <span>Reset Filters</span>
+            </button>
+          </div>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-1.5">Search Make / Model</label>
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">[ Search Make/Model ]</label>
               <div class="relative">
-                <i data-lucide="search" class="w-4 h-4 text-text-muted absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-                <input type="text" id="filter-make" oninput="applyFilters()" placeholder="e.g. Porsche, M4..." class="w-full bg-vault-sec border border-vault-border rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-text-primary focus:outline-none focus:border-vault-blue">
+                <i data-lucide="search" class="w-4 h-4 text-text-secondary absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                <input type="text" id="filter-make" oninput="applyFilters()" placeholder="e.g. Porsche, 911..." class="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl pl-10 pr-3.5 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
               </div>
             </div>
             <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-1.5">Category</label>
-              <select id="filter-category" onchange="applyFilters()" class="w-full bg-vault-sec border border-vault-border rounded-xl px-3.5 py-2.5 text-xs text-text-primary focus:outline-none focus:border-vault-blue">
-                <option value="">All Categories</option>
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">[ Body Category ]</label>
+              <select id="filter-category" onchange="applyFilters()" class="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all appearance-none">
+                <option value="">All Classifications</option>
                 <option value="Sedan">Sedan</option>
                 <option value="SUV">SUV</option>
                 <option value="Truck">Truck</option>
@@ -319,12 +320,12 @@
               </select>
             </div>
             <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-1.5">Min Price (₹ INR)</label>
-              <input type="number" id="filter-min-price" oninput="applyFilters()" placeholder="₹0" class="w-full bg-vault-sec border border-vault-border rounded-xl px-3.5 py-2.5 text-xs text-text-primary focus:outline-none focus:border-vault-blue">
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">[ Minimum Price, ₹ ]</label>
+              <input type="number" id="filter-min-price" oninput="applyFilters()" placeholder="0" class="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
             </div>
             <div>
-              <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-1.5">Max Price (₹ INR)</label>
-              <input type="number" id="filter-max-price" oninput="applyFilters()" placeholder="₹5,00,00,000" class="w-full bg-vault-sec border border-vault-border rounded-xl px-3.5 py-2.5 text-xs text-text-primary focus:outline-none focus:border-vault-blue">
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-text-secondary mb-1.5">[ Maximum Price, ₹ ]</label>
+              <input type="number" id="filter-max-price" oninput="applyFilters()" placeholder="50,00,00,000" class="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
             </div>
           </div>
         </div>
@@ -332,24 +333,26 @@
         <!-- Latest Inventory Grid -->
         <section id="inventory-section" class="space-y-4">
           <div class="flex items-center justify-between">
-            <h2 class="font-heading text-xl font-bold text-white">Latest Reserve Inventory</h2>
+            <h2 class="font-heading text-2xl font-bold tracking-tight text-[#F5F3EF]">Featured Reserves</h2>
             <div id="admin-add-btn-container" class="hidden">
-              <button onclick="openAddModal()" class="px-4 py-2 btn-blue font-semibold text-xs rounded-xl shadow flex items-center gap-1.5">
-                <i data-lucide="plus-circle" class="w-4 h-4"></i> Add Vehicle
+              <button onclick="openAddModal()" class="px-5 py-2.5 btn-blue font-semibold text-xs rounded-full shadow flex items-center gap-1.5 group">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                <span>Add Vehicle</span>
+                <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
               </button>
             </div>
           </div>
 
-          <div id="vehicle-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div id="vehicle-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             <!-- Populated by JS -->
           </div>
         </section>
 
         <!-- Footer -->
-        <footer class="pt-8 border-t border-vault-border text-center text-xs text-text-muted space-y-2">
-          <div class="flex items-center justify-center gap-1.5 font-bold text-white">
-            <i data-lucide="shield-check" class="w-4 h-4 text-vault-blue"></i>
-            <span>AutoVault Luxury Automotive Marketplace</span>
+        <footer class="pt-8 border-t border-vault-border text-center text-xs text-text-secondary space-y-2">
+          <div class="flex items-center justify-center gap-1.5 font-bold text-white tracking-widest uppercase">
+            <div class="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-white text-[9px] font-bold">AV</div>
+            <span>AutoVault Reserve</span>
           </div>
           <p>© 2026 AutoVault. All rights reserved. Certified Luxury Vehicle Inventory Portal.</p>
         </footer>
@@ -357,8 +360,8 @@
     </main>
 
     <!-- Modal Backdrop Overlay -->
-    <div id="modal-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
-      <div id="modal-content" class="max-w-lg w-full modal-glass rounded-2xl p-8 relative shadow-2xl">
+    <div id="modal-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
+      <div id="modal-content" class="max-w-lg w-full bg-[#151515] border border-white/[0.08] rounded-2xl p-8 relative shadow-2xl">
         <!-- Injected by JS -->
       </div>
     </div>
@@ -468,7 +471,7 @@
       document.getElementById('auth-section').classList.remove('hidden');
       document.getElementById('dashboard-section').classList.add('hidden');
       document.getElementById('nav-actions').innerHTML = `
-        <span class="text-xs font-semibold text-text-muted">AutoVault Guest</span>
+        <span class="text-xs font-semibold text-text-secondary">[ GUEST RESERVE VIEW ]</span>
       `;
     }
 
@@ -481,11 +484,11 @@
       const isStaff = currentUser.is_staff;
       document.getElementById('nav-actions').innerHTML = `
         <div class="flex items-center gap-3">
-          <div class="px-4 py-2 rounded-xl bg-vault-sec border border-vault-border text-xs text-text-secondary flex items-center gap-2">
-            <i data-lucide="user" class="w-3.5 h-3.5 text-vault-blue"></i>
-            <span>${currentUser.username} (${isStaff ? '<strong class="text-vault-blue">Admin</strong>' : 'Member'})</span>
+          <div class="px-4 py-2 rounded-full bg-[#111111] border border-white/[0.08] text-xs text-text-primary flex items-center gap-2">
+            <i data-lucide="user" class="w-3.5 h-3.5 text-vault-amber"></i>
+            <span>${currentUser.username} (${isStaff ? '<strong class="text-vault-amber">Admin</strong>' : 'Member'})</span>
           </div>
-          <button onclick="handleLogout()" class="px-4 py-2 rounded-xl bg-vault-sec border border-vault-border text-text-muted hover:text-rose-400 text-xs font-semibold transition-all">
+          <button onclick="handleLogout()" class="px-4 py-2 rounded-full bg-[#111111] border border-white/[0.08] text-text-secondary hover:text-rose-400 text-xs font-semibold transition-all">
             Sign Out
           </button>
         </div>
@@ -542,7 +545,7 @@
       const grid = document.getElementById('vehicle-grid');
       if (!vehicles || vehicles.length === 0) {
         grid.innerHTML = `
-          <div class="col-span-full text-center py-12 text-text-muted">
+          <div class="col-span-full text-center py-12 text-text-secondary">
             <i data-lucide="search-x" class="w-12 h-12 mx-auto mb-2 text-slate-600"></i>
             No AutoVault vehicles match your criteria.
           </div>
@@ -558,35 +561,35 @@
         const imgUrl = v.image_url || 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80';
 
         return `
-          <div class="vault-card card-hover rounded-2xl overflow-hidden flex flex-col justify-between">
+          <div class="vault-card card-hover overflow-hidden flex flex-col justify-between group">
             <div>
-              <!-- Large Vehicle Image -->
-              <div class="h-56 w-full relative overflow-hidden bg-vault-sec">
-                <img src="${imgUrl}" alt="${v.make} ${v.model}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-vault-card via-transparent to-black/30"></div>
+              <!-- Large Product Photography -->
+              <div class="h-60 w-full relative overflow-hidden bg-[#0A0A0A]">
+                <img src="${imgUrl}" alt="${v.make} ${v.model}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-black/30"></div>
 
-                <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-1.5">
-                  <span class="px-2.5 py-1 rounded-lg text-[10px] font-semibold tracking-wider uppercase bg-vault-bg/90 text-text-primary border border-vault-border">${v.category}</span>
-                  <span class="px-2 py-1 rounded-lg text-[10px] font-semibold bg-vault-bg/90 text-text-muted border border-vault-border">${v.year}</span>
+                <div class="absolute top-4 left-4 z-10 flex items-center gap-2">
+                  <span class="px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest bg-[#0A0A0A]/90 text-text-primary border border-vault-border">${v.category}</span>
+                  <span class="px-2 py-1 rounded-full text-[9px] font-bold bg-[#0A0A0A]/90 text-text-secondary border border-vault-border">${v.year}</span>
                 </div>
 
-                <div class="absolute top-3.5 right-3.5 z-10">
-                  <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider ${outOfStock ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
+                <div class="absolute top-4 right-4 z-10">
+                  <span class="px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest ${outOfStock ? 'bg-rose-950/40 text-rose-300 border border-rose-900/50' : 'bg-emerald-950/40 text-emerald-300 border border-emerald-900/50'}">
                     ${outOfStock ? 'Sold Out' : v.quantity + ' Available'}
                   </span>
                 </div>
               </div>
 
-              <!-- Content Details -->
-              <div class="p-6 space-y-3">
+              <!-- Specs details -->
+              <div class="p-6 space-y-4">
                 <div>
-                  <div class="text-[10px] font-bold uppercase tracking-widest text-vault-blue">${v.make}</div>
+                  <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">${v.make}</div>
                   <h3 class="font-heading text-xl font-bold text-white">${v.model}</h3>
-                  <p class="text-text-muted text-xs mt-1.5 line-clamp-2 leading-relaxed">${v.description || 'Certified luxury dealership vehicle.'}</p>
+                  <p class="text-text-secondary text-xs mt-1.5 font-light line-clamp-2 leading-relaxed">${v.description || 'Certified luxury reserve automotive specification.'}</p>
                 </div>
                 <div class="pt-3 border-t border-vault-border flex items-baseline justify-between">
-                  <span class="text-[10px] uppercase tracking-widest text-text-muted font-bold">MSRP</span>
-                  <span class="text-2xl font-bold text-vault-blue tracking-tight">${formattedPrice}</span>
+                  <span class="text-[9px] uppercase tracking-widest text-text-secondary font-bold">[ MSRP ]</span>
+                  <span class="text-xl font-bold text-vault-amber group-hover:text-amber-400 transition-colors tracking-tight">${formattedPrice}</span>
                 </div>
               </div>
             </div>
@@ -594,16 +597,17 @@
             <!-- Action Controls -->
             <div class="p-6 pt-0 space-y-3">
               ${!isStaff ? `
-                <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-3.5 rounded-xl font-semibold text-xs transition-all ${outOfStock ? 'bg-vault-sec text-text-muted cursor-not-allowed border border-vault-border' : 'btn-blue shadow-md active:scale-95'}">
-                  ${outOfStock ? 'Sold Out' : 'Purchase Vehicle'}
+                <button onclick="openPurchaseModal(${v.id})" ${outOfStock ? 'disabled' : ''} class="w-full py-3 px-4 rounded-full font-semibold text-xs flex items-center justify-center gap-1.5 transition-all duration-300 shadow-md ${outOfStock ? 'bg-[#111111] border border-white/[0.08] text-text-secondary cursor-not-allowed' : 'btn-blue active:scale-[0.98]' }">
+                  <span>Explore The Deal</span>
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                 </button>
               ` : ''}
 
               ${isStaff ? `
                 <div class="grid grid-cols-3 gap-2">
-                  <button onclick="openRestockModal(${v.id})" class="py-2.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">Restock</button>
-                  <button onclick="openEditModal(${v.id})" class="py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 text-xs font-semibold">Edit</button>
-                  <button onclick="openDeleteModal(${v.id})" class="py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-400 text-xs font-semibold">Delete</button>
+                  <button onclick="openRestockModal(${v.id})" class="py-2.5 rounded-full bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.08] text-text-primary text-[10px] font-bold">Restock</button>
+                  <button onclick="openEditModal(${v.id})" class="py-2.5 rounded-full bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.08] text-text-primary text-[10px] font-bold">Edit</button>
+                  <button onclick="openDeleteModal(${v.id})" class="py-2.5 rounded-full bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 text-rose-300 text-[10px] font-bold">Delete</button>
                 </div>
               ` : ''}
             </div>
@@ -639,19 +643,19 @@
       const total = base + tax + registrationFee;
 
       document.getElementById('modal-content').innerHTML = `
-        <h2 class="font-heading text-2xl font-bold text-white mb-1">Confirm Purchase</h2>
-        <p class="text-xs text-text-muted mb-5">${v.make} ${v.model} (${v.year})</p>
+        <h2 class="font-heading text-2xl font-bold text-white mb-1">Confirm Reserve Acquisition</h2>
+        <p class="text-xs text-text-secondary mb-5">${v.make} ${v.model} (${v.year})</p>
 
         <div class="space-y-3 text-xs border-t border-b border-vault-border py-4 mb-6">
-          <div class="flex justify-between text-text-muted"><span>Vehicle Ex-Showroom Price</span><span class="font-bold text-white">${formatINR(base)}</span></div>
-          <div class="flex justify-between text-text-muted"><span>Estimated GST & Cess (18%)</span><span class="font-bold text-white">${formatINR(tax)}</span></div>
-          <div class="flex justify-between text-text-muted"><span>Registration & Handling</span><span class="font-bold text-white">${formatINR(registrationFee)}</span></div>
-          <div class="flex justify-between font-bold text-vault-blue text-base pt-3 border-t border-vault-border"><span>Total On-Road Price</span><span>${formatINR(total)}</span></div>
+          <div class="flex justify-between text-text-secondary"><span>Ex-Showroom Price</span><span class="font-bold text-white">${formatINR(base)}</span></div>
+          <div class="flex justify-between text-text-secondary"><span>Estimated GST & Cess (18%)</span><span class="font-bold text-white">${formatINR(tax)}</span></div>
+          <div class="flex justify-between text-text-secondary"><span>Registration & Handling</span><span class="font-bold text-white">${formatINR(registrationFee)}</span></div>
+          <div class="flex justify-between font-bold text-vault-amber text-base pt-3 border-t border-vault-border"><span>Total On-Road Price</span><span>${formatINR(total)}</span></div>
         </div>
 
         <div class="flex gap-3">
-          <button onclick="closeModal()" class="w-1/3 py-3 rounded-xl bg-vault-sec text-text-muted text-xs font-semibold border border-vault-border">Cancel</button>
-          <button onclick="confirmPurchase(${v.id})" class="w-2/3 py-3 btn-blue text-xs font-semibold rounded-xl shadow-lg">Complete Purchase</button>
+          <button onclick="closeModal()" class="w-1/3 py-3 rounded-full bg-[#0A0A0A] border border-vault-border text-text-secondary hover:text-white transition-all text-xs font-semibold">Cancel</button>
+          <button onclick="confirmPurchase(${v.id})" class="w-2/3 py-3.5 btn-blue text-xs font-semibold shadow-lg">Complete Acquisition</button>
         </div>
       `;
       document.getElementById('modal-overlay').classList.remove('hidden');
@@ -672,24 +676,24 @@
 
     function openAddModal() {
       document.getElementById('modal-content').innerHTML = `
-        <h2 class="font-heading text-2xl font-bold text-white mb-5">Add New Reserve Vehicle</h2>
+        <h2 class="font-heading text-2xl font-bold text-white mb-5">Add Reserve Vehicle</h2>
         <form onsubmit="confirmAdd(event)" class="space-y-4 text-xs">
           <div class="grid grid-cols-2 gap-3">
-            <input type="text" id="add-make" placeholder="Make (e.g. Porsche)" required class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary focus:border-vault-blue">
-            <input type="text" id="add-model" placeholder="Model (e.g. 911 GT3)" required class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary focus:border-vault-blue">
+            <input type="text" id="add-make" placeholder="Make (e.g. Porsche)" required class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
+            <input type="text" id="add-model" placeholder="Model (e.g. 911 GT3)" required class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
           </div>
           <div class="grid grid-cols-3 gap-3">
-            <select id="add-category" class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary focus:border-vault-blue">
+            <select id="add-category" class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all appearance-none">
               <option value="Coupe">Coupe</option><option value="Sedan">Sedan</option><option value="SUV">SUV</option><option value="Truck">Truck</option><option value="Convertible">Convertible</option><option value="Hatchback">Hatchback</option>
             </select>
-            <input type="number" id="add-price" placeholder="Price (₹ INR)" required class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary focus:border-vault-blue">
-            <input type="number" id="add-quantity" placeholder="Quantity" value="1" required class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary focus:border-vault-blue">
+            <input type="number" id="add-price" placeholder="Price (₹ INR)" required class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
+            <input type="number" id="add-quantity" placeholder="Quantity" value="1" required class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
           </div>
-          <input type="url" id="add-image" placeholder="Image URL (https://images.unsplash.com/...)" class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary focus:border-vault-blue">
-          <textarea id="add-desc" placeholder="Vehicle specification details..." rows="2" class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary focus:border-vault-blue"></textarea>
+          <input type="url" id="add-image" placeholder="Image URL (https://images.unsplash.com/...)" class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
+          <textarea id="add-desc" placeholder="Vehicle specification details..." rows="2" class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all"></textarea>
           <div class="flex gap-3 pt-2">
-            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-xl bg-vault-sec text-text-muted font-semibold border border-vault-border">Cancel</button>
-            <button type="submit" class="w-2/3 py-3 btn-blue font-semibold rounded-xl">Create Vehicle</button>
+            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-full bg-[#0A0A0A] border border-vault-border text-text-secondary hover:text-white transition-all text-xs font-semibold">Cancel</button>
+            <button type="submit" class="w-2/3 py-3.5 btn-blue text-xs font-semibold rounded-full shadow-lg">Create Vehicle</button>
           </div>
         </form>
       `;
@@ -723,10 +727,10 @@
       document.getElementById('modal-content').innerHTML = `
         <h2 class="font-heading text-2xl font-bold text-white mb-3">Restock Vehicle Stock</h2>
         <form onsubmit="confirmRestock(event, ${id})" class="space-y-4 text-xs">
-          <input type="number" id="restock-qty" value="5" min="1" required class="w-full bg-vault-sec border border-vault-border rounded-xl p-3.5 text-text-primary font-bold text-base focus:border-vault-blue">
+          <input type="number" id="restock-qty" value="5" min="1" required class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
           <div class="flex gap-3 pt-2">
-            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-xl bg-vault-sec text-text-muted font-semibold border border-vault-border">Cancel</button>
-            <button type="submit" class="w-2/3 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl">Confirm Restock</button>
+            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-full bg-[#0A0A0A] border border-vault-border text-text-secondary hover:text-white transition-all text-xs font-semibold">Cancel</button>
+            <button type="submit" class="w-2/3 py-3.5 btn-blue text-xs font-semibold rounded-full shadow-lg">Confirm Restock</button>
           </div>
         </form>
       `;
@@ -755,18 +759,18 @@
         <h2 class="font-heading text-2xl font-bold text-white mb-4">Edit Vehicle Details</h2>
         <form onsubmit="confirmEdit(event, ${id})" class="space-y-3 text-xs">
           <div class="grid grid-cols-2 gap-3">
-            <input type="text" id="edit-make" value="${v.make}" required class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary">
-            <input type="text" id="edit-model" value="${v.model}" required class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary">
+            <input type="text" id="edit-make" value="${v.make}" required class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
+            <input type="text" id="edit-model" value="${v.model}" required class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
           </div>
           <div class="grid grid-cols-2 gap-3">
-            <input type="number" id="edit-price" value="${v.price}" required class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary">
-            <input type="number" id="edit-quantity" value="${v.quantity}" required class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary">
+            <input type="number" id="edit-price" value="${v.price}" required class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
+            <input type="number" id="edit-quantity" value="${v.quantity}" required class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
           </div>
-          <input type="url" id="edit-image" value="${v.image_url || ''}" class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary">
-          <textarea id="edit-desc" rows="2" class="w-full bg-vault-sec border border-vault-border rounded-xl p-3 text-text-primary">${v.description || ''}</textarea>
+          <input type="url" id="edit-image" value="${v.image_url || ''}" class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">
+          <textarea id="edit-desc" rows="2" class="w-full bg-[#0A0A0A] border border-vault-border rounded-xl px-4 py-3 text-xs text-text-primary focus:outline-none focus:border-vault-amber focus:ring-1 focus:ring-vault-amber transition-all">${v.description || ''}</textarea>
           <div class="flex gap-3 pt-2">
-            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-xl bg-vault-sec text-text-muted font-semibold border border-vault-border">Cancel</button>
-            <button type="submit" class="w-2/3 py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl">Save Changes</button>
+            <button type="button" onclick="closeModal()" class="w-1/3 py-3 rounded-full bg-[#0A0A0A] border border-vault-border text-text-secondary hover:text-white transition-all text-xs font-semibold">Cancel</button>
+            <button type="submit" class="w-2/3 py-3.5 btn-blue text-xs font-semibold rounded-full shadow-lg">Save Changes</button>
           </div>
         </form>
       `;
@@ -799,10 +803,10 @@
       const v = vehiclesList.find(x => x.id === id);
       document.getElementById('modal-content').innerHTML = `
         <h2 class="font-heading text-2xl font-bold text-white mb-2">Delete Vehicle Listing?</h2>
-        <p class="text-xs text-text-muted mb-5">Are you sure you want to permanently delete ${v.make} ${v.model} from inventory?</p>
+        <p class="text-xs text-text-secondary mb-5">Are you sure you want to permanently delete ${v.make} ${v.model} from inventory?</p>
         <div class="flex gap-3">
-          <button onclick="closeModal()" class="w-1/2 py-3 rounded-xl bg-vault-sec text-text-muted font-semibold border border-vault-border">Cancel</button>
-          <button onclick="confirmDelete(${id})" class="w-1/2 py-3 bg-rose-500 hover:bg-rose-400 text-white font-bold rounded-xl">Delete Listing</button>
+          <button onclick="closeModal()" class="w-1/2 py-3 rounded-full bg-[#0A0A0A] border border-vault-border text-[#9A9A9A] hover:text-white transition-all text-xs font-semibold">Cancel</button>
+          <button onclick="confirmDelete(${id})" class="w-1/2 py-3.5 bg-rose-500 hover:bg-rose-400 text-white font-bold rounded-full text-xs">Delete Listing</button>
         </div>
       `;
       document.getElementById('modal-overlay').classList.remove('hidden');

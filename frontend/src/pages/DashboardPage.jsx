@@ -7,10 +7,11 @@ import VehicleCard from '../components/VehicleCard'
 import PurchaseModal from '../components/PurchaseModal'
 import AddVehicleModal from '../components/AddVehicleModal'
 import EditVehicleModal from '../components/EditVehicleModal'
-import RestockVehicleModal from '../components/RestockVehicleModal'
+import RestockVehicleModal from '../components/RestockModal'
 import DeleteConfirmModal from '../components/DeleteConfirmModal'
+import AuthModal from '../components/AuthModal'
 import axiosClient from '../api/axiosClient'
-import { PlusCircle, ArrowRight, ShieldCheck, SearchX, Car, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Plus, Sparkles, SearchX, Compass } from 'lucide-react'
 
 export default function DashboardPage() {
   const { user, isStaff } = useAuth()
@@ -22,6 +23,9 @@ export default function DashboardPage() {
     min_price: '',
     max_price: ''
   })
+
+  // Auth modal triggered inside Navbar or other parts
+  const [authModalMode, setAuthModalMode] = useState(null) // 'login' | 'register' | null
 
   // Modal States
   const [purchaseVehicle, setPurchaseVehicle] = useState(null)
@@ -68,136 +72,145 @@ export default function DashboardPage() {
   const categories = ['SUV', 'Sedan', 'Coupe', 'Convertible', 'Hatchback', 'Truck']
 
   return (
-    <div className="min-h-screen bg-[#0B0F14] text-[#F8FAFC]">
-      <Navbar />
+    <div className="min-h-screen bg-[#0A0A0A] text-[#F5F3EF]">
+      <Navbar onOpenAuth={(mode) => setAuthModalMode(mode)} />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-        
-        {/* Full-Width Luxury Showroom Hero Section */}
-        <section id="hero-showcase" className="vault-card rounded-2xl p-8 sm:p-12 relative overflow-hidden bg-gradient-to-r from-[#1A212C] via-[#141A22] to-[#1A212C] border border-white/[0.08]">
+      {/* Hero Showcase Section - Cinematic Full-Bleed look */}
+      <section id="hero-showcase" className="relative pt-32 pb-20 overflow-hidden bg-[#0A0A0A] border-b border-white/[0.04]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            <!-- Left Hero Content -->
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-[#3B82F6] text-xs font-semibold uppercase tracking-wider">
-                <Sparkles className="w-4 h-4" /> Premier Luxury Automotive Marketplace
+            {/* Left Column Content */}
+            <div className="lg:col-span-7 space-y-8">
+              <div className="text-[10px] uppercase font-bold tracking-[0.25em] text-[#9A9A9A]">
+                [ 0.9% APR FINANCING AVAILABLE FOR A LIMITED TIME. VIEW RESERVES ]
               </div>
 
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-none">
-                Find Your Next <span className="text-[#3B82F6]">Dream Car</span>
+              <h1 className="font-heading text-5xl sm:text-7xl lg:text-[85px] font-extrabold text-[#F5F3EF] tracking-tighter leading-[0.9] select-none">
+                Yours <span className="font-light text-[#9A9A9A] italic">to Drive.</span>
               </h1>
 
-              <p className="text-[#CBD5E1] text-sm sm:text-base leading-relaxed max-w-xl">
-                Experience the pinnacle of luxury mobility. Browse 30 curated exotic sports cars, luxury sedans, and performance SUVs with atomic real-time inventory management.
+              <p className="text-[#9A9A9A] text-sm sm:text-base leading-relaxed max-w-lg font-light">
+                Discover curated reserve sports models and luxury tourers. A cinematic showroom experience featuring dramatically lit exotics available for acquisition.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-wrap items-center gap-4">
                 <a
                   href="#inventory-section"
-                  className="px-6 py-3.5 btn-blue font-semibold text-sm rounded-xl shadow-lg flex items-center gap-2"
+                  className="px-8 py-4 btn-editorial-pill flex items-center gap-2 group"
                 >
-                  <span>Explore Reserve Inventory</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>Explore The Deals</span>
+                  <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
 
                 {isStaff && (
                   <button
                     onClick={() => setShowAddModal(true)}
-                    className="px-6 py-3.5 bg-[#141A22] border border-white/[0.12] hover:border-white/30 text-white font-semibold text-sm rounded-xl transition-all flex items-center gap-2"
+                    className="px-6 py-4 btn-editorial-ghost flex items-center gap-2"
                   >
-                    <PlusCircle className="w-4 h-4 text-[#3B82F6]" />
-                    <span>Add New Vehicle</span>
+                    <Plus className="w-4 h-4 text-[#D98A3D]" />
+                    <span>Create Listing</span>
                   </button>
                 )}
               </div>
             </div>
 
-            <!-- Right Hero Imagery Showcase -->
+            {/* Right Column Full-Bleed dramatically lit car image */}
             <div className="lg:col-span-5 relative">
-              <div className="h-64 sm:h-80 w-full rounded-2xl overflow-hidden shadow-2xl relative border border-white/[0.1]">
+              <div className="h-[320px] sm:h-[400px] w-full rounded-2xl overflow-hidden relative border border-white/[0.08] shadow-2xl">
                 <img
                   src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=1200&q=80"
-                  alt="Porsche 911 GT3 RS Showroom"
+                  alt="Curated supercar showcase"
                   className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1A212C] via-transparent to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between backdrop-blur-md bg-[#0B0F14]/80 p-3 rounded-xl border border-white/[0.08]">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between backdrop-blur-md bg-[#0A0A0A]/80 p-4 rounded-xl border border-white/[0.08]">
                   <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#3B82F6]">Featured Reserve</div>
-                    <div className="text-sm font-bold text-white">Porsche 911 GT3 RS</div>
+                    <div className="text-[9px] font-bold uppercase tracking-widest text-[#D98A3D]">[ Current Reserve ]</div>
+                    <div className="text-sm font-bold text-[#F5F3EF]">Porsche 911 GT3 RS</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-xs font-extrabold text-white">₹3,50,00,000</div>
+                    <span className="text-sm font-extrabold text-[#F5F3EF]">₹3,50,00,000</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- Admin KPI Stats -->
-        {isStaff && <AdminStats vehicles={vehicles} />}
+      {/* Main content grid - Alternating Charcoal section */}
+      <section className="bg-[#111111] py-16 border-b border-white/[0.04]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Admin KPI stats */}
+          {isStaff && <AdminStats vehicles={vehicles} />}
 
-        <!-- Integrated Search & Filter Toolbar -->
-        <SearchToolbar
-          searchParams={searchParams}
-          onParamChange={handleParamChange}
-          onReset={handleResetFilters}
-        />
+          {/* Integrated Search and Filter section */}
+          <SearchToolbar
+            searchParams={searchParams}
+            onParamChange={handleParamChange}
+            onReset={handleResetFilters}
+          />
+        </div>
+      </section>
 
-        <!-- Popular Categories Quick Selector -->
-        <section id="categories-section" className="space-y-3">
-          <h2 className="font-heading text-lg font-bold text-white flex items-center gap-2">
-            <Car className="w-5 h-5 text-[#3B82F6]" /> Popular Categories
-          </h2>
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+      {/* Categories quick filter selector bar */}
+      <section id="categories-section" className="bg-[#0A0A0A] py-10 border-b border-white/[0.04]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+          <div className="text-[10px] uppercase font-bold tracking-[0.25em] text-[#9A9A9A] flex items-center gap-2">
+            <Compass className="w-4 h-4 text-[#D98A3D]" /> [ Filter by body classification ]
+          </div>
+          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none">
             <button
               onClick={() => handleParamChange('category', '')}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+              className={`px-5 py-2.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 ${
                 !searchParams.category
-                  ? 'bg-[#3B82F6] text-white shadow-md shadow-[#3B82F6]/20'
-                  : 'bg-[#141A22] border border-white/[0.08] text-[#94A3B8] hover:text-white'
+                  ? 'bg-[#F5F3EF] text-[#0A0A0A] shadow-md'
+                  : 'bg-[#111111] border border-white/[0.08] text-[#9A9A9A] hover:text-[#F5F3EF]'
               }`}
             >
-              All Models
+              All Reserves
             </button>
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => handleParamChange('category', cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+                className={`px-5 py-2.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 ${
                   searchParams.category === cat
-                    ? 'bg-[#3B82F6] text-white shadow-md shadow-[#3B82F6]/20'
-                    : 'bg-[#141A22] border border-white/[0.08] text-[#94A3B8] hover:text-white'
+                    ? 'bg-[#F5F3EF] text-[#0A0A0A] shadow-md'
+                    : 'bg-[#111111] border border-white/[0.08] text-[#9A9A9A] hover:text-[#F5F3EF]'
                 }`}
               >
                 {cat}
               </button>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- Latest Vehicles Grid -->
-        <section id="inventory-section" className="space-y-4">
+      {/* Pre-owned reserves grid */}
+      <section id="inventory-section" className="bg-[#111111] py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="flex items-center justify-between">
-            <h2 className="font-heading text-xl font-bold text-white">Latest Reserve Inventory</h2>
-            <span className="text-xs text-[#94A3B8]">{vehicles.length} Available Listings</span>
+            <h2 className="font-heading text-2xl font-bold tracking-tight text-[#F5F3EF]">Featured Reserves</h2>
+            <span className="text-xs text-[#9A9A9A] uppercase tracking-wider font-semibold">[ {vehicles.length} Models Loaded ]</span>
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-                <div key={n} className="vault-card h-80 animate-pulse rounded-2xl p-6 bg-[#141A22]" />
+                <div key={n} className="editorial-card h-80 animate-pulse bg-[#151515]" />
               ))}
             </div>
           ) : vehicles.length === 0 ? (
-            <div className="vault-card rounded-2xl p-12 text-center text-[#94A3B8]">
-              <SearchX className="w-12 h-12 mx-auto mb-3 text-[#94A3B8]" />
-              <h3 className="font-heading text-lg font-bold text-white mb-1">No Vehicles Found</h3>
-              <p className="text-xs text-[#94A3B8]">No vehicles matched your search filter criteria.</p>
+            <div className="editorial-card p-12 text-center text-[#9A9A9A]">
+              <SearchX className="w-12 h-12 mx-auto mb-3 text-[#9A9A9A]" />
+              <h3 className="font-heading text-lg font-bold text-[#F5F3EF] mb-1">No matches found</h3>
+              <p className="text-xs text-[#9A9A9A]">No vehicles matched your search filter criteria.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {vehicles.map((v) => (
                 <VehicleCard
                   key={v.id}
@@ -211,19 +224,28 @@ export default function DashboardPage() {
               ))}
             </div>
           )}
-        </section>
+        </div>
+      </section>
 
-        <!-- Minimal Footer -->
-        <footer className="pt-8 border-t border-white/[0.08] text-center text-xs text-[#94A3B8] space-y-2">
-          <div className="flex items-center justify-center gap-1.5 font-bold text-white">
-            <ShieldCheck className="w-4 h-4 text-[#3B82F6]" />
-            <span>AutoVault Luxury Automotive Reserve</span>
-          </div>
-          <p>© 2026 AutoVault. All rights reserved. Certified Luxury Vehicle Inventory Portal.</p>
-        </footer>
-      </main>
+      {/* Editorial Footer */}
+      <footer className="bg-[#0A0A0A] py-12 border-t border-white/[0.04] text-center text-xs text-[#9A9A9A] space-y-3">
+        <div className="flex items-center justify-center gap-1.5 font-bold text-[#F5F3EF] tracking-widest uppercase">
+          <div className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-white text-[9px] font-bold">AV</div>
+          <span>AutoVault Reserve</span>
+        </div>
+        <p>© 2026 AutoVault. All rights reserved. Certified Luxury Vehicle Inventory Portal.</p>
+      </footer>
 
-      {/* Modals */}
+      {/* Modals & Popups */}
+      {authModalMode && (
+        <AuthModal
+          isOpen={true}
+          onClose={() => setAuthModalMode(null)}
+          initialMode={authModalMode}
+          onSuccess={fetchVehicles}
+        />
+      )}
+
       {purchaseVehicle && (
         <PurchaseModal
           vehicle={purchaseVehicle}

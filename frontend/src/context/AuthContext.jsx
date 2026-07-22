@@ -31,10 +31,21 @@ export function AuthProvider({ children }) {
     }
   }
 
-  const register = async (userData) => {
+  const register = async (usernameOrData, email, password) => {
     setLoading(true)
     try {
-      await axiosClient.post('/auth/register/', userData)
+      let payload
+      if (typeof usernameOrData === 'object' && usernameOrData !== null) {
+        payload = usernameOrData
+      } else {
+        payload = { username: usernameOrData, email, password }
+      }
+      const response = await axiosClient.post('/auth/register/', payload)
+      const { access, user: userData } = response.data
+      setToken(access)
+      setUser(userData)
+      localStorage.setItem('token', access)
+      localStorage.setItem('user', JSON.stringify(userData))
       return { success: true }
     } catch (error) {
       const errors = error.response?.data
