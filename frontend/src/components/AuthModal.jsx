@@ -38,7 +38,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login', onSu
         setErrorMessage('All fields are required.')
         return
       }
-      const result = await register(username, email, password)
+      const result = await register({ username, email, password })
       if (result.success) {
         // Auto authenticate on success
         const loginResult = await login(username, password)
@@ -57,7 +57,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login', onSu
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-      <div className="max-w-md w-full bg-[#151515] border border-white/[0.08] rounded-2xl p-8 relative shadow-2xl overflow-hidden animate-fade-in">
+      <div className="max-w-md w-full bg-[#151515] border border-white/[0.08] rounded-2xl p-8 relative shadow-2xl overflow-hidden">
         
         {/* Close button */}
         <button
