@@ -76,3 +76,18 @@ cd backend
 ## Development Prompts Log
 
 All RED $\rightarrow$ GREEN $\rightarrow$ REFACTOR prompts and results are documented in [PROMPTS.md](file:///c:/Users/User/OneDrive/Desktop/AI_Kata_Car_Dealership_Inventory_System/PROMPTS.md).
+
+---
+
+## My AI Usage
+
+### AI Tools Used
+- **Gemini**: Used to analyze the repository structure, help draft a refactoring plan, and verify that changes did not impact the existing codebase.
+
+### How AI Was Used
+- **Workspace Reorganization**: Used Gemini to identify redundant backup/placeholder files (such as unused boilerplate test files and legacy mockup template files) and clean them up safely.
+- **Script Refactoring**: Assisted in reorganizing utility and database seeding scripts into a structured subdirectory, ensuring their relative paths resolved correctly.
+- **Verification Support**: Utilized the assistant to run and monitor Pytest backend integration suites to confirm 100% feature compliance during the clean-up.
+
+### Reflection
+Integrating AI into the workflow accelerated the refactoring process, specifically helping organize utility scripts and verify code safety without impacting the working product.
