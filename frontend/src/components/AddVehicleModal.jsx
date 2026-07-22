@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { X, AlertCircle, Car, ArrowUpRight } from 'lucide-react'
+import { X, PlusCircle, AlertCircle, Car } from 'lucide-react'
 import axiosClient from '../api/axiosClient'
 
 export default function AddVehicleModal({ onClose, onSuccess }) {
@@ -58,22 +58,22 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-fade-in">
-      <div className="max-w-xl w-full bg-[#151515] border border-white/[0.08] rounded-2xl p-8 relative shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+      <div className="max-w-xl w-full modal-glass rounded-2xl p-8 relative shadow-2xl overflow-hidden">
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 rounded-full bg-[#0A0A0A] border border-white/[0.08] text-[#9A9A9A] hover:text-[#F5F3EF] transition-colors"
+          className="absolute top-6 right-6 p-2 rounded-xl bg-[#141A22] border border-white/[0.08] text-[#94A3B8] hover:text-white transition-colors"
         >
           <X className="w-4 h-4" />
         </button>
 
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-[#D98A3D]">
+          <div className="w-10 h-10 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
             <Car className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="font-heading text-xl font-bold text-[#F5F3EF]">Add Reserve Vehicle</h2>
-            <p className="text-xs text-[#9A9A9A]">Publish a new model to reserve showroom</p>
+            <h2 className="font-heading text-xl font-bold text-white">Add New Reserve Vehicle</h2>
+            <p className="text-xs text-[#94A3B8]">Create a new dealership inventory listing</p>
           </div>
         </div>
 
@@ -87,7 +87,7 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
         <form onSubmit={handleSubmit} className="space-y-4 text-xs">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-1.5">Make / Brand *</label>
+              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5">Make *</label>
               <input
                 type="text"
                 name="make"
@@ -95,11 +95,11 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
                 onChange={handleChange}
                 placeholder="e.g. Porsche"
                 required
-                className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F5F3EF] focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all"
+                className="w-full bg-[#141A22] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#3B82F6]"
               />
             </div>
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-1.5">Model Name *</label>
+              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5">Model *</label>
               <input
                 type="text"
                 name="model"
@@ -107,19 +107,19 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
                 onChange={handleChange}
                 placeholder="e.g. 911 GT3"
                 required
-                className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F5F3EF] focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all"
+                className="w-full bg-[#141A22] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#3B82F6]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-1.5">Classification *</label>
+              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5">Category *</label>
               <select
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F5F3EF] focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all appearance-none"
+                className="w-full bg-[#141A22] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#3B82F6]"
               >
                 <option value="Sedan">Sedan</option>
                 <option value="SUV">SUV</option>
@@ -130,7 +130,7 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
               </select>
             </div>
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-1.5">Release Year *</label>
+              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5">Year *</label>
               <input
                 type="number"
                 name="year"
@@ -138,11 +138,11 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
                 onChange={handleChange}
                 placeholder="2024"
                 required
-                className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F5F3EF] focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all"
+                className="w-full bg-[#141A22] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#3B82F6]"
               />
             </div>
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-1.5">Quantity *</label>
+              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5">Quantity *</label>
               <input
                 type="number"
                 name="quantity"
@@ -150,13 +150,13 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
                 onChange={handleChange}
                 min="0"
                 required
-                className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F5F3EF] focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all"
+                className="w-full bg-[#141A22] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#3B82F6]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-1.5">Price (₹ INR MSRP) *</label>
+            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5">Price (₹ INR MSRP) *</label>
             <input
               type="number"
               name="price"
@@ -164,31 +164,31 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
               onChange={handleChange}
               placeholder="e.g. 15000000"
               required
-              className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F5F3EF] focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all"
+              className="w-full bg-[#141A22] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#3B82F6]"
             />
           </div>
 
           <div>
-            <label className="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-1.5">Showcase Image URL</label>
+            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5">Image URL</label>
             <input
               type="url"
               name="image_url"
               value={formData.image_url}
               onChange={handleChange}
               placeholder="https://images.unsplash.com/..."
-              className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F5F3EF] focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all"
+              className="w-full bg-[#141A22] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#3B82F6]"
             />
           </div>
 
           <div>
-            <label className="block text-[10px] font-bold uppercase tracking-wider text-[#9A9A9A] mb-1.5">Description Specification</label>
+            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5">Description</label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
               rows="2"
-              placeholder="Enter model highlights..."
-              className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F5F3EF] focus:outline-none focus:border-[#D98A3D] focus:ring-1 focus:ring-[#D98A3D] transition-all"
+              placeholder="Enter vehicle specification highlights..."
+              className="w-full bg-[#141A22] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#3B82F6]"
             />
           </div>
 
@@ -196,21 +196,21 @@ export default function AddVehicleModal({ onClose, onSuccess }) {
             <button
               type="button"
               onClick={onClose}
-              className="w-1/3 py-3 rounded-full bg-[#0A0A0A] border border-white/[0.08] text-[#9A9A9A] font-semibold text-sm hover:text-[#F5F3EF] transition-all"
+              className="w-1/3 py-3 rounded-xl bg-[#141A22] border border-white/[0.08] text-[#CBD5E1] font-semibold text-sm hover:bg-[#1A212C] transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="w-2/3 py-3.5 btn-editorial-pill font-semibold text-sm rounded-full shadow-lg flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-50"
+              className="w-2/3 py-3 btn-blue font-semibold text-sm rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-50"
             >
               {loading ? (
-                <div className="w-5 h-5 border-2 border-[#0A0A0A]/30 border-t-[#0A0A0A] rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               ) : (
                 <>
+                  <PlusCircle className="w-4 h-4" />
                   <span>Create Vehicle</span>
-                  <ArrowUpRight className="w-4 h-4" />
                 </>
               )}
             </button>
